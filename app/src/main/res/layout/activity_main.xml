@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_color"
-    tools:context=".MainActivity">
+    tools:context=".log_in_page">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -63,12 +63,13 @@
             style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:layout_margin="7dp"
             android:background="@drawable/rounded_view"
             android:ems="10"
             android:hint="@string/login_username"
             android:inputType="text"
-            android:padding="10dp"
+            android:padding="8dp"
+            android:singleLine="true"
             tools:layout_editor_absoluteX="100dp"
             tools:layout_editor_absoluteY="295dp" />
 
@@ -76,11 +77,11 @@
             android:id="@+id/editTextTextPassword"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:layout_margin="7dp"
             android:ems="10"
             android:hint="@string/login_password"
             android:inputType="textPassword"
-            android:padding="10dp"
+            android:padding="8dp"
             android:background="@drawable/rounded_view"
             tools:layout_editor_absoluteX="100dp"
             tools:layout_editor_absoluteY="343dp"
@@ -92,6 +93,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#1867DD"
             android:text="@string/log_in_button"
+            android:textSize="20dp"
             android:textColorHighlight="#7A86C6"
             android:textColorLink="#203295"/>
 
@@ -109,6 +111,16 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         android:backgroundTint="#689AE4"/>
 
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#008E8E8E"
+        android:text="@string/forgot_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:textColor="#8A93A1"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
