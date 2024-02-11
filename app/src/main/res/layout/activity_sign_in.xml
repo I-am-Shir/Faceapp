@@ -41,9 +41,10 @@
             android:textSize="30dp"
             android:textStyle="bold|italic"
             app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="10dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -59,7 +60,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/username"
             style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -74,7 +75,7 @@
             tools:layout_editor_absoluteY="295dp" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="7dp"
@@ -88,7 +89,7 @@
             />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/butLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#1867DD"
@@ -100,10 +101,10 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/butSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign up now"
+        android:text="Create new account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

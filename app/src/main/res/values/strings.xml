@@ -1,7 +1,11 @@
 <resources>
-    <string name="app_name">Facaapp</string>
+    <string name="app_name">Faceapp</string>
     <string name="login_password">password</string>
     <string name="login_username">username</string>
     <string name="log_in_button">Log in</string>
     <string name="forgot_password">Forgot Password?</string>
+    <string name="what_s_your_email">What\'s your email?</string>
+    <string name="enter_the_email_where_you_can_be_contacted_n_no_one_will_see_this_on_your_profile">Enter the email where you can be contacted.\n no one will see this on your profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
