@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class EmailFragment1 extends Fragment {
-    public EmailFragment1() {
+public class EmailFrag1 extends Fragment {
+    public EmailFrag1() {
         // Required empty public constructor
     }
     @Override

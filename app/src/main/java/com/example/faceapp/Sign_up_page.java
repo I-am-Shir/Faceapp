@@ -2,7 +2,6 @@ package com.example.faceapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -13,7 +12,7 @@ public class Sign_up_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
 
-        EmailFragment1 email_fragment1 = new EmailFragment1();
+        EmailFrag1 email_fragment1 = new EmailFrag1();
 
         /*backBut = findViewById(R.id.backBut);
         backBut.setOnClickListener(v -> {
@@ -21,7 +20,7 @@ public class Sign_up_page extends AppCompatActivity {
             startActivity(i);
         });*/
         getSupportFragmentManager().beginTransaction()
-            .replace(R.id.fragmentContainerView, EmailFragment1.class, null).setReorderingAllowed(true)
+            .replace(R.id.fragmentContainerView, EmailFrag1.class, null).setReorderingAllowed(true)
                 .addToBackStack("name")
             .commit();
         }
