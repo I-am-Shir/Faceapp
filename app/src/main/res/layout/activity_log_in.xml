@@ -59,6 +59,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/usernameException"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            tools:visibility="gone" />
+
         <EditText
             android:id="@+id/username"
             style="@style/Widget.AppCompat.AutoCompleteTextView"
@@ -74,6 +81,14 @@
             tools:layout_editor_absoluteX="100dp"
             tools:layout_editor_absoluteY="295dp" />
 
+        <TextView
+            android:id="@+id/passwordException"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/red"
+            tools:visibility="gone" />
+
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
@@ -87,6 +102,13 @@
             tools:layout_editor_absoluteX="100dp"
             tools:layout_editor_absoluteY="343dp"
             />
+
+        <TextView
+            android:id="@+id/userExistenceException"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            tools:visibility="gone" />
 
         <Button
             android:id="@+id/butLogin"
@@ -113,7 +135,7 @@
         android:backgroundTint="#689AE4"/>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/butForgot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#008E8E8E"

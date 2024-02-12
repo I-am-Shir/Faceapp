@@ -13,4 +13,5 @@
     <string name="already_have_an_account">Already have an account?</string>
     <string name="email">Email</string>
     <string name="next_button">Next</string>
+    <string name="user_doesn_t_exist">User doesn\'t exist.</string>
 </resources>

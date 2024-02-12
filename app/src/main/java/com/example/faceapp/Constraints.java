@@ -7,9 +7,11 @@ public class Constraints {
         Matcher matcher = pattern.matcher(toCheck);
         return matcher.find();
     }
-    boolean usernameTest(String username){
-        if (!checkRegex("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$", username))
-            return false;
+    boolean usernameCheck(String username) throws IllegalArgumentException {
+        if (!checkRegex("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$", username)){
+            throw new IllegalArgumentException("Invalid email address");
+        }
+        //TODO: add a check for the email to be unique
         return true;
     }
     boolean passwordCheck(String password) throws Exception {
