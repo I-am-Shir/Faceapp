@@ -1,4 +1,4 @@
-package com.example.fapp;
+package com.example.faceapp;
 
 import org.junit.Test;
 
