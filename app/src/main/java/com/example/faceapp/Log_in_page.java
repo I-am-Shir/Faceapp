@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class log_in_page extends AppCompatActivity {
+public class Log_in_page extends AppCompatActivity {
     private EditText user_name, pass_word;
     private Button butLogin;
     @Override
@@ -28,11 +28,11 @@ public class log_in_page extends AppCompatActivity {
                 // Implement authentication logic here
                 if (username.equals("Admin") && password.equals("123")) {
                     // Successful login
-                    Toast.makeText(log_in_page.this, "Login successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Log_in_page.this, "Login successful", Toast.LENGTH_SHORT).show();
                 } else {
                     // Failed login
-                    Toast.makeText(log_in_page.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(log_in_page.this, feed_page.class);
+                    Toast.makeText(Log_in_page.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(Log_in_page.this, Feed_page.class);
                     startActivity(i);
                 }
             }
@@ -42,7 +42,7 @@ public class log_in_page extends AppCompatActivity {
             butSignup.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(log_in_page.this, sign_up_page.class);
+                    Intent i = new Intent(Log_in_page.this, Sign_up_page.class);
                     startActivity(i);
                 }
             });

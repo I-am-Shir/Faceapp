@@ -1,7 +1,7 @@
 package com.example.faceapp;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-public class constraints {
+public class Constraints {
     private boolean checkRegex(String regex, String toCheck){
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(toCheck);

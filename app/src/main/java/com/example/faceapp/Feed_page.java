@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class feed_page extends AppCompatActivity {
+public class Feed_page extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
