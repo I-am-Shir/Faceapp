@@ -39,7 +39,7 @@ public class PictureFrag4 extends Fragment {
                     // photo picker.
                     if (uri != null) {
                         Log.d("PhotoPicker", "Selected URI: " + uri);
-                        picturePreview.setImageURI(uri);
+                        imageUri = uri;
                     } else {
                         Log.d("PhotoPicker", "No media selected");
                     }
