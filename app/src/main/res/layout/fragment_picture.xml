@@ -7,6 +7,7 @@
     android:background="@android:color/transparent"
     tools:context=".Sign_up_page"
     tools:visibility="visible">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
@@ -31,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Please choose a photo"
+            android:text="@string/please_choose_a_photo"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -43,8 +44,8 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="The picture can be taken from your camera or gallery. \n It will be used to identify you."
             android:padding="10dp"
+            android:text="The picture can be taken from your camera or gallery. \n It will be used to identify you."
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/askPassword" />
 
@@ -76,7 +77,7 @@
             android:id="@+id/photo_from_gallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#5BBCE3"
+            android:backgroundTint="#9687D8"
             android:text="Pick a picture from phones gallery"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
@@ -101,7 +102,7 @@
             android:id="@+id/photo_from_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#5BBCE3"
+            android:backgroundTint="#9687D8"
             android:text="@string/take_a_picture_from_camera"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -109,8 +110,19 @@
             app:layout_constraintTop_toBottomOf="@+id/cameraPicException" />
 
         <!-- Button to finish sign up -->
+
+        <ImageView
+            android:id="@+id/picturePreview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/photo_from_camera"
+            tools:srcCompat="@tools:sample/avatars" />
+
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/finishSignUpBut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -118,23 +130,10 @@
             android:backgroundTint="#1867DD"
             android:text="Finish sign up"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/photo_from_camera" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/picturePreview"
+            tools:layout_editor_absoluteX="6dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <!-- Button for users who already have an account -->
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#00689AE4"
-        android:text="@string/already_have_an_account"
-        android:textColor="#1867DD"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.546"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

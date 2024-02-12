@@ -1,6 +1,7 @@
 package com.example.faceapp;
 
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -9,60 +10,63 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class EmailFrag1 extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link PasswordFrag2#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class PasswordFrag2 extends Fragment {
+
     private Constraints constraints;
     private Button nextBut, backBut;
-    private EditText email;
-    private TextView emailEx;
-    private Boolean emailCheck;
-    public EmailFrag1() {
+    private EditText password;
+    private TextView passwordEx;
+    private Boolean passwordCheck;
+
+    public PasswordFrag2() {
         // Required empty public constructor
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_email1, container, false);
+        return inflater.inflate(R.layout.fragment_password_frag2, container, false);
     }
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         constraints = new Constraints();
-        emailCheck = true;
+        passwordCheck = true;
         nextBut = view.findViewById(R.id.nextBut);
         backBut = view.findViewById(R.id.backBut);
-        email = view.findViewById(R.id.editTextEmail);
-        emailEx = view.findViewById(R.id.emailException);
-        emailEx.setVisibility(View.GONE);
+        password = view.findViewById(R.id.editTextPassword);
+        passwordEx = view.findViewById(R.id.passwordException);
+        passwordEx.setVisibility(View.GONE);
         nextBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                String emailStr = email.getText().toString();
+                String passwordStr = password.getText().toString();
                 try {
-                    constraints.usernameCheck(emailStr);
-                    emailEx.setVisibility(View.GONE);
-                } catch (IllegalArgumentException e) {
-                    emailEx.setText(e.getMessage());
-                    emailEx.setVisibility(View.VISIBLE);
-                    emailCheck = false;
+                    constraints.passwordCheck(passwordStr);
+                    passwordEx.setVisibility(View.GONE);
+                } catch (Exception e) {
+                    passwordEx.setText(e.getMessage());
+                    passwordEx.setVisibility(View.VISIBLE);
+                    passwordCheck = false;
                 }
-                if (emailCheck) {
+                if (passwordCheck) {
                     Sign_up_page sign_up_page = (Sign_up_page) getActivity();
-                    sign_up_page.addToList(0, emailStr);
-                    sign_up_page.replaceFragments(PasswordFrag2.class);
+                    sign_up_page.addToList(1, passwordStr);
+                    sign_up_page.replaceFragments(NameFrag3.class);
                 }
-                else
-                    Toast.makeText(getActivity(), "Invalid email", Toast.LENGTH_SHORT).show();
             }
         });
         backBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 Sign_up_page sign_up_page = (Sign_up_page) getActivity();
-                sign_up_page.replaceFragments(Log_in_page.class);
+                sign_up_page.replaceFragments(EmailFrag1.class);
             }
         });
-
     }
 }

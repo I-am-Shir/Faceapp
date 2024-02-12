@@ -109,7 +109,7 @@
 
         <!-- Button for proceeding to the next step -->
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/nextBut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -123,18 +123,4 @@
             app:layout_constraintTop_toBottomOf="@+id/editLastName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Button for users who already have an account -->
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#00689AE4"
-        android:text="@string/already_have_an_account"
-        android:textColor="#1867DD"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.546"
-        app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
