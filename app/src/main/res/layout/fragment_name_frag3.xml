@@ -42,7 +42,7 @@
 
         <!-- Description for entering first and last name -->
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/firstLastNameHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -63,6 +63,7 @@
             android:id="@+id/firstNameException"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
             android:text=""
             android:textColor="@color/red"
             app:layout_constraintTop_toTopOf="parent"
@@ -88,6 +89,7 @@
             android:id="@+id/lastNameException"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
             android:text=""
             android:textColor="@color/red"
             app:layout_constraintTop_toTopOf="parent"
