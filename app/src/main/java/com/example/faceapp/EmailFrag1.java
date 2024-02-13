@@ -29,7 +29,6 @@ public class EmailFrag1 extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         constraints = new Constraints();
-        emailCheck = true;
         nextBut = view.findViewById(R.id.nextBut);
         backBut = view.findViewById(R.id.backBut);
         email = view.findViewById(R.id.editTextEmail);
@@ -38,6 +37,7 @@ public class EmailFrag1 extends Fragment {
         nextBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
+                emailCheck = true;
                 String emailStr = email.getText().toString();
                 try {
                     constraints.usernameCheck(emailStr);

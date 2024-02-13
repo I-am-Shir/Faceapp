@@ -22,4 +22,6 @@
     <string name="first_last_name_limits">please write your first and last name. \n they may only contain letters.</string>
     <string name="take_a_picture_from_camera">Take a picture from camera</string>
     <string name="please_choose_a_photo">Please choose a photo</string>
+    <string name="verify_password_hint">Verify password</string>
+    <string name="please_refill_the_password_for_verification">Please refill the password for verification</string>
 </resources>

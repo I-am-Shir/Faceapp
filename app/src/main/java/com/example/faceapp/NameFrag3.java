@@ -36,7 +36,6 @@ public class NameFrag3 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         constraints = new Constraints();
-        nameCheck = true;
         nextBut = view.findViewById(R.id.nextBut);
         backBut = view.findViewById(R.id.backBut);
         firstName = view.findViewById(R.id.editFirstName);
@@ -48,6 +47,7 @@ public class NameFrag3 extends Fragment {
         nextBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
+                nameCheck = true;
                 String firstNameStr = firstName.getText().toString();
                 String lastNameStr = lastName.getText().toString();
                 try {
