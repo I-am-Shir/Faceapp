@@ -90,5 +90,13 @@ public class PictureFrag4 extends Fragment {
                         .build());
             }
         });
+        photo_from_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+
+
+
+            }
+        });
     }
 }

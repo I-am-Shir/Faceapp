@@ -25,11 +25,11 @@ public class Feed_page extends AppCompatActivity {
         listPosts.setLayoutManager(new LinearLayoutManager(this));
 
         List<Post> posts = new ArrayList<>();
-        posts.add(new Post("Shir", "I love gaming", R.drawable.gamingSetUp));
-        posts.add(new Post("Shir", "I love gaming1", R.drawable.gamingSetUp));
-        posts.add(new Post("Shir", "I love gaming2", R.drawable.gamingSetUp));
-        posts.add(new Post("Shir", "I love gaming3", R.drawable.gamingSetUp));
-        posts.add(new Post("Shir", "I love gaming4", R.drawable.gamingSetUp));
+        posts.add(new Post("Shir", "I love gaming", R.drawable.gamingsetup));
+        posts.add(new Post("Shir", "I love gaming1", R.drawable.gamingsetup));
+        posts.add(new Post("Shir", "I love gaming2", R.drawable.gamingsetup));
+        posts.add(new Post("Shir", "I love gaming3", R.drawable.gamingsetup));
+        posts.add(new Post("Shir", "I love gaming4", R.drawable.gamingsetup));
         adapter.setPosts(posts);
     }
 }
