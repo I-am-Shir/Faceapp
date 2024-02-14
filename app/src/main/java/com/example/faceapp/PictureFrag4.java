@@ -1,5 +1,6 @@
 package com.example.faceapp;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PictureFrag4 extends Fragment {
     private Constraints constraints;
@@ -26,6 +29,7 @@ public class PictureFrag4 extends Fragment {
     private Boolean picCheck;
     private Uri imageUri;
     ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
+    ActivityResultLauncher<Intent> captureMedia;
     public PictureFrag4() {
         // Required empty public constructor
     }
@@ -41,6 +45,14 @@ public class PictureFrag4 extends Fragment {
                         imageUri = uri;
                     } else {
                         Log.d("PhotoPicker", "No media selected");
+                    }
+                });
+       captureMedia = registerForActivityResult(new ActivityResultContracts.TakePicture(), isTaken -> {
+                    // Callback is invoked after the user takes a photo or closes the camera.
+                    if (isTaken) {
+                        Log.d("Camera", "Photo taken");
+                    } else {
+                        Log.d("Camera", "No photo taken");
                     }
                 });
         // Inflate the layout for this fragment
@@ -93,6 +105,15 @@ public class PictureFrag4 extends Fragment {
         photo_from_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                try {
+                    captureMedia.launch(takePictureIntent);startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                } catch (Exception e) {
+                    //TODO: change?
+                    // display error state to the user
+                    Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+
+                }
 
 
 
