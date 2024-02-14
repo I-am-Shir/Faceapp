@@ -114,7 +114,7 @@
             android:id="@+id/butLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#1867DD"
+            android:backgroundTint="@color/next_stage_button"
             android:text="@string/log_in_button"
             android:textSize="20sp"
             android:textColorHighlight="#7A86C6"

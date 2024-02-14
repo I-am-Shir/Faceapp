@@ -14,4 +14,14 @@
     <string name="email">Email</string>
     <string name="next_button">Next</string>
     <string name="user_doesn_t_exist">User doesn\'t exist.</string>
+    <string name="passwordLimitationsHeading">A password must have at least 8 characters, 20 atmost \n and must contain at least one letter and one number</string>
+    <string name="passwordHint">password</string>
+    <string name="last_name_hint">Last name</string>
+    <string name="first_name_hint">First name</string>
+    <string name="what_s_your_name">what\'s your name?</string>
+    <string name="first_last_name_limits">please write your first and last name. \n they may only contain letters.</string>
+    <string name="take_a_picture_from_camera">Take a picture from camera</string>
+    <string name="please_choose_a_photo">Please choose a photo</string>
+    <string name="verify_password_hint">Verify password</string>
+    <string name="please_refill_the_password_for_verification">Please refill the password for verification</string>
 </resources>

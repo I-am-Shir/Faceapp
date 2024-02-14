@@ -36,7 +36,6 @@ public class UserLocalStore {
             profilePictureUri = Uri.parse(profilePictureUriString);
         }
 
-
         User storedUser = new User(firstName, lastName, username, password, profilePictureUri);
         return storedUser;
     }

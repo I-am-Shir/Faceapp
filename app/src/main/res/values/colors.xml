@@ -2,10 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="posts_background">#FFFFFFFF</color>
     <color name="_000000">#91E9FF</color>
     <color name="_5b5b5b">#D0B7FF</color>
-    <color name="red">#F60000</color>
+    <color name="red">#FA0101</color>
     <color name="background_left">#C9F4FF</color>
     <color name="background_middle">#EBE2FA</color>
     <color name="background_right">#E0FEFF</color>
+    <color name="background_grey">#757474</color>
+    <color name="next_stage_button">#1867DD</color>
+    <color name="choose_pic_button">#9687D8</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>
