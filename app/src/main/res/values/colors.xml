@@ -13,4 +13,5 @@
     <color name="next_stage_button">#1867DD</color>
     <color name="choose_pic_button">#9687D8</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="unavailable">#7C7777</color>
 </resources>
