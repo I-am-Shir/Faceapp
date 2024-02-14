@@ -22,11 +22,8 @@ import android.widget.TextView;
 import java.io.File;
 
 public class PictureFrag4 extends Fragment {
-
-    private static final int CAMERA_REQUEST = 1888;
     private Constraints constraints;
-    private Button photo_from_gallery, photo_from_camera, finishSignUpBut, backBut;
-    ;
+    private Button photo_from_gallery, photo_from_camera, finishSignUpBut, backBut;;
     private TextView galleryPicException, cameraPicException;
     private ImageView picturePreview;
     private Boolean picCheck;
@@ -94,9 +91,9 @@ public class PictureFrag4 extends Fragment {
 
         backBut.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Sign_up_page sign_up_page = (Sign_up_page) getActivity();
-                sign_up_page.replaceFragments(Log_in_page.class);
+            public void onClick(View v){
+                 Sign_up_page sign_up_page = (Sign_up_page) getActivity();
+                 sign_up_page.replaceFragments(Log_in_page.class);
             }
         });
         photo_from_gallery.setOnClickListener(new View.OnClickListener() {
