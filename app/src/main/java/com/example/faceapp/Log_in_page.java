@@ -21,12 +21,14 @@ public class Log_in_page extends AppCompatActivity {
         Uri uri = Uri.parse("android.resource://your.package.here/drawable/general_profile");
         User user = new User("Admin@gmail.com" , "a1234567", "Hello", "World", uri);
         userLocalStore.storeUserData(user);
+        userLocalStore.setUserLoggedIn(false);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+        userLocalStore = new UserLocalStore(this);
         constraints = new Constraints();
         butLogin = findViewById(R.id.butLogin);
         usernameEx = findViewById(R.id.usernameException);
@@ -73,6 +75,7 @@ public class Log_in_page extends AppCompatActivity {
                 }
                 if (userCheck) {
                     Toast.makeText(Log_in_page.this, "Login successful", Toast.LENGTH_SHORT).show();
+                    userLocalStore.setUserLoggedIn(true);
                     Intent i = new Intent(Log_in_page.this, Feed_page.class);
                     startActivity(i);
                 }

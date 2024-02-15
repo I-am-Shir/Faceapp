@@ -23,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_image"
+            android:layout_weight="0.5"
             android:src="@drawable/general_profile"
             android:layout_centerInParent="true"/>
 
@@ -30,7 +31,36 @@
             android:id="@+id/postAuthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp" />
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_weight="3"
+            android:text="" />
+
+
+        <TextView
+            android:id="@+id/time_since_posted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:text=""
+            app:layout_constraintTop_ToBottomOf="@id/postAuthor" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            app:srcCompat="@drawable/three_dots_hori" />
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            app:srcCompat="@drawable/ic_close" />
+
+
+
 
     </LinearLayout>
 
@@ -59,7 +89,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
         <!--TODO: check if to change to icons-->
         <ImageView
-            android:id="@+id/likePost"
+            android:id="@+id/like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -68,7 +98,7 @@
             android:visibility="visible" />
 
         <ImageView
-            android:id="@+id/afterLikePost"
+            android:id="@+id/liked"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -76,7 +106,7 @@
             android:visibility="gone" />
 
         <ImageView
-            android:id="@+id/commentPost"
+            android:id="@+id/comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -84,7 +114,7 @@
             android:src="@drawable/comment" />
 
         <ImageView
-            android:id="@+id/sharePost"
+            android:id="@+id/share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
