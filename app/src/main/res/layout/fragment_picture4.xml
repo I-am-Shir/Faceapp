@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/please_choose_a_photo"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +44,7 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
             android:padding="10dp"
             android:text="The picture can be taken from your camera or gallery. \n It will be used to identify you."
             app:layout_constraintStart_toStartOf="parent"
@@ -110,18 +111,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cameraPicException" />
 
-        <!-- Button to finish sign up -->
-
-        <ImageView
-            android:id="@+id/picturePreview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+        <LinearLayout
+            android:id="@+id/picLayout"
+            android:layout_width="196dp"
+            android:layout_height="196dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/photo_from_camera"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:layout_constraintTop_toBottomOf="@+id/photo_from_camera">
+            <TextView
+                android:id="@+id/imageException"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:text=""
+                android:textColor="@color/red"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone"/>
 
+            <ImageView
+                android:id="@+id/picturePreview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/photo_from_camera"
+                tools:srcCompat="@tools:sample/avatars"/>
+        </LinearLayout>
+
+        <!-- Button to finish sign up -->
         <Button
             android:id="@+id/finishSignUpBut"
             android:layout_width="match_parent"
@@ -132,7 +151,7 @@
             android:text="Finish sign up"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/picturePreview"
+            app:layout_constraintTop_toBottomOf="@+id/picLayout"
             tools:layout_editor_absoluteX="6dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

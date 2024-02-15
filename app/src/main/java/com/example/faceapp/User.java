@@ -7,7 +7,7 @@ public class User {
     String first_name, last_name, username, password;
     Uri profile_picture;
 
-    public User(String first_name, String last_name, String username, String password, Uri profile_picture) {
+    public User( String username, String password, String first_name, String last_name,  Uri profile_picture) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.username = username;
