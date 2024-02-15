@@ -19,10 +19,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/closeImage"
+            android:id="@+id/posterProImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_close" />
+            android:background="@drawable/rounded_image"
+            android:src="@drawable/general_profile"
+            android:layout_centerInParent="true"/>
 
         <TextView
             android:id="@+id/postAuthor"
