@@ -24,12 +24,13 @@ import java.io.File;
 public class PictureFrag4 extends Fragment {
     private Constraints constraints;
     private Button photo_from_gallery, photo_from_camera, finishSignUpBut, backBut;;
-    private TextView galleryPicException, cameraPicException;
+    private TextView imageException;
     private ImageView picturePreview;
     private Boolean picCheck;
     private Uri imageUri, uri;
     private ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
     private ActivityResultLauncher<Uri> mGetContent;
+    private User user;
 
     public PictureFrag4() {
         // Required empty public constructor
@@ -45,6 +46,7 @@ public class PictureFrag4 extends Fragment {
             if (uri != null) {
                 Log.d("PhotoPicker", "Selected URI: " + uri);
                 imageUri = uri;
+                picturePreview.setImageURI(imageUri);
             } else {
                 Log.d("PhotoPicker", "No media selected");
             }
@@ -57,6 +59,7 @@ public class PictureFrag4 extends Fragment {
                     public void onActivityResult(Boolean result) {
                         if (result) {
                             imageUri = uri;
+                            picturePreview.setImageURI(imageUri);
                         } else {
                             Log.d("PhotoPicker", "No photo taken");
                         }
@@ -75,19 +78,8 @@ public class PictureFrag4 extends Fragment {
         backBut = view.findViewById(R.id.backBut);
         photo_from_gallery = view.findViewById(R.id.photo_from_gallery);
         photo_from_camera = view.findViewById(R.id.photo_from_camera);
-        galleryPicException = view.findViewById(R.id.galleryPicException);
-        cameraPicException = view.findViewById(R.id.cameraPicException);
-        galleryPicException.setVisibility(View.GONE);
-        cameraPicException.setVisibility(View.GONE);
-        finishSignUpBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (picCheck) {
-                    // Sign_up_page sign_up_page = (Sign_up_page) getActivity();
-                    // sign_up_page.replaceFragments(NameFrag3.class);
-                }
-            }
-        });
+        imageException = view.findViewById(R.id.imageException);
+        imageException.setVisibility(View.GONE);
 
         backBut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +93,7 @@ public class PictureFrag4 extends Fragment {
             public void onClick(View v) {
                 picturePreview = new ImageView(getContext());
                 picturePreview = getView().findViewById(R.id.picturePreview);
-                picturePreview.setImageURI(imageUri);
+
 
                 // Launch the photo picker and let the user choose only images.
                 pickMedia.launch(new PickVisualMediaRequest.Builder()
@@ -118,7 +110,27 @@ public class PictureFrag4 extends Fragment {
 
                 picturePreview = new ImageView(getContext());
                 picturePreview = getView().findViewById(R.id.picturePreview);
-                picturePreview.setImageURI(uri);
+                //picturePreview.setImageURI(uri);
+            }
+        });
+
+        finishSignUpBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                picCheck = true;
+                try{
+                    constraints.imageCheck(picturePreview);
+                } catch (Exception e) {
+                    imageException.setText(e.getMessage());
+                    imageException.setVisibility(View.VISIBLE);
+                    picCheck = false;
+                }
+                if (picCheck) {
+                    Sign_up_page sign_up_page = (Sign_up_page) getActivity();
+                    sign_up_page.addToList(4, imageUri.toString());
+                    sign_up_page.storeUser(sign_up_page.setUser());
+                }
+
             }
         });
     }

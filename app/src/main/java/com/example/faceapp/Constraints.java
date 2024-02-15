@@ -1,4 +1,6 @@
 package com.example.faceapp;
+import android.widget.ImageView;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Constraints {
@@ -43,6 +45,12 @@ public class Constraints {
             throw new Exception("Must input a last name");
         if (!checkRegex("^[a-zA-Z]+$", lastName))
             throw new Exception("Last name must contain letters only");
+        return true;
+    }
+
+    boolean imageCheck(ImageView image) throws Exception {
+        if (image == null)
+            throw new Exception("Must input an image");
         return true;
     }
 }
