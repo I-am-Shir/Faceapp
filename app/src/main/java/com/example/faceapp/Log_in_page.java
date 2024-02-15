@@ -2,6 +2,7 @@ package com.example.faceapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,15 @@ public class Log_in_page extends AppCompatActivity {
     private EditText user_name, pass_word;
     private Button butLogin, butSignup, butForgot;
     private Constraints constraints;
+
+    private UserLocalStore userLocalStore;
+    //TODO: remove this method
+    public void startup(){
+        Uri uri = Uri.parse("android.resource://your.package.here/drawable/general_profile");
+        User user = new User("Admin@gmail.com" , "a1234567", "Hello", "World", uri);
+        userLocalStore.storeUserData(user);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +37,8 @@ public class Log_in_page extends AppCompatActivity {
         usernameEx.setVisibility(View.GONE);
         passwordEx.setVisibility(View.GONE);
         userExEx.setVisibility(View.GONE);
+        //TODO: remove this line
+        startup();
         butLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -86,6 +98,5 @@ public class Log_in_page extends AppCompatActivity {
                     startActivity(i);
                 }
             });
-
     }
 }

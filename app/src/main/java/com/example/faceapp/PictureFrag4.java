@@ -110,7 +110,6 @@ public class PictureFrag4 extends Fragment {
 
                 picturePreview = new ImageView(getContext());
                 picturePreview = getView().findViewById(R.id.picturePreview);
-                //picturePreview.setImageURI(uri);
             }
         });
 
