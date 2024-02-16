@@ -20,9 +20,9 @@ public class Post {
 
 
 
-    public Post() {
-        this.picture = R.drawable.gamingsetup;
-    }
+//    public Post() {
+//        this.picture = R.drawable.gamingsetup;
+//    }
     public Post(String author, Uri proPicture, String content, int picture) {
         this.author = author;
         this.proPicture= proPicture;
@@ -67,5 +67,21 @@ public class Post {
 
     public void setPicture(int picture) {
         this.picture = picture;
+    }
+
+    public PublicUser getPublicUser() {
+        return publicUser;
+    }
+
+    public void setPublicUser(PublicUser publicUser) {
+        this.publicUser = publicUser;
+    }
+
+    public Uri getProPicture() {
+        return proPicture;
+    }
+
+    public void setProPicture(Uri proPicture) {
+        this.proPicture = proPicture;
     }
 }

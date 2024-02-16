@@ -37,13 +37,12 @@ public class Feed_page extends AppCompatActivity {
         final PostsListAdapter adapter = new PostsListAdapter(this);
         listPosts.setAdapter(adapter);
         listPosts.setLayoutManager(new LinearLayoutManager(this));
-        Uri uri = Uri.parse("android.resource://your.package.here/drawable/profile");
+        Uri uri = Uri.parse("android.resource://your.package.here/drawable/profiAdle");
         publicUser = new PublicUser();
         publicUser.setName("Shir");
         publicUser.setProfilePicture(uri);
         //TODO: DELETE
         List<Post> posts = new ArrayList<>();
-        posts.add(new Post(publicUser.getName(), publicUser.getProfilePicture(), "I love gaming", R.drawable.gamingsetup));
         posts.add(new Post(publicUser.getName(), publicUser.getProfilePicture(), "I love gaming1", R.drawable.gamingsetup));
         posts.add(new Post(publicUser.getName(), publicUser.getProfilePicture(), "I love gaming2", R.drawable.gamingsetup));
         posts.add(new Post(publicUser.getName(), publicUser.getProfilePicture(),"I love gaming2", R.drawable.gamingsetup));
