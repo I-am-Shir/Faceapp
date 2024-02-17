@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.faceapp.adapters.PostsListAdapter;
 import com.example.faceapp.entities.Post;
@@ -17,18 +19,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Feed_page extends AppCompatActivity {
-    ImageView likePost, afterLikePost, commentPost, sharePost, savePost, afterSavePost, postPicture, postAuthor, postContent, postDate, deleteButton, reloadButton, postTitle;
     private UserLocalStore userLocalStore;
     private PostsListAdapter adapter;
-    private PublicUser publicUser;
-    private ImageView homeImage, menuImage;
     private View menuLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        homeImage = findViewById(R.id.homeImage);
-        menuImage = findViewById(R.id.menuImage);
+        setContentView(R.layout.activity_feed_page);
+        Button logOut = findViewById(R.id.logOut);
+        ImageView homeImage = findViewById(R.id.homeImage);
+        ImageView menuImage = findViewById(R.id.menuImage);
         menuLayout = findViewById(R.id.menuLayout);
 
         userLocalStore = new UserLocalStore(this);
@@ -36,14 +37,13 @@ public class Feed_page extends AppCompatActivity {
             Intent i = new Intent(Feed_page.this, Log_in_page.class);
             startActivity(i);
         }
-        setContentView(R.layout.activity_feed_page);
 
         RecyclerView listPosts = findViewById(R.id.listPosts);
         final PostsListAdapter adapter = new PostsListAdapter(this);
         listPosts.setAdapter(adapter);
         listPosts.setLayoutManager(new LinearLayoutManager(this));
         Uri uri = Uri.parse("android.resource://your.package.here/drawable/profiAdle");
-        publicUser = new PublicUser();
+        PublicUser publicUser = new PublicUser();
         publicUser.setName("Shir");
         publicUser.setProfilePicture(uri);
         //TODO: DELETE
@@ -58,6 +58,14 @@ public class Feed_page extends AppCompatActivity {
         });
         menuImage.setOnClickListener(v -> {
             menuLayout.setVisibility(View.VISIBLE);
+        });
+
+        logOut.setOnClickListener(v -> {
+            userLocalStore.clearUserData();
+            userLocalStore.setUserLoggedIn(false);
+            Intent i = new Intent(Feed_page.this, Log_in_page.class);
+            startActivity(i);
+            Toast.makeText(this, "Goodbye my friend", Toast.LENGTH_SHORT).show();
         });
     }
 
