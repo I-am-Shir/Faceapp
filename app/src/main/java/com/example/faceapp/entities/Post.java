@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.faceapp.Comment;
 import com.example.faceapp.PublicUser;
 import com.example.faceapp.R;
 @Entity
@@ -17,17 +18,19 @@ public class Post {
     private int id;
     private int likes;
     private int picture;
+    private Comment comment;
 
 
 
 //    public Post() {
 //        this.picture = R.drawable.gamingsetup;
 //    }
-    public Post(String author, Uri proPicture, String content, int picture) {
+    public Post(String author, Uri proPicture, String content, int picture, int id) {
         this.author = author;
         this.proPicture= proPicture;
         this.content = content;
         this.picture = picture;
+        this.id = id;
     }
 
     public String getAuthor() {

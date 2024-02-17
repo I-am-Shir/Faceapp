@@ -25,6 +25,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
         private final ImageView postPicture;
         public ImageView like, liked, comment, share;
         private Context context;
+        private View commentedLayout, commentLayout;
 
 //        public class ViewHolder extends RecyclerView.ViewHolder {
 //
@@ -53,6 +54,9 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
             liked = itemView.findViewById(R.id.liked);
             comment = itemView.findViewById(R.id.comment);
             share = itemView.findViewById(R.id.share);
+            commentedLayout = itemView.findViewById(R.id.commentedLayout);
+            commentLayout = itemView.findViewById(R.id.commentLayout);
+
 
             //postTitle = itemView.findViewById(R.id.postTitle);
             //postDate = itemView.findViewById(R.id.postDate);
@@ -92,6 +96,13 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                 public void onClick(View v) {
                     holder.liked.setVisibility(View.GONE);
                     holder.like.setVisibility(View.VISIBLE);
+                }
+            });
+
+            holder.comment.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    holder.commentLayout.setVisibility(View.VISIBLE);
                 }
             });
 

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.example.faceapp.adapters.PostsListAdapter;
@@ -17,14 +18,18 @@ import java.util.List;
 
 public class Feed_page extends AppCompatActivity {
     ImageView likePost, afterLikePost, commentPost, sharePost, savePost, afterSavePost, postPicture, postAuthor, postContent, postDate, deleteButton, reloadButton, postTitle;
-    UserLocalStore userLocalStore;
-    PostsListAdapter adapter;
-
-    PublicUser publicUser;
+    private UserLocalStore userLocalStore;
+    private PostsListAdapter adapter;
+    private PublicUser publicUser;
+    private ImageView homeImage, menuImage;
+    private View menuLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        homeImage = findViewById(R.id.homeImage);
+        menuImage = findViewById(R.id.menuImage);
+        menuLayout = findViewById(R.id.menuLayout);
 
         userLocalStore = new UserLocalStore(this);
         if (!userLocalStore.getLoggedIn()) {
@@ -43,12 +48,20 @@ public class Feed_page extends AppCompatActivity {
         publicUser.setProfilePicture(uri);
         //TODO: DELETE
         List<Post> posts = new ArrayList<>();
-        posts.add(new Post(publicUser.getName(), publicUser.getProfilePicture(), "I love gaming1", R.drawable.gamingsetup));
-        posts.add(new Post(publicUser.getName(), publicUser.getProfilePicture(), "I love gaming2", R.drawable.gamingsetup));
-        posts.add(new Post(publicUser.getName(), publicUser.getProfilePicture(),"I love gaming2", R.drawable.gamingsetup));
-        posts.add(new Post(publicUser.getName(), publicUser.getProfilePicture(), "I love gaming4", R.drawable.gamingsetup));
+        for (int i = 0; i < 10; i++) {
+            posts.add(new Post(publicUser.getName(), publicUser.getProfilePicture(), "I love gaming" + i, R.drawable.gamingsetup, i));
+        }
         adapter.setPosts(posts);
+
+        homeImage.setOnClickListener(v -> {
+            menuLayout.setVisibility(View.GONE);
+        });
+        menuImage.setOnClickListener(v -> {
+            menuLayout.setVisibility(View.VISIBLE);
+        });
     }
+
+
 
 
 }
