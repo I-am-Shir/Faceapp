@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.io.File;
+import java.util.UUID;
 
 public class PictureFrag4 extends Fragment {
     private Constraints constraints;
@@ -104,13 +105,16 @@ public class PictureFrag4 extends Fragment {
         photo_from_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File file = new File(requireActivity().getFilesDir(), "picFromCamera");
+                // Create a unique file name based on timestamp and a unique identifier
+                String fileName = "pic_" + System.currentTimeMillis() + "_" + UUID.randomUUID().toString() + ".jpg";
+                File file = new File(requireActivity().getFilesDir(), fileName);
+
+                // Get URI for the file using FileProvider
                 uri = FileProvider.getUriForFile(requireActivity(), requireActivity().getPackageName() + ".provider", file);
                 mGetContent.launch(uri);
 
                 picturePreview = new ImageView(getContext());
                 picturePreview = getView().findViewById(R.id.picturePreview);
-                //picturePreview.setImageURI(uri);
             }
         });
 

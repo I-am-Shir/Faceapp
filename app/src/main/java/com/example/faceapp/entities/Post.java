@@ -1,24 +1,36 @@
 package com.example.faceapp.entities;
 
+import android.net.Uri;
+import android.widget.ImageView;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.faceapp.Comment;
+import com.example.faceapp.PublicUser;
 import com.example.faceapp.R;
 @Entity
 public class Post {
     @PrimaryKey(autoGenerate = true)
     private String author, content;
+    private PublicUser publicUser;
+    private Uri proPicture;
     private int id;
     private int likes;
     private int picture;
+    private Comment comment;
 
-    public Post() {
-        this.picture = R.drawable.gamingsetup;
-    }
-    public Post(String author, String content, int picture) {
+
+
+//    public Post() {
+//        this.picture = R.drawable.gamingsetup;
+//    }
+    public Post(String author, Uri proPicture, String content, int picture, int id) {
         this.author = author;
+        this.proPicture= proPicture;
         this.content = content;
         this.picture = picture;
+        this.id = id;
     }
 
     public String getAuthor() {
@@ -58,5 +70,21 @@ public class Post {
 
     public void setPicture(int picture) {
         this.picture = picture;
+    }
+
+    public PublicUser getPublicUser() {
+        return publicUser;
+    }
+
+    public void setPublicUser(PublicUser publicUser) {
+        this.publicUser = publicUser;
+    }
+
+    public Uri getProPicture() {
+        return proPicture;
+    }
+
+    public void setProPicture(Uri proPicture) {
+        this.proPicture = proPicture;
     }
 }
