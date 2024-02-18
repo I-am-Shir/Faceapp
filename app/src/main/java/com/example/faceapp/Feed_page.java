@@ -66,6 +66,7 @@ public class Feed_page extends AppCompatActivity {
         EditText fillComment = findViewById(R.id.fillComment);
         menuLayout = findViewById(R.id.menuLayout);
         createPostLayout = findViewById(R.id.createPostLayout);
+        TextView backToFeed = findViewById(R.id.backToFeed);
         comments = new HashMap<>();
         // Registers a photo picker activity launcher in single-select mode.
         pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uriPostPic -> {
@@ -134,7 +135,7 @@ public class Feed_page extends AppCompatActivity {
             else {
                 String fillComm = fillComment.getText().toString();
                 fillComment.setText("");
-                comments.get(String.valueOf(currentId)).addComment(new Comment(fillComm, publicUser, new Timestamp(System.currentTimeMillis()), currentPostId++));
+                comments.get(String.valueOf(currentId)).addComment(new Comment(fillComm, publicUser, new Timestamp(System.currentTimeMillis()), currentId));
             }
         });
 
@@ -181,24 +182,40 @@ public class Feed_page extends AppCompatActivity {
                     Toast.makeText(this, "Please fill in the post, you have something to share don't you?", Toast.LENGTH_SHORT).show();
                     picCheck = false;
                 }
+                if (picCheck) {
+                    Post post = new Post(publicUser1.getName(), publicUser1.getProfilePicture(), "", imageUri, posts.size());
+                    imageUri = null;
+                    posts.add(0, post);
+                    adapter.setPosts(posts);
+                    createPostLayout.setVisibility(View.GONE);
+                    //postText.setText("");
+                    picturePreview.setImageResource(0);
+                    CommentListAdapter adapterListComment = new CommentListAdapter(this);
+                    adapterListComment.setComments(new ArrayList<Comment>());
+                    adapterListComment.addComment(new Comment("I love this post", publicUser, new Timestamp(System.currentTimeMillis()), currentPostId++));
+                    comments.put(String.valueOf(post.getId()), adapterListComment);
+                } else{
+                    Toast.makeText(this, "Please fill in the post, you have something to share don't you?", Toast.LENGTH_SHORT).show();
+                }
             }
             else {
-                if (picCheck) {
-                    Post post = new Post(publicUser1.getName(), publicUser1.getProfilePicture(), postText.getText().toString(), imageUri, currentId);
+                    Post post = new Post(publicUser1.getName(), publicUser1.getProfilePicture(), postText.getText().toString(), imageUri, posts.size());
+                    imageUri = null;
                     posts.add(0, post);
                     adapter.setPosts(posts);
                     createPostLayout.setVisibility(View.GONE);
                     postText.setText("");
                     picturePreview.setImageResource(0);
                     CommentListAdapter adapterListComment = new CommentListAdapter(this);
+                    adapterListComment.setComments(new ArrayList<Comment>());
+                    adapterListComment.addComment(new Comment("I love this post", publicUser, new Timestamp(System.currentTimeMillis()), currentPostId++));
                     comments.put(String.valueOf(post.getId()), adapterListComment);
-                }
             }
-
-
         });
 
-
+            backToFeed.setOnClickListener(v1 -> {
+                createPostLayout.setVisibility(View.GONE);
+            });
 
         logOut.setOnClickListener(v -> {
             userLocalStore.clearUserData();
@@ -207,6 +224,7 @@ public class Feed_page extends AppCompatActivity {
             startActivity(i);
             Toast.makeText(this, "Goodbye my friend", Toast.LENGTH_SHORT).show();
         });
+
         backToPosts.setOnClickListener(v -> {
             commentsLayout = findViewById(R.id.commentsLayout);
             commentsLayout.setVisibility(View.GONE);
