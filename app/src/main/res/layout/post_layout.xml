@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="600dp"
     android:layout_marginBottom="6dp"
+    android:orientation="vertical"
     android:background="@color/posts_background">
 
     <LinearLayout
         android:id="@+id/topPostLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,15 +61,13 @@
             android:layout_weight="0.5"
             app:srcCompat="@drawable/ic_close" />
 
-
-
-
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/postMainFrame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="6"
         app:layout_constraintBottom_toTopOf="@+id/bottomPostLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,19 +80,20 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             app:layout_constraintTop_toBottomOf="@id/topPostLayout" />
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            app:layout_constraintTop_toBottomOf="@+id/postMainFrame"
-            app:layout_constraintBottom_toTopOf="@+id/bottomPostLayout">
-            <ImageView
-                android:id="@+id/postPicture"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+
+        android:id="@+id/postPicture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="400dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/postMainFrame"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/bottomPostLayout">-->
 
 
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
     </LinearLayout>
 
 
@@ -101,6 +102,7 @@
         android:id="@+id/bottomPostLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -140,4 +142,4 @@
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
