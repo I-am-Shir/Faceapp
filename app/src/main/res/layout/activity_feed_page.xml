@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_grey"
     tools:context=".Feed_page">
-
+    <!--feed and menu-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/feedLayout"
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/addImage"
+                android:id="@+id/addPostImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
@@ -117,7 +117,7 @@
         </LinearLayout>
         <!--recycle posts-->
 
-        <!--menu layout-->
+        <!--post recycleView-->
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refreshLayoutPosts"
             android:layout_width="match_parent"
@@ -132,7 +132,7 @@
                 android:layout_height="match_parent"
                 android:background="#757474" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
+        <!--menu layout-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/menuLayout"
             android:layout_width="match_parent"
@@ -376,12 +376,13 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!--comments-->
     <LinearLayout
         android:id="@+id/commentsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -467,6 +468,119 @@
         </LinearLayout>
 
     </LinearLayout>
+    <!--create post-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/createPostLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="gone">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topCreatePostLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/backToFeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/back_arrow"
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create post"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/backToFeed"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/postButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/button_color"
+                android:text="Post"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fillPostLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/topCreatePostLayout">
+
+            <EditText
+                android:id="@+id/post_fill_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/what_s_on_your_mind"
+                android:padding="15dp"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/post_photo_from_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/choose_pic_button"
+            android:text="Pick a picture from phones gallery"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/postPicLayout" />
+
+        <Button
+            android:id="@+id/post_photo_from_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/choose_pic_button"
+            android:text="@string/take_a_picture_from_camera"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_photo_from_gallery" />
+        <LinearLayout
+            android:id="@+id/postPicLayout"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fillPostLayout"
+            app:layout_constraintBottom_toTopOf="@+id/post_photo_from_gallery">
+
+            <ImageView
+                android:id="@+id/postPicturePreview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:srcCompat="@tools:sample/avatars"/>
+        </LinearLayout>
+
+           
+            
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

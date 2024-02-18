@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,8 +13,6 @@ import com.example.faceapp.Comment;
 import com.example.faceapp.PublicUser;
 import com.example.faceapp.R;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.CommentViewHolder> {
@@ -64,7 +61,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
                 @Override
                 public void onClick(View v) {
                     if (current.getLiked() == false) {
-                        holder.likeComment.setTextColor(v.getResources().getColor(R.color.like_color, null));
+                        holder.likeComment.setTextColor(v.getResources().getColor(R.color.button_color, null));
                     } else {
                         holder.likeComment.setTextColor(v.getResources().getColor(R.color.black, null));
                     }

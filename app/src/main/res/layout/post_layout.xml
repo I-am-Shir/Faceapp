@@ -65,8 +65,9 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/postMainFrame"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/bottomPostLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,13 +80,18 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             app:layout_constraintTop_toBottomOf="@id/topPostLayout" />
-
-        <ImageView
-            android:id="@+id/postPicture"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/bottomPostLayout"
-            app:layout_constraintTop_toBottomOf="@+id/postContent" />
+            android:layout_height="400dp"
+            app:layout_constraintTop_toBottomOf="@+id/postMainFrame"
+            app:layout_constraintBottom_toTopOf="@+id/bottomPostLayout">
+            <ImageView
+                android:id="@+id/postPicture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </LinearLayout>
 

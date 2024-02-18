@@ -86,7 +86,10 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
             final Post current = posts.get(position);
             holder.postContent.setText(current.getContent());
             holder.postAuthor.setText(current.getAuthor());
-            holder.postPicture.setImageResource(current.getPicture());
+            if (current.getPicture() == 0)
+                holder.postPicture.setImageURI(current.getUriPicture());
+            else
+                holder.postPicture.setImageResource(current.getPicture());
             holder.like.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -1,12 +1,18 @@
 package com.example.faceapp;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.PickVisualMediaRequest;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,31 +24,75 @@ import com.example.faceapp.adapters.CommentListAdapter;
 import com.example.faceapp.adapters.PostsListAdapter;
 import com.example.faceapp.entities.Post;
 
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class Feed_page extends AppCompatActivity {
+    private Constraints constraints;
     private UserLocalStore userLocalStore;
     private PostsListAdapter adapter;
-    private View menuLayout, commentsLayout;
+    private View menuLayout, commentsLayout, createPostLayout;
     private RecyclerView listComments;
-    private int currentId;
+
+    //TODO: DELETE currentPostId after connecting to the database
+    private int currentId, currentPostId;
     HashMap<String, CommentListAdapter> comments;
+
+    //picture variables
+    private ImageView picturePreview;
+    private Boolean picCheck;
+    private Uri imageUri, uri, uriPostPic;
+    private ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
+    private ActivityResultLauncher<Uri> mGetContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed_page);
+        constraints = new Constraints();
         Button logOut = findViewById(R.id.logOut);
+        Button postButton = findViewById(R.id.postButton);
+        Button photo_from_gallery = findViewById(R.id.post_photo_from_gallery);
+        Button photo_from_camera = findViewById(R.id.post_photo_from_camera);
+        ImageView addPostImage = findViewById(R.id.addPostImage);
         ImageView homeImage = findViewById(R.id.homeImage);
         ImageView menuImage = findViewById(R.id.menuImage);
         ImageView postComment = findViewById(R.id.postComment);
         TextView backToPosts = findViewById(R.id.backToPosts);
         EditText fillComment = findViewById(R.id.fillComment);
         menuLayout = findViewById(R.id.menuLayout);
+        createPostLayout = findViewById(R.id.createPostLayout);
         comments = new HashMap<>();
+        // Registers a photo picker activity launcher in single-select mode.
+        pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uriPostPic -> {
+            // Callback is invoked after the user selects a media item or closes the
+            // photo picker.
+            if (uriPostPic != null) {
+                Log.d("PhotoPicker", "Selected URI: " + uriPostPic);
+                imageUri = uriPostPic;
+                picturePreview.setImageURI(imageUri);
+            } else {
+                Log.d("PhotoPicker", "No media selected");
+            }
+        });
+        // Registers a photo picker activity launcher in single-select mode.
+        mGetContent = registerForActivityResult(
+                new ActivityResultContracts.TakePicture(),
+                new ActivityResultCallback<Boolean>() {
+                    @Override
+                    public void onActivityResult(Boolean result) {
+                        if (result) {
+                            imageUri = uriPostPic;
+                            picturePreview.setImageURI(imageUri);
+                        } else {
+                            Log.d("PhotoPicker", "No photo taken");
+                        }
+                    }
+                });
 
         userLocalStore = new UserLocalStore(this);
         if (!userLocalStore.getLoggedIn()) {
@@ -61,8 +111,9 @@ public class Feed_page extends AppCompatActivity {
         publicUser.setProfilePicture(uri);
         //TODO: DELETE
         List<Post> posts = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Post post = new Post(publicUser.getName(), publicUser.getProfilePicture(), "I love gaming" + i, R.drawable.gamingsetup, i);
+        currentPostId = 0;
+        for (currentPostId = 0; currentPostId < 10; currentPostId++) {
+            Post post = new Post(publicUser.getName(), publicUser.getProfilePicture(), "I love gaming" + currentPostId, R.drawable.gamingsetup, currentPostId);
             posts.add(post);
             CommentListAdapter adapterListComment = new CommentListAdapter(this);
             comments.put(String.valueOf(post.getId()), adapterListComment);
@@ -83,9 +134,71 @@ public class Feed_page extends AppCompatActivity {
             else {
                 String fillComm = fillComment.getText().toString();
                 fillComment.setText("");
-                comments.get(String.valueOf(currentId)).addComment(new Comment(fillComm, publicUser, new Timestamp(System.currentTimeMillis()), currentId));
+                comments.get(String.valueOf(currentId)).addComment(new Comment(fillComm, publicUser, new Timestamp(System.currentTimeMillis()), currentPostId++));
             }
         });
+
+        addPostImage.setOnClickListener(v -> {
+            createPostLayout.setVisibility(View.VISIBLE);
+            picCheck= true;
+        });
+
+        photo_from_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                picturePreview = new ImageView(Feed_page.this);
+                picturePreview = findViewById(R.id.postPicturePreview);
+
+                // Launch the photo picker and let the user choose only images.
+                pickMedia.launch(new PickVisualMediaRequest.Builder()
+                        .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                        .build());
+            }
+        });
+
+        photo_from_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a unique file name based on timestamp and a unique identifier
+                String fileName = "pic_" + System.currentTimeMillis() + "_" + UUID.randomUUID().toString() + ".jpg";
+                File file = new File(getFilesDir(), fileName);
+
+                // Get URI for the file using FileProvider
+                uriPostPic = FileProvider.getUriForFile(Feed_page.this, getPackageName() + ".provider", file);
+                mGetContent.launch(uriPostPic);
+
+                picturePreview = new ImageView(Feed_page.this);
+                picturePreview = findViewById(R.id.postPicturePreview);
+            }
+        });
+
+        postButton.setOnClickListener(v -> {
+            EditText postText = findViewById(R.id.post_fill_text);
+            if (postText.getText().toString().isEmpty()){
+                try {
+                    constraints.imageCheck(picturePreview);
+                } catch (Exception e) {
+                    Toast.makeText(this, "Please fill in the post, you have something to share don't you?", Toast.LENGTH_SHORT).show();
+                    picCheck = false;
+                }
+            }
+            else {
+                if (picCheck) {
+                    Post post = new Post(publicUser1.getName(), publicUser1.getProfilePicture(), postText.getText().toString(), imageUri, currentId);
+                    posts.add(post);
+                    adapter.setPosts(posts);
+                    createPostLayout.setVisibility(View.GONE);
+                    postText.setText("");
+                    picturePreview.setImageResource(0);
+                    CommentListAdapter adapterListComment = new CommentListAdapter(this);
+                    comments.put(String.valueOf(post.getId()), adapterListComment);
+                }
+            }
+
+
+        });
+
+
 
         logOut.setOnClickListener(v -> {
             userLocalStore.clearUserData();

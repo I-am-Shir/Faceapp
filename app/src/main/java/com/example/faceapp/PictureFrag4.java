@@ -24,7 +24,7 @@ import java.util.UUID;
 
 public class PictureFrag4 extends Fragment {
     private Constraints constraints;
-    private Button photo_from_gallery, photo_from_camera, finishSignUpBut, backBut;;
+    ;
     private TextView imageException;
     private ImageView picturePreview;
     private Boolean picCheck;
@@ -75,10 +75,10 @@ public class PictureFrag4 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         constraints = new Constraints();
         picCheck = true;
-        finishSignUpBut = view.findViewById(R.id.finishSignUpBut);
-        backBut = view.findViewById(R.id.backBut);
-        photo_from_gallery = view.findViewById(R.id.photo_from_gallery);
-        photo_from_camera = view.findViewById(R.id.photo_from_camera);
+        Button finishSignUpBut = view.findViewById(R.id.finishSignUpBut);
+        Button backBut = view.findViewById(R.id.backBut);
+        Button photo_from_gallery = view.findViewById(R.id.photo_from_gallery);
+        Button photo_from_camera = view.findViewById(R.id.photo_from_camera);
         imageException = view.findViewById(R.id.imageException);
         imageException.setVisibility(View.GONE);
 

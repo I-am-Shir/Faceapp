@@ -16,8 +16,8 @@ public class Post {
     private PublicUser publicUser;
     private Uri proPicture;
     private int id;
-    private int likes;
-    private int picture;
+    private int likes, picture;
+    private Uri uriPicture;
     private Comment comment;
 
 
@@ -25,11 +25,20 @@ public class Post {
 //    public Post() {
 //        this.picture = R.drawable.gamingsetup;
 //    }
+    public Post(String author, Uri proPicture, String content, Uri picture, int id) {
+        this.author = author;
+        this.proPicture= proPicture;
+        this.content = content;
+        this.picture = 0;
+        this.uriPicture = picture;
+        this.id = id;
+    }
     public Post(String author, Uri proPicture, String content, int picture, int id) {
         this.author = author;
         this.proPicture= proPicture;
         this.content = content;
         this.picture = picture;
+        this.uriPicture = null;
         this.id = id;
     }
 
@@ -70,6 +79,14 @@ public class Post {
 
     public void setPicture(int picture) {
         this.picture = picture;
+    }
+
+    public Uri getUriPicture() {
+        return uriPicture;
+    }
+
+    public void setUriPicture(Uri uriPicture) {
+        this.uriPicture = uriPicture;
     }
 
     public PublicUser getPublicUser() {
