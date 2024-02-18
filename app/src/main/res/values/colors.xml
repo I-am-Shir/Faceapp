@@ -15,4 +15,9 @@
     <color name="choose_pic_button">#9687D8</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="unavailable">#7C7777</color>
+    <color name="forgot_pass">#8A93A1</color>
+    <color name="create_account_but">#689AE4</color>
+    <color name="logo_name_color">#02A5EF</color>
+    <color name="comment_background">#B3B2B2</color>
+    <color name="button_color">#2462FF</color>
 </resources>

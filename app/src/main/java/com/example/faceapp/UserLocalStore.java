@@ -39,10 +39,28 @@ public class UserLocalStore {
         User storedUser = new User(firstName, lastName, username, password, profilePictureUri);
         return storedUser;
     }
+
+    public PublicUser getLoggedInPublicUser(){
+        String username = userLocalDatabase.getString("firstName", "") + " " + userLocalDatabase.getString("lastName", "");
+
+        // Get the URI of the profile picture
+        String profilePictureUriString = userLocalDatabase.getString("profile_picture_uri", "");
+        Uri profilePictureUri = null;
+        if(!profilePictureUriString.isEmpty()){
+            profilePictureUri = Uri.parse(profilePictureUriString);
+        }
+
+        PublicUser storedUser = new PublicUser(username, profilePictureUri);
+        return storedUser;
+    }
     public void setUserLoggedIn(boolean loggedIn){
         SharedPreferences.Editor spEditor = userLocalDatabase.edit();
         spEditor.putBoolean("loggedIn", loggedIn);
         spEditor.commit();
+    }
+
+    public boolean getLoggedIn(){
+        return userLocalDatabase.getBoolean("loggedIn", false);
     }
 
     public void clearUserData(){
