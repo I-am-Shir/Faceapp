@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/commenterInfoLayout"
@@ -49,7 +49,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/commenterName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:visibility="visible"/>
+                android:visibility="gone"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -93,7 +93,7 @@
             app:layout_constraintTop_toBottomOf="@+id/commenterInfoLayout">
 
             <TextView
-                android:id="@+id/comment"
+                android:id="@+id/commentText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -110,7 +110,7 @@
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/comment"
+                app:layout_constraintTop_toBottomOf="@id/commentText"
                 app:layout_constraintVertical_bias="0.5" />
 
             <TextView
@@ -119,10 +119,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="Like"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/timeComment"
-                app:layout_constraintTop_toBottomOf="@id/comment"
+                app:layout_constraintTop_toBottomOf="@id/commentText"
                 app:layout_constraintVertical_bias="0.5" />
 
             <TextView
@@ -134,7 +135,29 @@
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/likeComment"
-                app:layout_constraintTop_toBottomOf="@id/comment"
+                app:layout_constraintTop_toBottomOf="@id/commentText"
+                app:layout_constraintVertical_bias="0.5" />
+            <TextView
+                android:id="@+id/editComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Edit"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/replyComment"
+                app:layout_constraintTop_toBottomOf="@id/commentText"
+                app:layout_constraintVertical_bias="0.5" />
+            <TextView
+                android:id="@+id/deleteComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Delete"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/editComment"
+                app:layout_constraintTop_toBottomOf="@id/commentText"
                 app:layout_constraintVertical_bias="0.5" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -151,23 +174,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="visible">
-
-<!--        <EditText-->
-<!--            android:id="@+id/commentText"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="6"-->
-<!--            android:background="@drawable/rounded_view"-->
-<!--            android:backgroundTint="@color/comment_background"-->
-<!--            android:hint="@string/write_a_comment_hint"-->
-<!--            android:padding="15dp"/>-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/postComment"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_weight="1"-->
-<!--            android:src="@drawable/post" />-->
 
     </LinearLayout>
 

@@ -5,23 +5,24 @@ import android.widget.EditText;
 import java.sql.Timestamp;
 
 public class Comment {
-    private EditText comment;
+    private String comment;
     private PublicUser commenter;
     private Timestamp time;
-    private int id;
+    private int id, numLikes;
+    private boolean liked;
 
-    public Comment(EditText comment, PublicUser commenter, Timestamp time, int id) {
+    public Comment(String comment, PublicUser commenter, Timestamp time, int id) {
         this.comment = comment;
         this.commenter = commenter;
         this.time = time;
         this.id = id;
     }
 
-    public EditText getComment() {
+    public String getComment() {
         return comment;
     }
 
-    public void setComment(EditText comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
 
@@ -48,4 +49,12 @@ public class Comment {
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getNumLikes() {return numLikes;}
+
+    public void setNumLikes(int numLikes) {this.numLikes = numLikes;}
+
+    public boolean getLiked() {return liked;}
+
+    public void setLiked(boolean liked) {this.liked = liked;}
 }

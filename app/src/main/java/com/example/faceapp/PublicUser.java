@@ -3,6 +3,13 @@ import android.net.Uri;
 public class PublicUser {
     private String name;
     private Uri profilePicture;
+    public PublicUser() {
+    }
+
+    public PublicUser(String username, Uri profilePicture) {
+        this.name = username;
+        this.profilePicture = profilePicture;
+    }
 
     public void setName(String name) {
         this.name = name;
