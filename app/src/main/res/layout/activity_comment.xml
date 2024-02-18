@@ -54,41 +54,12 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/commentOptionsLayout"
-            android:layout_width="80dp"
-            android:layout_height="100dp"
-            android:backgroundTint="@color/white"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
-            app:layout_constraintTop_toTopOf="@+id/commenterInfoLayout"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/edit_comment"
-                android:layout_width="80dp"
-                android:layout_height="46dp"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textSize="20dp"
-                android:text="Edit"/>
-
-            <TextView
-                android:id="@+id/delete_comment"
-                android:layout_width="80dp"
-                android:layout_height="46dp"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:text="Delete"
-                app:layout_constraintTop_toBottomOf="@+id/edit_comment"/>
-
-        </LinearLayout>
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
+            android:id="@+id/commentLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/commenterInfoLayout">
 
@@ -99,6 +70,7 @@
                 android:layout_marginLeft="20dp"
                 android:text="always have to have the last word"
                 android:textSize="30dp"
+                android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -137,6 +109,7 @@
                 app:layout_constraintStart_toEndOf="@+id/likeComment"
                 app:layout_constraintTop_toBottomOf="@id/commentText"
                 app:layout_constraintVertical_bias="0.5" />
+
             <TextView
                 android:id="@+id/editComment"
                 android:layout_width="wrap_content"
@@ -148,6 +121,7 @@
                 app:layout_constraintStart_toEndOf="@+id/replyComment"
                 app:layout_constraintTop_toBottomOf="@id/commentText"
                 app:layout_constraintVertical_bias="0.5" />
+
             <TextView
                 android:id="@+id/deleteComment"
                 android:layout_width="wrap_content"
@@ -159,22 +133,52 @@
                 app:layout_constraintStart_toEndOf="@+id/editComment"
                 app:layout_constraintTop_toBottomOf="@id/commentText"
                 app:layout_constraintVertical_bias="0.5" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/editCommentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/commenterInfoLayout">
+
+            <EditText
+                android:id="@+id/editCommentFill"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_weight="4"
+                android:hint="Edit Comment"
+                android:padding="20dp"
+                app:layout_constraintBottom_toTopOf="@id/timeComment"
+                app:layout_constraintTop_toBottomOf="@+id/commentText" />
+
+            <ImageView
+                android:id="@+id/postCommentEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/post"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/editCommentFill"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:id="@+id/commentLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="visible">
-
-    </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/commentLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:padding="10dp"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:visibility="visible">-->
+
+<!--    </LinearLayout>-->

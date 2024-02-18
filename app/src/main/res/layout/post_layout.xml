@@ -55,7 +55,7 @@
             android:layout_weight="0.5"
             app:srcCompat="@drawable/three_dots_hori" />
         <ImageView
-            android:id="@+id/close"
+            android:id="@+id/deletePost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"

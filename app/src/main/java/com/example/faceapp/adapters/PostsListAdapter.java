@@ -26,7 +26,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
         private final TextView postContent;
         private final TextView postAuthor;
         private final ImageView postPicture;
-        public ImageView like, liked, comment, share;
+        public ImageView like, liked, comment, share, deletePost;
         private View commentedLayout, commentLayout;
 
 
@@ -60,6 +60,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
             share = itemView.findViewById(R.id.share);
             commentedLayout = itemView.findViewById(R.id.commentedLayout);
             commentLayout = itemView.findViewById(R.id.commentLayout);
+            deletePost = itemView.findViewById(R.id.deletePost);
 
 
             //postTitle = itemView.findViewById(R.id.postTitle);
@@ -113,6 +114,15 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                     }
                 }
             });
+
+//            holder.deletePost.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if(context instanceof Feed_page){
+//                        ((Feed_page)context).deletePost(current.getId());
+//                    }
+//                }
+//            });
 
         } else {
             // Covers the case of data not being ready yet.

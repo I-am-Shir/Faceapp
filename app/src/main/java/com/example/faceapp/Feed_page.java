@@ -35,7 +35,7 @@ public class Feed_page extends AppCompatActivity {
     private Constraints constraints;
     private UserLocalStore userLocalStore;
     private PostsListAdapter adapter;
-    private View menuLayout, commentsLayout, createPostLayout;
+    private View menuLayout, commentsLayout, createPostLayout, postPicLayout;
     private RecyclerView listComments;
 
     //TODO: DELETE currentPostId after connecting to the database
@@ -44,7 +44,6 @@ public class Feed_page extends AppCompatActivity {
 
     //picture variables
     private ImageView picturePreview;
-    private Boolean picCheck;
     private Uri imageUri, uri, uriPostPic;
     private ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
     private ActivityResultLauncher<Uri> mGetContent;
@@ -63,6 +62,7 @@ public class Feed_page extends AppCompatActivity {
         ImageView menuImage = findViewById(R.id.menuImage);
         ImageView postComment = findViewById(R.id.postComment);
         TextView backToPosts = findViewById(R.id.backToPosts);
+        View postPicLayout = findViewById(R.id.postPicLayout);
         EditText fillComment = findViewById(R.id.fillComment);
         menuLayout = findViewById(R.id.menuLayout);
         createPostLayout = findViewById(R.id.createPostLayout);
@@ -117,6 +117,7 @@ public class Feed_page extends AppCompatActivity {
             Post post = new Post(publicUser.getName(), publicUser.getProfilePicture(), "I love gaming" + currentPostId, R.drawable.gamingsetup, currentPostId);
             posts.add(0, post);
             CommentListAdapter adapterListComment = new CommentListAdapter(this);
+            adapterListComment.setComments(new ArrayList<Comment>());
             comments.put(String.valueOf(post.getId()), adapterListComment);
         }
         adapter.setPosts(posts);
@@ -141,7 +142,6 @@ public class Feed_page extends AppCompatActivity {
 
         addPostImage.setOnClickListener(v -> {
             createPostLayout.setVisibility(View.VISIBLE);
-            picCheck= true;
         });
 
         photo_from_gallery.setOnClickListener(new View.OnClickListener() {
@@ -175,42 +175,53 @@ public class Feed_page extends AppCompatActivity {
 
         postButton.setOnClickListener(v -> {
             EditText postText = findViewById(R.id.post_fill_text);
-            if (postText.getText().toString().isEmpty()){
-                try {
-                    constraints.imageCheck(picturePreview);
-                } catch (Exception e) {
-                    Toast.makeText(this, "Please fill in the post, you have something to share don't you?", Toast.LENGTH_SHORT).show();
-                    picCheck = false;
-                }
-                if (picCheck) {
-                    Post post = new Post(publicUser1.getName(), publicUser1.getProfilePicture(), "", imageUri, posts.size());
-                    imageUri = null;
-                    posts.add(0, post);
-                    adapter.setPosts(posts);
-                    createPostLayout.setVisibility(View.GONE);
-                    //postText.setText("");
-                    picturePreview.setImageResource(0);
-                    CommentListAdapter adapterListComment = new CommentListAdapter(this);
-                    adapterListComment.setComments(new ArrayList<Comment>());
-                    adapterListComment.addComment(new Comment("I love this post", publicUser, new Timestamp(System.currentTimeMillis()), currentPostId++));
-                    comments.put(String.valueOf(post.getId()), adapterListComment);
-                } else{
-                    Toast.makeText(this, "Please fill in the post, you have something to share don't you?", Toast.LENGTH_SHORT).show();
-                }
+            Boolean checkPost = false;
+            Boolean picCheck= false;
+
+            try {
+                constraints.imageCheck(picturePreview);
+                checkPost = true;
+            } catch (Exception e) {
+                Toast.makeText(this, "Please fill in the post, must include a picture.", Toast.LENGTH_SHORT).show();
             }
-            else {
-                    Post post = new Post(publicUser1.getName(), publicUser1.getProfilePicture(), postText.getText().toString(), imageUri, posts.size());
-                    imageUri = null;
-                    posts.add(0, post);
-                    adapter.setPosts(posts);
-                    createPostLayout.setVisibility(View.GONE);
-                    postText.setText("");
-                    picturePreview.setImageResource(0);
-                    CommentListAdapter adapterListComment = new CommentListAdapter(this);
-                    adapterListComment.setComments(new ArrayList<Comment>());
-                    adapterListComment.addComment(new Comment("I love this post", publicUser, new Timestamp(System.currentTimeMillis()), currentPostId++));
-                    comments.put(String.valueOf(post.getId()), adapterListComment);
+//            if (!postText.getText().toString().isEmpty()) {
+//                checkPost = true;
+//                try {
+//                    constraints.imageCheck(picturePreview);
+//                    picCheck = true;
+//                } catch (Exception e) {
+//                    Toast.makeText(this, "Please fill in the post, you have something to share don't you?", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            else {
+//                try {
+//                    constraints.imageCheck(picturePreview);
+//                    checkPost = true;
+//                    picCheck = true;
+//                } catch (Exception e) {
+//                    Toast.makeText(this, "No photo?", Toast.LENGTH_SHORT).show();
+//                    imageUri = null;
+//                }
+//            }
+            if (checkPost) {
+                Post post = new Post(publicUser1.getName(), publicUser1.getProfilePicture(), postText.getText().toString(), imageUri, posts.size());
+                imageUri = null;
+                posts.add(0, post);
+                adapter.setPosts(posts);
+                createPostLayout.setVisibility(View.GONE);
+                picturePreview.setImageResource(0);
+                postText.setText("");
+//                if (picCheck) {
+//                    picturePreview.setImageResource(0);
+//                    postPicLayout.setVisibility(View.GONE);
+//                }
+                CommentListAdapter adapterListComment = new CommentListAdapter(this);
+                adapterListComment.setComments(new ArrayList<Comment>());
+                comments.put(String.valueOf(post.getId()), adapterListComment);
             }
+//            else {
+//                Toast.makeText(this, "Please fill in the post, must include text and a picture.", Toast.LENGTH_SHORT).show();
+//            }
         });
 
             backToFeed.setOnClickListener(v1 -> {

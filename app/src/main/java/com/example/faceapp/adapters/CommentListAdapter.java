@@ -4,8 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,10 +21,13 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
     public class CommentViewHolder extends RecyclerView.ViewHolder {
         private PublicUser commenter;
-        private ImageView commenterProImage;
-        private TextView commenterName, commentText, likeComment, editComment, deleteComment, backToPosts;
+        private ImageView commenterProImage, postCommentEdit;
+        private final TextView commentText, likeComment, editComment, deleteComment;
+        private EditText editCommentFill;
+        private TextView commenterName;
         private Comment comment;
         private int id;
+        private View commentLayout, editCommentLayout;
 
         private Context context;
 
@@ -32,7 +37,11 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
             commentText = itemView.findViewById(R.id.commentText);
             editComment = itemView.findViewById(R.id.editComment);
             deleteComment = itemView.findViewById(R.id.deleteComment);
-            backToPosts = itemView.findViewById(R.id.backToPosts);
+            commentLayout = itemView.findViewById(R.id.commentLayout);
+            editCommentLayout = itemView.findViewById(R.id.editCommentLayout);
+            postCommentEdit = itemView.findViewById(R.id.postCommentEdit);
+            editCommentFill = itemView.findViewById(R.id.editCommentFill);
+
 
             //this.commenter = itemView.findViewById(R.id.commenterName);;
         }
@@ -47,7 +56,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
     @Override
     public CommentListAdapter.CommentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.post_layout, parent, false);
+        View itemView = mInflater.inflate(R.layout.activity_comment, parent, false);
         return new CommentListAdapter.CommentViewHolder(itemView);
     }
 
@@ -67,13 +76,32 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
                     }
                 }
             });
-
-            holder.backToPosts.setOnClickListener(new View.OnClickListener() {
+            holder.deleteComment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    holder.commentText.setText("Back to Posts");
+                    comments.remove(current);
+                    notifyItemRemoved(position);
                 }
             });
+            holder.editComment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder.commentLayout.setVisibility(View.GONE);
+                    holder.editCommentLayout.setVisibility(View.VISIBLE);
+                }
+            });
+            holder.postCommentEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(holder.editCommentFill.getText().toString().length() > 0) {
+                        current.setComment(holder.editCommentFill.getText().toString());
+                        holder.commentText.setText(holder.editCommentFill.getText().toString());
+                    }
+                    holder.commentLayout.setVisibility(View.VISIBLE);
+                    holder.editCommentLayout.setVisibility(View.GONE);
+                }
+            });
+
 //            holder.editComment.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
