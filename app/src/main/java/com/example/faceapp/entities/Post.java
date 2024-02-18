@@ -1,14 +1,12 @@
 package com.example.faceapp.entities;
 
 import android.net.Uri;
-import android.widget.ImageView;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.faceapp.Comment;
 import com.example.faceapp.PublicUser;
-import com.example.faceapp.R;
+
 @Entity
 public class Post {
     @PrimaryKey(autoGenerate = true)

@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.faceapp.adapters.CommentListAdapter;
 import com.example.faceapp.adapters.PostsListAdapter;
+import com.example.faceapp.entities.Comment;
 import com.example.faceapp.entities.Post;
 
 import java.io.File;

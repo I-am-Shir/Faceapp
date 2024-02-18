@@ -1,6 +1,8 @@
-package com.example.faceapp;
+package com.example.faceapp.entities;
 
 import android.widget.EditText;
+
+import com.example.faceapp.PublicUser;
 
 import java.sql.Timestamp;
 
