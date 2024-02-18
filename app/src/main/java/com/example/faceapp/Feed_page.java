@@ -114,7 +114,7 @@ public class Feed_page extends AppCompatActivity {
         currentPostId = 0;
         for (currentPostId = 0; currentPostId < 10; currentPostId++) {
             Post post = new Post(publicUser.getName(), publicUser.getProfilePicture(), "I love gaming" + currentPostId, R.drawable.gamingsetup, currentPostId);
-            posts.add(post);
+            posts.add(0, post);
             CommentListAdapter adapterListComment = new CommentListAdapter(this);
             comments.put(String.valueOf(post.getId()), adapterListComment);
         }
@@ -185,7 +185,7 @@ public class Feed_page extends AppCompatActivity {
             else {
                 if (picCheck) {
                     Post post = new Post(publicUser1.getName(), publicUser1.getProfilePicture(), postText.getText().toString(), imageUri, currentId);
-                    posts.add(post);
+                    posts.add(0, post);
                     adapter.setPosts(posts);
                     createPostLayout.setVisibility(View.GONE);
                     postText.setText("");
