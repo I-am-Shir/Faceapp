@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Faceapp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+         <item name="colorPrimary">@color/white</item>
+         <item name="colorSecondary">@color/black</item>
+<!--         <item name="colorButton">@color/button_color</item>-->
+
+    </style>
+
+
+    <style name="Theme.Faceapp" parent="Base.Theme.Faceapp" />
+</resources>

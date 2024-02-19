@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Faceapp</string>
+    <string name="login_password">password</string>
+    <string name="login_username">username</string>
+    <string name="log_in_button">Log in</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="what_s_your_email">What\'s your email?</string>
+    <string name="enter_the_email_where_you_can_be_contacted_n_no_one_will_see_this_on_your_profile">Enter the email where you can be contacted.\n no one will see this on your profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="back_arrow">⬅</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="email">Email</string>
+    <string name="next_button">Next</string>
+    <string name="user_doesn_t_exist">User doesn\'t exist.</string>
+    <string name="passwordLimitationsHeading">A password must have at least 8 characters, 20 atmost \n and must contain at least one letter and one number</string>
+    <string name="passwordHint">password</string>
+    <string name="last_name_hint">Last name</string>
+    <string name="first_name_hint">First name</string>
+    <string name="what_s_your_name">what\'s your name?</string>
+    <string name="first_last_name_limits">please write your first and last name. \n they may only contain letters.</string>
+    <string name="take_a_picture_from_camera">Take a picture from camera</string>
+    <string name="please_choose_a_photo">Please choose a photo</string>
+    <string name="verify_password_hint">Verify password</string>
+    <string name="please_refill_the_password_for_verification">Please refill the password for verification</string>
+    <string name="write_a_comment_hint">Write a comment...</string>
+    <string name="log_out">Log out</string>
+    <string name="what_s_on_your_mind">What\'s on your mind?</string>
+    <string name="Dark_mode">Dark mode</string>
+</resources>

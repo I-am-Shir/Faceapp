@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FFFFFF</color>
+    <color name="text_color">#FFFFFF</color>
+    <color name="white">#000000</color>
+    <color name="posts_background">#333333</color>
+    <color name="_000000">#91E9FF</color>
+    <color name="_5b5b5b">#D0B7FF</color>
+    <color name="red">#FA0101</color>
+    <color name="background_left">#46585C</color>
+    <color name="background_middle">#655A77</color>
+    <color name="background_right">#799091</color>
+    <color name="background_grey">#757474</color>
+    <color name="next_stage_button">#1753AC</color>
+    <color name="choose_pic_button">#58499A</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="unavailable">#7C7777</color>
+    <color name="forgot_pass">#8A93A1</color>
+    <color name="create_account_but">#689AE4</color>
+    <color name="logo_name_color">#02A5EF</color>
+    <color name="comment_background">#5F5F5F</color>
+    <color name="button_color">#2462FF</color>
+    <color name="partly_transparent_background">#51FFFFFF</color>
+</resources>

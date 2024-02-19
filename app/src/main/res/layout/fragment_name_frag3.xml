@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    tools:context=".Sign_up_page"
+    tools:visibility="visible">
+
+    <!-- ConstraintLayout for the first section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Back button -->
+        <Button
+            android:id="@+id/backBut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00689AE4"
+            android:text="@string/back_arrow"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Title asking for name -->
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            android:padding="10dp"
+            android:textColor="@color/text_color"
+            android:text="@string/what_s_your_name"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Description for entering first and last name -->
+        <TextView
+            android:id="@+id/firstLastNameHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:padding="10dp"
+            android:text="@string/first_last_name_limits"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ConstraintLayout for the second section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <!-- Error message for first name -->
+        <TextView
+            android:id="@+id/firstNameException"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:text=""
+            android:textColor="@color/red"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone"/>
+
+        <!-- EditText for entering first name -->
+        <EditText
+            android:id="@+id/editFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_view"
+            android:ems="10"
+            android:hint="@string/first_name_hint"
+            android:padding="15dp"
+            app:layout_constraintTop_toBottomOf="@+id/firstNameException"
+            tools:layout_editor_absoluteX="10dp" />
+
+        <!-- Error message for last name -->
+        <TextView
+            android:id="@+id/lastNameException"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:text=""
+            android:textColor="@color/red"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone"/>
+
+        <!-- EditText for entering last name -->
+        <EditText
+            android:id="@+id/editLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:background="@drawable/rounded_view"
+            android:padding="15dp"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="@string/last_name_hint"
+            app:layout_constraintTop_toBottomOf="@+id/editFirstName"
+            tools:layout_editor_absoluteX="10dp" />
+
+        <!-- Button for proceeding to the next step -->
+        <Button
+            android:id="@+id/nextBut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:backgroundTint="@color/next_stage_button"
+            android:text="@string/next_button"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editLastName" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
