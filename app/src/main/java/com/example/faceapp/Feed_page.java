@@ -9,6 +9,8 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,9 +24,14 @@ import android.widget.Toast;
 
 import com.example.faceapp.adapters.CommentListAdapter;
 import com.example.faceapp.adapters.PostsListAdapter;
+import com.example.faceapp.entities.JsonToJava;
 import com.example.faceapp.entities.Post;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -112,9 +119,20 @@ public class Feed_page extends AppCompatActivity {
         publicUser.setProfilePicture(uri);
         //TODO: DELETE
         List<Post> posts = new ArrayList<>();
-        currentPostId = 0;
-        for (currentPostId = 0; currentPostId < 10; currentPostId++) {
-            Post post = new Post(publicUser.getName(), publicUser.getProfilePicture(), "I love gaming" + currentPostId, R.drawable.gamingsetup, currentPostId);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<JsonToJava> jsonToJava;
+        try {
+            InputStream in = getResources().openRawResource(R.raw.posts);
+            jsonToJava = objectMapper.readValue(in, new TypeReference<List<JsonToJava>>(){});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        int index = jsonToJava.size();
+        //for (currentPostId = 0; currentPostId < 10; currentPostId++) {
+        while(0<index--){
+            //Post post = new Post(publicUser.getName(), publicUser.getProfilePicture(), "I love gaming" + currentPostId, R.drawable.gamingsetup, currentPostId);
+            Post post = jsonToJava.get(index).toPost();
             posts.add(0, post);
             CommentListAdapter adapterListComment = new CommentListAdapter(this);
             adapterListComment.setComments(new ArrayList<Comment>());
