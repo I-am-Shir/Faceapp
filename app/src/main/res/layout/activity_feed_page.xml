@@ -131,6 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#757474" />
+
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         <!--menu layout-->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -400,7 +401,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/backToPosts"
+                android:id="@+id/backFromComments"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/back_arrow"
@@ -635,25 +636,23 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!--share-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/shareLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/partly_transparent_background"
+        android:visibility="gone">
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/shareLayout"
+            android:id="@+id/shareInnerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_view"
             android:backgroundTint="@color/comment_background"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/backFromShare"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:text="@string/back_arrow"
-                android:textColor="@color/black"
-                android:textSize="40sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/sharingLayout"
@@ -662,9 +661,9 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/rounded_view"
                 android:backgroundTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/backFromShare">
+                app:layout_constraintStart_toStartOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/userShareLayout"
@@ -723,10 +722,12 @@
                         app:layout_constraintTop_toBottomOf="@+id/editText" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

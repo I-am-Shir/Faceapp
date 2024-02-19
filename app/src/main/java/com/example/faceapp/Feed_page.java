@@ -36,7 +36,7 @@ public class Feed_page extends AppCompatActivity {
     private Constraints constraints;
     private UserLocalStore userLocalStore;
     private PostsListAdapter adapter;
-    private View menuLayout, commentsLayout, createPostLayout, postPicLayout, searchLayout, shareLayout;
+    private View menuLayout, commentsLayout, createPostLayout, postPicLayout, searchLayout, shareLayout, shareInnerLayout;
     private RecyclerView listComments;
 
     //TODO: DELETE currentPostId after connecting to the database
@@ -63,12 +63,14 @@ public class Feed_page extends AppCompatActivity {
         ImageView homeImage = findViewById(R.id.homeImage);
         ImageView menuImage = findViewById(R.id.menuImage);
         ImageView postComment = findViewById(R.id.postComment);
-        TextView backToPosts = findViewById(R.id.backToPosts);
+        TextView backFromComments = findViewById(R.id.backFromComments);
         TextView backFromSearch = findViewById(R.id.backFromSearch);
-        View postPicLayout = findViewById(R.id.postPicLayout);
+        //View postPicLayout = findViewById(R.id.postPicLayout);
+        View createPostLayout = findViewById(R.id.createPostLayout);
         EditText fillComment = findViewById(R.id.fillComment);
+        shareLayout = findViewById(R.id.shareLayout);
+        shareInnerLayout = findViewById(R.id.shareInnerLayout);
         menuLayout = findViewById(R.id.menuLayout);
-        createPostLayout = findViewById(R.id.createPostLayout);
         searchLayout = findViewById(R.id.searchLayout);
         TextView backToFeed = findViewById(R.id.backToFeed);
         comments = new HashMap<>();
@@ -247,9 +249,18 @@ public class Feed_page extends AppCompatActivity {
             Toast.makeText(this, "Goodbye my friend", Toast.LENGTH_SHORT).show();
         });
         // Setting up a click listener for the back button to return to the posts view
-        backToPosts.setOnClickListener(v -> {
+        backFromComments.setOnClickListener(v -> {
             commentsLayout = findViewById(R.id.commentsLayout);
             commentsLayout.setVisibility(View.GONE);
+        });
+
+        //setting up a click listener for the share so it'll exit it when clicked outside parameters.
+        shareLayout.setOnClickListener(v -> {
+            shareLayout.setVisibility(View.GONE);
+        });
+
+        //setting up a click listener for the shareInnerLayout so it won't exit when clicked inside parameters.
+        shareInnerLayout.setOnClickListener(v -> {
         });
 
     }
@@ -263,6 +274,12 @@ public class Feed_page extends AppCompatActivity {
         listComments.setLayoutManager(new LinearLayoutManager(this));
         commentsLayout = findViewById(R.id.commentsLayout);
         commentsLayout.setVisibility(View.VISIBLE);
+    }
+
+    public void shareButton(int id) {
+        currentId = id;
+        shareLayout.setVisibility(View.VISIBLE);
+
     }
 
 
