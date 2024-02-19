@@ -14,16 +14,20 @@ public class Log_in_page extends AppCompatActivity {
     private EditText user_name, pass_word;
     private Constraints constraints;
 
+    private static Boolean checkFirstLogIn = false;
+
     private UserLocalStore userLocalStore;
     //TODO: remove this method
     public void startup(){
         //checks if there is a user signed up already
-        if (userLocalStore.getLoggedInUser() != null)
+        if (userLocalStore.getLoggedInUser() != null && checkFirstLogIn){
             return;
+        }
         //if there isn't a signed up user- creates a default one.
         Uri uri = Uri.parse("android.resource://"+getPackageName()+"/drawable/general_profile");
         User user = new User("Admin@gmail.com" , "a1234567", "Hello", "World", uri);
         userLocalStore.storeUserData(user);
+        checkFirstLogIn = true;
         userLocalStore.setUserLoggedIn(false);
     }
 
