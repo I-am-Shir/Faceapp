@@ -8,11 +8,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.faceapp.Comment;
+import com.example.faceapp.entities.Comment;
 import com.example.faceapp.PublicUser;
 import com.example.faceapp.R;
 

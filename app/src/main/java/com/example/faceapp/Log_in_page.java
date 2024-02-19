@@ -90,7 +90,7 @@ public class Log_in_page extends AppCompatActivity {
         butForgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Log_in_page.this, "That's to bad man", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Log_in_page.this, "That's too bad man", Toast.LENGTH_SHORT).show();
             }
         });
         Button butSignup = findViewById(R.id.butSignup);

@@ -49,11 +49,12 @@
             app:layout_constraintTop_toBottomOf="@id/postAuthor" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/editPost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            app:srcCompat="@drawable/three_dots_hori" />
+            app:srcCompat="@drawable/edit_post" />
+
         <ImageView
             android:id="@+id/deletePost"
             android:layout_width="wrap_content"
@@ -80,6 +81,34 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             app:layout_constraintTop_toBottomOf="@id/topPostLayout" />
+
+        <LinearLayout
+            android:id="@+id/editPostLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/editPostContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:hint="Rewrite your post here..."
+                android:padding="10dp"/>
+
+            <ImageView
+                android:id="@+id/postEditedPost"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/post"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </LinearLayout>
+
+
 
         <ImageView
 
