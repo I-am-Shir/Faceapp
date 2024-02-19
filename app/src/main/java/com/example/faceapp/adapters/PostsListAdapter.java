@@ -115,6 +115,15 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                 }
             });
 
+            holder.share.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(context instanceof Feed_page){
+                        ((Feed_page)context).shareButton(current.getId());
+                    }
+                }
+            });
+
 //            holder.deletePost.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
