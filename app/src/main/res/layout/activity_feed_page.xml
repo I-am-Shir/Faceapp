@@ -377,23 +377,23 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--comments-->
-    <LinearLayout
-        android:id="@+id/commentsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent">
+<LinearLayout
+    android:id="@+id/commentsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:visibility="visible"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topOfCommentsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -412,23 +412,22 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refreshLayoutComments"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
-            android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@id/submitCommentLayout"
-            app:layout_constraintTop_toBottomOf="@id/topOfCommentsLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayoutComments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="10"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/submitCommentLayout"
+        app:layout_constraintTop_toBottomOf="@id/topOfCommentsLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listComments"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#757474" />
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listComments"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <LinearLayout
             android:id="@+id/submitCommentLayout"
@@ -447,7 +446,7 @@
                 android:background="@drawable/rounded_view"
                 android:backgroundTint="@color/comment_background"
                 android:hint="@string/write_a_comment_hint"
-                android:padding="15dp"
+                android:padding="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/postComment"
                 app:layout_constraintStart_toStartOf="parent"
@@ -582,6 +581,59 @@
            
             
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--search-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="gone">
+        <LinearLayout
+            android:id="@+id/topSearchLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/backFromSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/back_arrow"
+                android:layout_weight="2"
+                android:textColor="@color/black"
+                android:textSize="40sp"/>
+
+            <EditText
+                android:id="@+id/fillSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="10"
+                android:background="@drawable/rounded_view"
+                android:backgroundTint="@color/comment_background"
+                android:hint="Edit Comment"
+                android:padding="20dp"/>
+
+            <ImageView
+                android:id="@+id/postsearch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/post"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/editCommentFill"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 
