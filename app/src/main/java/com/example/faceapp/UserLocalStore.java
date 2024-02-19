@@ -7,10 +7,12 @@ import java.io.ByteArrayOutputStream;
 
 public class UserLocalStore {
     public static final String SP_NAME = "userDetails";
+    private Constraints constraints;
     SharedPreferences userLocalDatabase;
 
     public UserLocalStore(Context context){
         userLocalDatabase = context.getSharedPreferences(SP_NAME, 0);
+        constraints = new Constraints();
     }
     public void storeUserData(User user){
         SharedPreferences.Editor spEditor = userLocalDatabase.edit();
@@ -25,6 +27,8 @@ public class UserLocalStore {
         spEditor.commit();
     }
     public User getLoggedInUser(){
+        if(!userLocalDatabase.contains("username"))
+            return null;
         String firstName = userLocalDatabase.getString("firstName", "");
         String lastName = userLocalDatabase.getString("lastName", "");
         String username = userLocalDatabase.getString("username", "");
@@ -67,5 +71,17 @@ public class UserLocalStore {
         SharedPreferences.Editor spEditor = userLocalDatabase.edit();
         spEditor.clear();
         spEditor.commit();
+    }
+
+    public void login(String username, String password) throws Exception{
+        //sets current username password of signed user
+        String mUsername = userLocalDatabase.getString("username", "");
+        String mPassword = userLocalDatabase.getString("password", "");
+        // checks if the one trying to log in is signed up
+        if (username.equals(mUsername) && password.equals(mPassword)){
+            setUserLoggedIn(true);
+            return;
+        }
+        throw new Exception("Invalid username or password");
     }
 }

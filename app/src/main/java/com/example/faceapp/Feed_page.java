@@ -64,9 +64,19 @@ public class Feed_page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Creating a UserLocalStore instance to manage user data locally
+        userLocalStore = new UserLocalStore(this);
+        // Checking if a user is logged in
+        if (!userLocalStore.getLoggedIn()) {
+            Intent i = new Intent(Feed_page.this, Log_in_page.class);
+            startActivity(i);
+        }
+
         setContentView(R.layout.activity_feed_page);
         constraints = new Constraints();
         Button colorMode = findViewById(R.id.colorMode);
+        TextView userName = findViewById(R.id.userName);
+        ImageView userPhoto = findViewById(R.id.userPhoto);
         Button logOut = findViewById(R.id.logOut);
         Button postButton = findViewById(R.id.postButton);
         ImageView searchImage = findViewById(R.id.searchImage);
@@ -86,7 +96,9 @@ public class Feed_page extends AppCompatActivity {
         menuLayout = findViewById(R.id.menuLayout);
         searchLayout = findViewById(R.id.searchLayout);
         TextView backToFeed = findViewById(R.id.backToFeed);
-        comments = new HashMap<>();
+        // Initializing the RecyclerView to display posts
+        RecyclerView listPosts = findViewById(R.id.listPosts);
+
         // Registers a photo picker activity launcher in single-select mode.
         pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uriPostPic -> {
             // Callback is invoked after the user selects a media item or closes the
@@ -99,6 +111,7 @@ public class Feed_page extends AppCompatActivity {
                 Log.d("PhotoPicker", "No media selected");
             }
         });
+
         // Registers a photo picker activity launcher in single-select mode.
         mGetContent = registerForActivityResult(
                 new ActivityResultContracts.TakePicture(),
@@ -113,25 +126,19 @@ public class Feed_page extends AppCompatActivity {
                         }
                     }
                 });
-        // Creating a UserLocalStore instance to manage user data locally
-        userLocalStore = new UserLocalStore(this);
-        // Checking if a user is logged in
-        if (!userLocalStore.getLoggedIn()) {
-            Intent i = new Intent(Feed_page.this, Log_in_page.class);
-            startActivity(i);
-        }
+        comments = new HashMap<>();
+        userName.setText(userLocalStore.getLoggedInPublicUser().getName());
+        userPhoto.setImageURI(userLocalStore.getLoggedInPublicUser().getProfilePicture());
         // Retrieving the logged-in user's information
         PublicUser publicUser1 = userLocalStore.getLoggedInPublicUser();
-        // Initializing the RecyclerView to display posts
-        RecyclerView listPosts = findViewById(R.id.listPosts);
         final PostsListAdapter adapter = new PostsListAdapter(this);
         listPosts.setAdapter(adapter);
         listPosts.setLayoutManager(new LinearLayoutManager(this));
         //TODO: DELETE
         // Setting up a default user
-        Uri uri = Uri.parse("android.resource://com.example.faceapp/drawable/profile");
+        Uri uri = Uri.parse("android.resource://" + getPackageName() + "/drawable/profile");
         PublicUser publicUser = new PublicUser();
-        publicUser.setName("Shir");
+        publicUser.setName("nelly");
         publicUser.setProfilePicture(uri);
         //TODO: DELETE
         // Creating sample posts to populate the feed temporarily
@@ -178,7 +185,7 @@ public class Feed_page extends AppCompatActivity {
                 // Adding the comment to the corresponding post's comment list
                 String fillComm = fillComment.getText().toString();
                 fillComment.setText("");
-                comments.get(String.valueOf(currentId)).addComment(new Comment(fillComm, publicUser, new Timestamp(System.currentTimeMillis()), currentId));
+                comments.get(String.valueOf(currentId)).addComment(new Comment(fillComm, userLocalStore.getLoggedInPublicUser(), new Timestamp(System.currentTimeMillis()), currentId));
             }
         });
 

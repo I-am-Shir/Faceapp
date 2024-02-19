@@ -17,6 +17,7 @@ public class Sign_up_page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        userLocalStore = new UserLocalStore(this);
         setContentView(R.layout.activity_sign_up_page);
 
         EmailFrag1 email_fragment1 = new EmailFrag1();
@@ -46,6 +47,6 @@ public class Sign_up_page extends AppCompatActivity {
     }
 
     public User setUser() {
-        return new User(signUpInfo[0], signUpInfo[1], signUpInfo[2], signUpInfo[3], Uri.parse(signUpInfo[4]) );
+        return new User(signUpInfo[0], signUpInfo[1], signUpInfo[2], signUpInfo[3], Uri.parse(signUpInfo[4]));
     }
 }

@@ -12,13 +12,16 @@ import android.widget.Toast;
 public class Log_in_page extends AppCompatActivity {
     private TextView usernameEx, passwordEx, userExEx;
     private EditText user_name, pass_word;
-    private Button butLogin, butSignup, butForgot;
     private Constraints constraints;
 
     private UserLocalStore userLocalStore;
     //TODO: remove this method
     public void startup(){
-        Uri uri = Uri.parse("android.resource://your.package.here/drawable/general_profile");
+        //checks if there is a user signed up already
+        if (userLocalStore.getLoggedInUser() != null)
+            return;
+        //if there isn't a signed up user- creates a default one.
+        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/drawable/general_profile");
         User user = new User("Admin@gmail.com" , "a1234567", "Hello", "World", uri);
         userLocalStore.storeUserData(user);
         userLocalStore.setUserLoggedIn(false);
@@ -30,7 +33,7 @@ public class Log_in_page extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
         userLocalStore = new UserLocalStore(this);
         constraints = new Constraints();
-        butLogin = findViewById(R.id.butLogin);
+        Button butLogin = findViewById(R.id.butLogin);
         usernameEx = findViewById(R.id.usernameException);
         passwordEx = findViewById(R.id.passwordException);
         userExEx = findViewById(R.id.userExistenceException);
@@ -45,7 +48,6 @@ public class Log_in_page extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Boolean userCheck = true;
-
                 String username = user_name.getText().toString();
                 String password = pass_word.getText().toString();
                 try {
@@ -65,17 +67,15 @@ public class Log_in_page extends AppCompatActivity {
                     userCheck = false;
                 }
                 try {
-                    if (!username.equals("Admin@gmail.com") || !password.equals("a12345678"))
-                        throw new IllegalArgumentException("User doesn't exist or the credentials are wrong.");
+                    userLocalStore.login(username, password);
                     userExEx.setVisibility(View.GONE);
-                } catch (IllegalArgumentException e) {
+                } catch (Exception e) {
                     userExEx.setText("Invalid username or password");
                     userExEx.setVisibility(View.VISIBLE);
                     userCheck = false;
                 }
                 if (userCheck) {
                     Toast.makeText(Log_in_page.this, "Login successful", Toast.LENGTH_SHORT).show();
-                    userLocalStore.setUserLoggedIn(true);
                     Intent i = new Intent(Log_in_page.this, Feed_page.class);
                     startActivity(i);
                 }
@@ -86,14 +86,14 @@ public class Log_in_page extends AppCompatActivity {
             }
         });
 
-        butForgot = findViewById(R.id.butForgot);
+        Button butForgot = findViewById(R.id.butForgot);
         butForgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Log_in_page.this, "That's too bad man", Toast.LENGTH_SHORT).show();
             }
         });
-            butSignup = findViewById(R.id.butSignup);
+        Button butSignup = findViewById(R.id.butSignup);
             butSignup.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
