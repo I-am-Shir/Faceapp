@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.faceapp.Feed_page;
 import com.example.faceapp.R;
 import com.example.faceapp.entities.Post;
@@ -94,7 +95,8 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
             holder.postContent.setText(current.getContent());
             holder.postAuthor.setText(current.getAuthor());
             if (current.getPicture() == 0)
-                holder.postPicture.setImageURI(current.getUriPicture());
+                holder.postPicture.setImageResource(R.drawable.ic_launcher_background);
+                //Glide.with(this.context).load(current.getUriPicture()).into(holder.postPicture);
             else
                 holder.postPicture.setImageResource(current.getPicture());
             holder.like.setOnClickListener(new View.OnClickListener() {

@@ -140,7 +140,8 @@
             android:layout_height="wrap_content"
             android:background="@color/comment_background"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/topFeedLayout">
+            app:layout_constraintTop_toBottomOf="@+id/topFeedLayout"
+            tools:visibility="visible">
 
             <TextView
                 android:id="@+id/menuText"
@@ -169,6 +170,18 @@
                 android:src="@drawable/settings"
                 app:layout_constraintBottom_toBottomOf="@+id/menuText"
                 app:layout_constraintEnd_toStartOf="@id/search_menu"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/colorMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/black"
+                android:text="@string/Dark_mode"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/menuText"
+                app:layout_constraintEnd_toStartOf="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
