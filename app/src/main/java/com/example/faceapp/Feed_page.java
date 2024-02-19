@@ -38,6 +38,7 @@ import java.io.InputStream;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -299,7 +300,10 @@ public class Feed_page extends AppCompatActivity {
     public void shareButton(int id) {
         currentId = id;
         shareLayout.setVisibility(View.VISIBLE);
+    }
 
+    public void deletePost(int id) {
+        comments.remove(String.valueOf(id));
     }
 
 
