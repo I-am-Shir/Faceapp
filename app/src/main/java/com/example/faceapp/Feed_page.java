@@ -36,7 +36,7 @@ public class Feed_page extends AppCompatActivity {
     private Constraints constraints;
     private UserLocalStore userLocalStore;
     private PostsListAdapter adapter;
-    private View menuLayout, commentsLayout, createPostLayout, postPicLayout, searchLayout;
+    private View menuLayout, commentsLayout, createPostLayout, postPicLayout, searchLayout, shareLayout;
     private RecyclerView listComments;
 
     //TODO: DELETE currentPostId after connecting to the database
