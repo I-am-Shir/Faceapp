@@ -1,5 +1,6 @@
 package com.example.faceapp.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,7 +83,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
     }
 
     @Override
-    public void onBindViewHolder(PostsViewHolder holder, int position) {
+    public void onBindViewHolder(PostsViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (posts != null) {
             final Post current = posts.get(position);
             holder.postContent.setText(current.getContent());
@@ -124,14 +125,16 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                 }
             });
 
-//            holder.deletePost.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if(context instanceof Feed_page){
-//                        ((Feed_page)context).deletePost(current.getId());
-//                    }
-//                }
-//            });
+            holder.deletePost.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(context instanceof Feed_page){
+                        ((Feed_page)context).deletePost(current.getId());
+                    }
+                    posts.remove(current);
+                    notifyItemRemoved(position);
+                }
+            });
 
         } else {
             // Covers the case of data not being ready yet.
@@ -156,5 +159,6 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
     public List<Post> getPosts() {
         return posts;
     }
+
 
 }
