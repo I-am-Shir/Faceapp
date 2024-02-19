@@ -1,5 +1,6 @@
 package com.example.faceapp.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,9 +23,8 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
     public class CommentViewHolder extends RecyclerView.ViewHolder {
         private PublicUser commenter;
         private ImageView commenterProImage, postCommentEdit;
-        private final TextView commentText, likeComment, editComment, deleteComment;
+        private final TextView commentText, likeComment, editComment, deleteComment, commenterName;
         private EditText editCommentFill;
-        private TextView commenterName;
         private Comment comment;
         private int id;
         private View commentLayout, editCommentLayout;
@@ -41,6 +41,8 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
             editCommentLayout = itemView.findViewById(R.id.editCommentLayout);
             postCommentEdit = itemView.findViewById(R.id.postCommentEdit);
             editCommentFill = itemView.findViewById(R.id.editCommentFill);
+            commenterProImage = itemView.findViewById(R.id.commenterProImage);
+            commenterName = itemView.findViewById(R.id.commenterName);
 
 
             //this.commenter = itemView.findViewById(R.id.commenterName);;
@@ -61,11 +63,14 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(CommentViewHolder holder, int position) {
+    public void onBindViewHolder(CommentViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (comments != null) {
             final Comment current = comments.get(position);
             holder.commenter = current.getCommenter();
             holder.commentText.setText(current.getComment());
+            holder.commenterName.setText(current.getCommenter().getName());
+            holder.commenterProImage.setImageURI(current.getCommenter().getProfilePicture());
+
             holder.likeComment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
