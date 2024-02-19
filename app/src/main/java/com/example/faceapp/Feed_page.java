@@ -54,10 +54,11 @@ public class Feed_page extends AppCompatActivity {
     HashMap<String, CommentListAdapter> comments;
 
     //picture variables
-    private ImageView picturePreview;
+    private ImageView picturePreview, userPhotoShare;
     private Uri imageUri, uri, uriPostPic;
     private ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
     private ActivityResultLauncher<Uri> mGetContent;
+    private TextView userShareName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +96,8 @@ public class Feed_page extends AppCompatActivity {
         TextView backToFeed = findViewById(R.id.backToFeed);
         // Initializing the RecyclerView to display posts
         RecyclerView listPosts = findViewById(R.id.listPosts);
+        TextView userShareName = findViewById(R.id.userShareName);
+        ImageView userPhotoShare = findViewById(R.id.userPhotoShare);
 
         // Registers a photo picker activity launcher in single-select mode.
         pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uriPostPic -> {
@@ -126,6 +129,9 @@ public class Feed_page extends AppCompatActivity {
         comments = new HashMap<>();
         userName.setText(userLocalStore.getLoggedInPublicUser().getName());
         userPhoto.setImageURI(userLocalStore.getLoggedInPublicUser().getProfilePicture());
+        userShareName.setText(userLocalStore.getLoggedInPublicUser().getName());
+        userPhotoShare.setImageURI(userLocalStore.getLoggedInPublicUser().getProfilePicture());
+
         // Retrieving the logged-in user's information
         PublicUser publicUser1 = userLocalStore.getLoggedInPublicUser();
         final PostsListAdapter adapter = new PostsListAdapter(this);
@@ -306,6 +312,7 @@ public class Feed_page extends AppCompatActivity {
 
     public void shareButton(int id) {
         currentId = id;
+
         shareLayout.setVisibility(View.VISIBLE);
     }
 
