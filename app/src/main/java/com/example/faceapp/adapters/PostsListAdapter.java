@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,13 +23,13 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
     private List<Post> posts; // Cached copy of posts
     public class PostsViewHolder extends RecyclerView.ViewHolder {
 
-        //TODO: DELETE?
-        //public TextView postTitle;
-        private final TextView postContent;
-        private final TextView postAuthor;
-        private final ImageView postPicture;
-        public ImageView like, liked, comment, share, deletePost;
-        private View commentedLayout, commentLayout;
+    //TODO: DELETE?
+    //public TextView postTitle;
+    private final TextView postContent, postAuthor;
+    private EditText editPostContent;
+    private final ImageView postPicture;
+    public ImageView like, liked, comment, share, deletePost, editPost, postEditedPost;
+    private View commentedLayout, commentLayout, editPostLayout;
 
 
 
@@ -62,6 +63,10 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
             commentedLayout = itemView.findViewById(R.id.commentedLayout);
             commentLayout = itemView.findViewById(R.id.commentLayout);
             deletePost = itemView.findViewById(R.id.deletePost);
+            editPost = itemView.findViewById(R.id.editPost);
+            editPostContent = itemView.findViewById(R.id.editPostContent);
+            postEditedPost = itemView.findViewById(R.id.postEditedPost);
+            editPostLayout = itemView.findViewById(R.id.editPostLayout);
 
 
             //postTitle = itemView.findViewById(R.id.postTitle);
@@ -122,6 +127,26 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                     if(context instanceof Feed_page){
                         ((Feed_page)context).shareButton(current.getId());
                     }
+                }
+            });
+
+            holder.editPost.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder.postContent.setVisibility(View.GONE);
+                    holder.editPostLayout.setVisibility(View.VISIBLE);
+                }
+            });
+
+            holder.postEditedPost.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(holder.editPostContent.getText().toString().length() > 0) {
+                        current.setContent(holder.editPostContent.getText().toString());
+                        holder.postContent.setText(holder.editPostContent.getText().toString());
+                    }
+                    holder.postContent.setVisibility(View.VISIBLE);
+                    holder.editPostLayout.setVisibility(View.GONE);
                 }
             });
 
