@@ -5,13 +5,15 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-
+import android.app.UiModeManager;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -64,6 +66,7 @@ public class Feed_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed_page);
         constraints = new Constraints();
+        Button colorMode = findViewById(R.id.colorMode);
         Button logOut = findViewById(R.id.logOut);
         Button postButton = findViewById(R.id.postButton);
         ImageView searchImage = findViewById(R.id.searchImage);
@@ -193,6 +196,20 @@ public class Feed_page extends AppCompatActivity {
         // Click listener for the back button to hide the search layout
         backFromSearch.setOnClickListener(v -> {
             searchLayout.setVisibility(View.GONE);
+        });
+
+        colorMode.setOnClickListener(v -> {
+            // Switch between light and dark mode using
+            int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+
+            // Toggle between light and dark mode
+            if (currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
+                // Set the app theme to light mode
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            } else {
+                // Set the app theme to dark mode
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            }
         });
 
         // Setting up a click listener for the button to choose a photo from the gallery
