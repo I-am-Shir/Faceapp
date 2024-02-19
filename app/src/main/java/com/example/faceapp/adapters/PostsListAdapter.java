@@ -95,8 +95,8 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
             holder.postContent.setText(current.getContent());
             holder.postAuthor.setText(current.getAuthor());
             if (current.getPicture() == 0)
-                holder.postPicture.setImageResource(R.drawable.ic_launcher_background);
-                //Glide.with(this.context).load(current.getUriPicture()).into(holder.postPicture);
+                //holder.postPicture.setImageResource(R.drawable.ic_launcher_background);
+                Glide.with(context).load(current.getUriPicture()).into(holder.postPicture);
             else
                 holder.postPicture.setImageResource(current.getPicture());
             holder.like.setOnClickListener(new View.OnClickListener() {
