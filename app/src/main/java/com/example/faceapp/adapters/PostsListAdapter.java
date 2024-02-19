@@ -29,7 +29,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
     private final TextView postContent, postAuthor;
     private EditText editPostContent;
     private final ImageView postPicture;
-    public ImageView like, liked, comment, share, deletePost, editPost, postEditedPost;
+    public ImageView like, liked, comment, share, deletePost, editPost, postEditedPost, posterProImage;
     private View commentedLayout, commentLayout, editPostLayout;
 
 
@@ -68,16 +68,11 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
             editPostContent = itemView.findViewById(R.id.editPostContent);
             postEditedPost = itemView.findViewById(R.id.postEditedPost);
             editPostLayout = itemView.findViewById(R.id.editPostLayout);
-
-
-            //postTitle = itemView.findViewById(R.id.postTitle);
-            //postDate = itemView.findViewById(R.id.postDate);
-            //deleteButton = itemView.findViewById(R.id.deleteButton);
+            posterProImage = itemView.findViewById(R.id.posterProImage);
         }
     }
 
     public PostsListAdapter(Context context) {
-
         mInflater = LayoutInflater.from(context);
         this.context = context;
     }
@@ -92,6 +87,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
     public void onBindViewHolder(PostsViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (posts != null) {
             final Post current = posts.get(position);
+            holder.posterProImage.setImageURI(current.getProPicture());
             holder.postContent.setText(current.getContent());
             holder.postAuthor.setText(current.getAuthor());
             if (current.getPicture() == 0)
