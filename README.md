@@ -1,5 +1,32 @@
 ## [link to faceapp git repository](https://github.com/I-am-Shir/Faceapp)
-### our workflow:
+# Fakebook - Social Networking Android Application
+Fakebook is a social networking Android application that allows users to create profiles, log in, post content, and interact with existing posts through likes and comments.
+In its present iteration, the app allows for the registration of a single user and loads predefined posts from a JSON file. Rerunning the application deletes the registered user's information and any content created during the previous session.
+
+## How to use?
+#### 1. Prerequisites
+Clone the repository to your local machine.
+Ensure you have Android Studio installed.
+#### 2. Installation
+Open Android Studio.
+Click on "Open an existing Android Studio project".
+Navigate to the directory where you cloned the "AP-Project2-Android" repository and select it.
+Wait for Android Studio to build the project.
+
+## Usage
+1. Once the project is opened in Android Studio, connect your Android device or start an emulator.
+2. Run the application by clicking the green "Run" button in Android Studio. The application will launch on your device or emulator.
+   Register for a new account by completing all fields within the sign-up (fragmented). Once you have registered, log in using the email address and password provided during registration. Upon logging in, you can access the feed page to view existing posts, like and comment on the posts.
+   in the top left theres a plus button, which allows you to add a post, and in the top right theres a search button but it's not active yet.
+   To access additional options, click the menu button located at the bottom of the screen, you will move to a page where you can switch to dark mode by clicking on a dedicated button, or logout and return to the login page
+
+## Workflow
+First we read the task together in its entirety to ensure we correctly understood what was assigned to us. We brainstormed ideas for implementation and divided the general tasks among ourselves, which we then added to JIRA. 
+Our initial task was to divide the work, and we decided that each of us would create a different page in the application. We utilized separate branches on GitHub for each feature, merging them using pull requests only after confirming that the code works as intended. 
+The code is structured into layout files and Java classes for each page in the application. 
+Additionally, we created separate layout files and Java classes for each component: log-in, sign-up, feed. for each of them there are also some supporting classes.
+
+### what the app contains:
 we created a log in, people can sign in from there (for now there is a default user in case no one signed in- username- Admin@gmail.com, password- a1234567). if they want to sign in they can do it in sign up, which is split into fragments (like in Facebook).
 we created a class containing constraints for the sign up and used it to check its validity.
 for each stage there is a verification that the input is valid- for signup it checks that it meets the requirements, for login it checks that the user exists and the password is correct.
