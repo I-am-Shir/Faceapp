@@ -467,7 +467,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/darkSwitch"
+                    android:id="@+id/darkModeSwitch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="5dp"
@@ -482,7 +482,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="?android:attr/listDivider"
-                    app:layout_constraintTop_toBottomOf="@+id/darkSwitch" />
+                    app:layout_constraintTop_toBottomOf="@+id/darkModeSwitch" />
 
                 <Button
                     android:id="@+id/helpSupport"
@@ -493,7 +493,7 @@
                     android:drawableRight="@drawable/arrow_down_icon"
                     android:text="@string/help_support"
                     android:textColor="@color/text_black"
-                    app:layout_constraintTop_toBottomOf="@id/darkSwitch" />
+                    app:layout_constraintTop_toBottomOf="@id/darkModeSwitch" />
 
                 <View
                     android:id="@+id/dividerBottomHelp"
@@ -533,7 +533,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/settingsPrivacy" />
+                    app:layout_constraintTop_toBottomOf="@id/settingsPrivacy"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -883,12 +883,9 @@
                                 app:layout_constraintEnd_toEndOf="@+id/editText"
                                 app:layout_constraintTop_toBottomOf="@+id/editText" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
-
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

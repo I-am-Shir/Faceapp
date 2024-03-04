@@ -6,6 +6,7 @@ import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,19 +50,18 @@ public class Feed_page extends AppCompatActivity {
     private Constraints constraints;
     private UserLocalStore userLocalStore;
     private PostsListAdapter adapter;
-    private View menuLayout, commentsLayout, createPostLayout, postPicLayout, searchLayout, shareLayout, shareInnerLayout;
+    private View menuLayout, commentsLayout, searchLayout, shareLayout, shareInnerLayout;
     private RecyclerView listComments;
 
     //TODO: DELETE currentPostId after connecting to the database
-    private int currentId, currentPostId;
+    private int currentId;
     HashMap<String, CommentListAdapter> comments;
 
     //picture variables
-    private ImageView picturePreview, userPhotoShare;
-    private Uri imageUri, uri, uriPostPic;
+    private ImageView picturePreview;
+    private Uri imageUri, uriPostPic;
     private ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
     private ActivityResultLauncher<Uri> mGetContent;
-    private TextView userShareName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +90,6 @@ public class Feed_page extends AppCompatActivity {
         ImageView postComment = findViewById(R.id.postComment);
         TextView backFromComments = findViewById(R.id.backFromComments);
         TextView backFromSearch = findViewById(R.id.backFromSearch);
-        //View postPicLayout = findViewById(R.id.postPicLayout);
         View createPostLayout = findViewById(R.id.createPostLayout);
         EditText fillComment = findViewById(R.id.fillComment);
         shareLayout = findViewById(R.id.shareLayout);
@@ -101,6 +101,7 @@ public class Feed_page extends AppCompatActivity {
         RecyclerView listPosts = findViewById(R.id.listPosts);
         TextView userShareName = findViewById(R.id.userShareName);
         ImageView userPhotoShare = findViewById(R.id.userPhotoShare);
+        SwitchCompat darkModeSwitch = findViewById(R.id.darkModeSwitch);
 
         // Registers a photo picker activity launcher in single-select mode.
         pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uriPostPic -> {
@@ -154,13 +155,14 @@ public class Feed_page extends AppCompatActivity {
         List<JsonToJava> jsonToJava;
         try {
             InputStream in = getResources().openRawResource(R.raw.posts);
-            jsonToJava = objectMapper.readValue(in, new TypeReference<List<JsonToJava>>(){});
+            jsonToJava = objectMapper.readValue(in, new TypeReference<List<JsonToJava>>() {
+            });
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         int index = jsonToJava.size();
         //for (currentPostId = 0; currentPostId < 10; currentPostId++) {
-        while(0<index--){
+        while (0 < index--) {
             //Post post = new Post(publicUser.getName(), publicUser.getProfilePicture(), "I love gaming" + currentPostId, R.drawable.gamingsetup, currentPostId);
             Post post = jsonToJava.get(index).toPost();
             posts.add(0, post);
@@ -186,8 +188,7 @@ public class Feed_page extends AppCompatActivity {
             if (fillComment.getText().toString().isEmpty()) {
                 Toast.makeText(this, "Please fill in the comment", Toast.LENGTH_SHORT).show();
                 return;
-            }
-            else {
+            } else {
                 // Adding the comment to the corresponding post's comment list
                 String fillComm = fillComment.getText().toString();
                 fillComment.setText("");
@@ -211,19 +212,37 @@ public class Feed_page extends AppCompatActivity {
             searchLayout.setVisibility(View.GONE);
         });
 
-        colorMode.setOnClickListener(v -> {
-            // Switch between light and dark mode using
-            int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
 
-            // Toggle between light and dark mode
-            if (currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
-                // Set the app theme to light mode
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            } else {
-                // Set the app theme to dark mode
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        // Set initial state of the switch based on the app's current night mode
+        darkModeSwitch.setChecked(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES);
+
+        darkModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // Enable dark mode if the switch is checked, otherwise use the default mode
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+                recreate(); // Apply the new theme
             }
         });
+
+
+//        colorMode.setOnClickListener(v -> {
+//            // Switch between light and dark mode using
+//            int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+//
+//            // Toggle between light and dark mode
+//            if (currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
+//                // Set the app theme to light mode
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//            } else {
+//                // Set the app theme to dark mode
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//            }
+//        });
 
         // Setting up a click listener for the button to choose a photo from the gallery
         photo_from_gallery.setOnClickListener(new View.OnClickListener() {
@@ -261,7 +280,7 @@ public class Feed_page extends AppCompatActivity {
         postButton.setOnClickListener(v -> {
             EditText postText = findViewById(R.id.post_fill_text);
             Boolean checkPost = false;
-            Boolean picCheck= false;
+            Boolean picCheck = false;
 
             // Check if the post contains an image
             try {
@@ -287,9 +306,9 @@ public class Feed_page extends AppCompatActivity {
             }
         });
         // Setting up a click listener for the back button from creating post to return to the feed
-            backToFeed.setOnClickListener(v1 -> {
-                createPostLayout.setVisibility(View.GONE);
-            });
+        backToFeed.setOnClickListener(v1 -> {
+            createPostLayout.setVisibility(View.GONE);
+        });
         // Setting up a click listener for the log out button
         logOut.setOnClickListener(v -> {
             // Clear user data and go back to the login page
