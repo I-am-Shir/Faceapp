@@ -28,4 +28,7 @@
     <string name="log_out">Log out</string>
     <string name="what_s_on_your_mind">What\'s on your mind?</string>
     <string name="Dark_mode">Dark mode</string>
+    <string name="help_support"><![CDATA[Help & support]]></string>
+    <string name="settings_privacy"><![CDATA[Settings & privacy]]></string>
+    <string name="see_more">See More</string>
 </resources>
