@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Faceapp</string>
+    <string name="Fakebook">Fakebook</string>
     <string name="login_password">password</string>
     <string name="login_username">username</string>
     <string name="log_in_button">Log in</string>

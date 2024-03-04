@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="5"
-                android:text="Faceapp"
+                android:text="@string/Fakebook"
                 android:textColor="@color/next_stage_button"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -41,21 +41,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:src="@drawable/add" />
-
+                android:src="@drawable/add_vector_circle_24"
+                app:tint="@color/icon_color" />
             <ImageView
                 android:id="@+id/searchImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:src="@drawable/search" />
+                android:src="@drawable/search_vector_24"
+                app:tint="@color/icon_color" />
 
             <ImageView
                 android:id="@+id/chatImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:src="@drawable/chat" />
+                android:src="@drawable/chat_vector_24"
+                app:tint="@color/icon_color" />
 
         </LinearLayout>
 
@@ -78,42 +80,48 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/home" />
+                android:src="@drawable/home_vector_filled_24"
+                app:tint="@color/next_stage_button" />
 
             <ImageView
                 android:id="@+id/reelsImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/reels" />
+                android:src="@drawable/reels_vector_24"
+                app:tint="@color/icon_color" />
 
             <ImageView
                 android:id="@+id/peopleImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/people" />
+                android:src="@drawable/people_vector_24"
+                app:tint="@color/icon_color" />
 
             <ImageView
                 android:id="@+id/storeImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/store" />
+                android:src="@drawable/storefront_vector_24"
+                app:tint="@color/icon_color" />
 
             <ImageView
                 android:id="@+id/notifyImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/notifications" />
+                android:src="@drawable/notifications_vector_24"
+                app:tint="@color/icon_color" />
 
             <ImageView
                 android:id="@+id/menuImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/menu" />
+                android:src="@drawable/menu_vector_24"
+                app:tint="@color/icon_color" />
 
         </LinearLayout>
         <!--recycle posts-->

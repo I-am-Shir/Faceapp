@@ -178,10 +178,15 @@ public class Feed_page extends AppCompatActivity {
         // Click listener for the home button to hide the menu
         homeImage.setOnClickListener(v -> {
             menuLayout.setVisibility(View.GONE);
+            menuImage.setColorFilter(getResources().getColor(R.color.icon_color, null));
+            homeImage.setColorFilter(getResources().getColor(R.color.next_stage_button, null));
         });
         // Click listener for the menu button to show the menu
         menuImage.setOnClickListener(v -> {
             menuLayout.setVisibility(View.VISIBLE);
+            homeImage.setColorFilter(getResources().getColor(R.color.icon_color, null));
+            menuImage.setColorFilter(getResources().getColor(R.color.next_stage_button, null));
+
         });
         // Click listener for the post comment button to add a comment
         postComment.setOnClickListener(v -> {

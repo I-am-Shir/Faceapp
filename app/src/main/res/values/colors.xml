@@ -8,11 +8,11 @@
     <color name="_5b5b5b">#D0B7FF</color>
     <color name="red">#FA0101</color>
     <color name="background_left">#C9F4FF</color>
-    <color name="background_middle">#EBE2FA</color>
+    <color name="background_middle">#FFFFFF</color>
     <color name="background_right">#E0FEFF</color>
     <color name="background_grey">#757474</color>
     <color name="background_menu">#D3E8E8E8</color>
-    <color name="next_stage_button">#1867DD</color>
+    <color name="next_stage_button">#4DA4E6</color>
     <color name="choose_pic_button">#9687D8</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="unavailable">#7C7777</color>
@@ -22,4 +22,5 @@
     <color name="comment_background">#B3B2B2</color>
     <color name="button_color">#2462FF</color>
     <color name="partly_transparent_background">#51070707</color>
+    <color name="icon_color">#020202</color>
 </resources>

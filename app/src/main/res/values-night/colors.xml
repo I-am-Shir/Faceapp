@@ -21,4 +21,5 @@
     <color name="comment_background">#5F5F5F</color>
     <color name="button_color">#2462FF</color>
     <color name="partly_transparent_background">#51FFFFFF</color>
+    <color name="icon_color">#FFFFFF</color>
 </resources>
