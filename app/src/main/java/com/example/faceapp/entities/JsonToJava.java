@@ -1,49 +1,122 @@
+
+//package com.example.ap_project2_android;
+//
+//import android.content.Context;
+//
+//import org.json.JSONArray;
+//import org.json.JSONException;
+//import org.json.JSONObject;
+//
+//import java.io.IOException;
+//import java.io.InputStream;
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//import com.example.faceapp.entities.Post;
+//
+//public class JsonToJava {
+
+//    public static List<Post> parseJsonData(Context context) {
+//        List<Post> posts = new ArrayList<>();
+//        try {
+//            InputStream inputStream = context.getAssets().open("db.json");
+//            int size = inputStream.available();
+//            byte[] buffer = new byte[size];
+//            inputStream.read(buffer);
+//            inputStream.close();
+//            String jsonData = new String(buffer, "UTF-8");
+//
+//            JSONArray jsonArray = new JSONArray(jsonData);
+//            for (int i = 0; i < Math.min(jsonArray.length(), 10); i++) {
+//                JSONObject jsonPost = jsonArray.getJSONObject(i);
+//                int id = jsonPost.getInt("id");
+//                String userFirstName = jsonPost.getString("user_firstName"); // Fix: Correct key names
+//                String userLastName = jsonPost.getString("user_lastName"); // Fix: Correct key names
+//                String postBody = jsonPost.getString("postBody");
+//                String postPhoto = jsonPost.optString("postPhoto"); // Use optString to handle possible null values
+//                int likesNumber = jsonPost.getInt("likesNumber");
+//                int commentsNumber = jsonPost.getInt("commentsNumber");
+//                String publicationDate = jsonPost.getString("publication_date"); // Fix: Correct key names
+//                Post post = new Post(id, userFirstName, userLastName, postBody, postPhoto, likesNumber, commentsNumber, publicationDate);
+//
+//                posts.add(post);
+//            }
+//        } catch (IOException | JSONException e) {
+//            e.printStackTrace();
+//        }
+//        return posts;
+//    }
+//}
+
+
+
+
 package com.example.faceapp.entities;
+
+import static com.fasterxml.jackson.databind.util.ClassUtil.getPackageName;
 
 import android.net.Uri;
 
-import java.util.Random;
+import com.example.faceapp.R;
 
 public class JsonToJava {
-    private String authorImageSrc;
-    private String authorName;
-    private String timeStamp;
-    private String postBody;
-    private String postImageSrc;
-    private String label;
-    private String postTitle;
-    private String postDescription;
-    private int emojisCount;
-    private int commentsCount;
+
+    private String user_photo, authorName, timeStamp, postBody, postPhoto, publication_date;
+    private String user_firstName, user_lastName;
+    private int likesNumber;
     private int sharesCount;
+    private int commentsNumber, id;
 
-    private Random rand;
+    public JsonToJava() {}
 
-
-    public JsonToJava() {
-        rand = new Random();
-    }
-    public JsonToJava(String authorImageSrc, String authorName, String timeStamp, String postBody, String postImageSrc, String label, String postTitle, String postDescription, int emojisCount, int commentsCount, int sharesCount) {
+    public JsonToJava(int id, String user_firstName, String user_lastName,String user_photo, String postBody, String postPhoto, int likesNumber, int commentsNumber, String publication_date) {
         this();
-        this.authorImageSrc = authorImageSrc;
-        this.authorName = authorName;
+        this.id = id;
+        this.user_photo = user_photo;
+        this.user_firstName = user_firstName;
+        this.user_lastName = user_lastName;
+        this.authorName = this.user_firstName + " " + this.user_lastName;
         this.timeStamp = timeStamp;
         this.postBody = postBody;
-        this.postImageSrc = postImageSrc;
-        this.label = label;
-        this.postTitle = postTitle;
-        this.postDescription = postDescription;
-        this.emojisCount = emojisCount;
-        this.commentsCount = commentsCount;
+        this.postPhoto = postPhoto;
+        this.likesNumber = likesNumber;
+        this.commentsNumber = commentsNumber;
         this.sharesCount = sharesCount;
+        this.publication_date = publication_date;
     }
 
-    public String getAuthorImageSrc() {
-        return authorImageSrc;
+    public int getId() {
+        return id;
     }
 
-    public void setAuthorImageSrc(String authorImageSrc) {
-        this.authorImageSrc = authorImageSrc;
+    public String getUser_firstName() {
+        return user_firstName;
+    }
+
+    public void setUser_firstName(String user_firstName) {
+        this.user_firstName = user_firstName;
+        setAuthorName(user_firstName + " " + user_lastName);
+    }
+
+    public String getUser_lastName() {
+        return user_lastName;
+    }
+
+    public void setUser_lastName(String user_lastName) {
+        this.user_lastName = user_lastName;
+        setAuthorName(user_firstName + " " + user_lastName);
+    }
+
+    public void setPublication_date(String publication_date) {
+        this.publication_date = publication_date;
+    }
+
+    public String getUser_photo() {
+        return user_photo;
+    }
+
+    public void setUser_photo(String user_photo) {
+        this.user_photo = user_photo;
     }
 
     public String getAuthorName() {
@@ -51,7 +124,7 @@ public class JsonToJava {
     }
 
     public void setAuthorName(String authorName) {
-        this.authorName = authorName;
+        this.authorName = user_firstName + " " + user_lastName;
     }
 
     public String getTimeStamp() {
@@ -70,52 +143,28 @@ public class JsonToJava {
         this.postBody = postBody;
     }
 
-    public String getPostImageSrc() {
-        return postImageSrc;
+    public String getPostPhoto() {
+        return postPhoto;
     }
 
-    public void setPostImageSrc(String postImageSrc) {
-        this.postImageSrc = postImageSrc;
+    public void setPostPhoto(String postPhoto) {
+        this.postPhoto = postPhoto;
     }
 
-    public String getLabel() {
-        return label;
+    public int getLikesNumber() {
+        return likesNumber;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setLikesNumber(int likesNumber) {
+        this.likesNumber = likesNumber;
     }
 
-    public String getPostTitle() {
-        return postTitle;
+    public int getCommentsNumber() {
+        return commentsNumber;
     }
 
-    public void setPostTitle(String postTitle) {
-        this.postTitle = postTitle;
-    }
-
-    public String getPostDescription() {
-        return postDescription;
-    }
-
-    public void setPostDescription(String postDescription) {
-        this.postDescription = postDescription;
-    }
-
-    public int getEmojisCount() {
-        return emojisCount;
-    }
-
-    public void setEmojisCount(int emojisCount) {
-        this.emojisCount = emojisCount;
-    }
-
-    public int getCommentsCount() {
-        return commentsCount;
-    }
-
-    public void setCommentsCount(int commentsCount) {
-        this.commentsCount = commentsCount;
+    public void setCommentsNumber(int commentsNumber) {
+        this.commentsNumber = commentsNumber;
     }
 
     public int getSharesCount() {
@@ -126,7 +175,15 @@ public class JsonToJava {
         this.sharesCount = sharesCount;
     }
 
+    public String getPublication_date() {
+        return publication_date;
+    }
+
     public Post toPost() {
-        return new Post(authorName, Uri.parse(authorImageSrc), postBody, Uri.parse(postImageSrc), rand.nextInt(1000));
+        if (postPhoto == null) {
+            return new Post(authorName,(user_photo==null ? null:Uri.parse(user_photo)), postBody, R.drawable.joey_sorry, id);
+        }
+        else
+            return new Post(authorName,((user_photo == null) ? null : Uri.parse(user_photo)), postBody, Uri.parse(postPhoto), id);
     }
 }

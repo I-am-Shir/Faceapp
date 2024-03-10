@@ -31,4 +31,8 @@
     <string name="help_support"><![CDATA[Help & support]]></string>
     <string name="settings_privacy"><![CDATA[Settings & privacy]]></string>
     <string name="see_more">See More</string>
+    <string name="share">share</string>
+    <string name="comment">comment</string>
+    <string name="_0_likes">0 Likes</string>
+    <string name="_0_comments">0 Comments</string>
 </resources>
