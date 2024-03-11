@@ -18,11 +18,6 @@ public class Post {
     private Uri uriPicture;
     private Comment comment;
 
-
-
-//    public Post() {
-//        this.picture = R.drawable.gamingsetup;
-//    }
     public Post(String author, Uri proPicture, String content, Uri picture, int id) {
         this.author = author;
         this.proPicture= proPicture;
@@ -30,6 +25,7 @@ public class Post {
         this.picture = 0;
         this.uriPicture = picture;
         this.id = id;
+        this.likes = 0;
     }
     public Post(String author, Uri proPicture, String content, int picture, int id) {
         this.author = author;
@@ -69,6 +65,14 @@ public class Post {
 
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+    public void addLike() {
+        this.likes++;
+    }
+
+    public void removeLike() {
+        this.likes--;
     }
 
     public int getPicture() {

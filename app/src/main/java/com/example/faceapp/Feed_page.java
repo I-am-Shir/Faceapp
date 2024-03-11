@@ -154,7 +154,7 @@ public class Feed_page extends AppCompatActivity {
         ObjectMapper objectMapper = new ObjectMapper();
         List<JsonToJava> jsonToJava;
         try {
-            InputStream in = getResources().openRawResource(R.raw.posts);
+            InputStream in = getResources().openRawResource(R.raw.db);
             jsonToJava = objectMapper.readValue(in, new TypeReference<List<JsonToJava>>() {
             });
         } catch (IOException e) {

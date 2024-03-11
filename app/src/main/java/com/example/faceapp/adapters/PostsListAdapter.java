@@ -2,9 +2,11 @@ package com.example.faceapp.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,10 +29,12 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
     //TODO: DELETE?
     //public TextView postTitle;
     private final TextView postContent, postAuthor;
-    private EditText editPostContent;
+    private TextView numLikes;
+    private final EditText editPostContent;
     private final ImageView postPicture;
-    public ImageView like, liked, comment, share, deletePost, editPost, postEditedPost, posterProImage;
-    private View commentedLayout, commentLayout, editPostLayout;
+    private Button like, liked, comment, share;
+    public ImageView deletePost, editPost, postEditedPost, posterProImage;
+    private View editPostLayout;
 
 
 
@@ -48,10 +52,6 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
 //            }
 //        }
 
-
-        //public TextView postDate;
-        //public Button deleteButton;
-        //public Button reloadButton;
         private PostsViewHolder(View itemView) {
             super(itemView);
             postContent = itemView.findViewById(R.id.postContent);
@@ -61,14 +61,15 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
             liked = itemView.findViewById(R.id.liked);
             comment = itemView.findViewById(R.id.commentText);
             share = itemView.findViewById(R.id.share);
-            commentedLayout = itemView.findViewById(R.id.commentedLayout);
-            commentLayout = itemView.findViewById(R.id.commentLayout);
             deletePost = itemView.findViewById(R.id.deletePost);
             editPost = itemView.findViewById(R.id.editPost);
             editPostContent = itemView.findViewById(R.id.editPostContent);
             postEditedPost = itemView.findViewById(R.id.postEditedPost);
             editPostLayout = itemView.findViewById(R.id.editPostLayout);
             posterProImage = itemView.findViewById(R.id.posterProImage);
+            numLikes = itemView.findViewById(R.id.numLikes);
+            //TODO: DELETE?
+            //numComments = itemView.findViewById(R.id.numComments);
         }
     }
 
@@ -88,6 +89,11 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
         if (posts != null) {
             final Post current = posts.get(position);
             holder.posterProImage.setImageURI(current.getProPicture());
+            if (current.getProPicture() == null)
+                //holder.postPicture.setImageResource(R.drawable.ic_launcher_background);
+                Glide.with(context).load(Uri.parse("https://home.adelphi.edu/~br21822/Ted.jpg")).into(holder.posterProImage);
+            else
+                Glide.with(context).load(current.getProPicture()).into(holder.posterProImage);
             holder.postContent.setText(current.getContent());
             holder.postAuthor.setText(current.getAuthor());
             if (current.getPicture() == 0)
@@ -95,11 +101,15 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                 Glide.with(context).load(current.getUriPicture()).into(holder.postPicture);
             else
                 holder.postPicture.setImageResource(current.getPicture());
+            holder.numLikes.setText(String.valueOf(current.getLikes()));
+            //TODO: delete
+            //holder.numComments.setText(String.valueOf(current.getComments()));
             holder.like.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     holder.like.setVisibility(View.GONE);
                     holder.liked.setVisibility(View.VISIBLE);
+                    current.addLike();
                 }
             });
             holder.liked.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +117,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                 public void onClick(View v) {
                     holder.liked.setVisibility(View.GONE);
                     holder.like.setVisibility(View.VISIBLE);
+                    current.removeLike();
                 }
             });
 
@@ -161,7 +172,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
 
         } else {
             // Covers the case of data not being ready yet.
-            holder.postContent.setText("No Post");
+            holder.postContent.setText("No Post Yet");
         }
     }
 
