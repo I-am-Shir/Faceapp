@@ -45,7 +45,6 @@ public class Sign_up_page extends AppCompatActivity {
     public void addToList(int placement, String valueToInsert) {
       signUpInfo[placement] = valueToInsert;
     }
-
     public User setUser() {
         return new User(signUpInfo[0], signUpInfo[1], signUpInfo[2], signUpInfo[3], Uri.parse(signUpInfo[4]));
     }
