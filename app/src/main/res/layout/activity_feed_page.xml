@@ -143,542 +143,542 @@
                 android:layout_height="match_parent"
                 android:background="#757474" />
 
+            <Button
+                android:id="@+id/hidden_button_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:drawableTop="@drawable/pages_icon"
+                android:drawableTint="#FF5722"
+                android:tag="hidden_button"
+                android:text="Pages"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:visibility="gone"
+                app:cornerRadius="18dp" />
+
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         <!--menu layout-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/menuLayout"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refreshmenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/background_menu"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/topFeedLayout"
-            tools:visibility="gone">
-
-            <TextView
-                android:id="@+id/menuText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Menu"
-                android:textColor="@color/black"
-                android:textSize="50dp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/search_menu"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/search"
-                app:layout_constraintBottom_toBottomOf="@+id/menuText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="50dp"
-                android:layout_height="48dp"
-                android:src="@drawable/settings"
-                app:layout_constraintBottom_toBottomOf="@+id/menuText"
-                app:layout_constraintEnd_toStartOf="@id/search_menu"
-                app:layout_constraintTop_toTopOf="parent" />
-            <!--TODO: DELETE-->
-            <Button
-                android:id="@+id/colorMode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:backgroundTint="@color/black"
-                android:text="@string/Dark_mode"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/menuText"
-                app:layout_constraintEnd_toStartOf="@+id/imageView2"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="90dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/userMenuLayout"
+                android:id="@+id/menuLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_view"
-                android:backgroundTint="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/menuText">
-
-                <ImageView
-                    android:id="@+id/userPhoto"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/profile"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:background="@color/background_menu"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/topFeedLayout"
+                tools:visibility="gone">
 
                 <TextView
-                    android:id="@+id/userName"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/menuText"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Menu"
                     android:textColor="@color/black"
-                    android:textSize="30dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/userPhoto"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/extraTabsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@+id/userMenuLayout">
-
-                <LinearLayout
-                    android:id="@+id/menuButtons_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.23000002">
-
-                    <!-- First Column -->
-                    <LinearLayout
-                        android:id="@+id/buttonsRow1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:paddingHorizontal="3dp">
-
-                        <Button
-                            android:id="@+id/button1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:drawableTop="@drawable/friends_icon"
-                            android:drawableTint="#4880E1"
-                            android:text="Friends"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            app:cornerRadius="18dp" />
-
-                        <Button
-                            android:id="@+id/button2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:drawableTop="@drawable/memories_icon"
-                            android:drawableTint="#4880E1"
-                            android:text="Memories"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            app:cornerRadius="18dp" />
-
-                        <Button
-                            android:id="@+id/button3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:drawableTop="@drawable/groups_icon"
-                            android:drawableTint="#4880E1"
-                            android:text="Groups"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            app:cornerRadius="18dp" />
-
-                        <Button
-                            android:id="@+id/button4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:drawableTop="@drawable/market_icon_small"
-                            android:drawableTint="#4880E1"
-                            android:text="Marketplace"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            app:cornerRadius="18dp" />
-
-                        <Button
-                            android:id="@+id/friends_button_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:drawableTop="@drawable/avatar_icon"
-                            android:drawableTint="#4880E1"
-                            android:tag="hidden_button"
-                            android:text="Avatars"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:visibility="gone"
-                            app:cornerRadius="18dp" />
-
-                        <Button
-                            android:id="@+id/gaming_button_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:drawableTop="@drawable/gaming_icon"
-                            android:drawableTint="#4880E1"
-                            android:tag="hidden_button"
-                            android:text="Gaming"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:visibility="gone"
-                            app:cornerRadius="18dp" />
-
-                        <Button
-                            android:id="@+id/reels_button_3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:drawableTop="@drawable/reels_icon"
-                            android:drawableTint="#ED7BA8"
-                            android:tag="hidden_button"
-                            android:text="Reels"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:visibility="gone"
-                            app:cornerRadius="18dp" />
-
-                    </LinearLayout>
-                    <!-- Second Column -->
-                    <LinearLayout
-                        android:id="@+id/buttonsRow2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:paddingHorizontal="3dp">
-
-                        <Button
-                            android:id="@+id/button5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:drawableTop="@drawable/ad_icon"
-                            android:drawableTint="@color/background_grey"
-                            android:text="Recent ad activity"
-                            android:textColor="@color/black"
-                            android:textSize="17sp"
-                            app:cornerRadius="18dp" />
-
-                        <Button
-                            android:id="@+id/button6"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:drawableTop="@drawable/saved_icon"
-                            android:drawableTint="#A148E1"
-                            android:text="Saved"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            app:cornerRadius="18dp" />
-
-                        <Button
-                            android:id="@+id/button7"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:drawableTop="@drawable/video_icon_smaill"
-                            android:drawableTint="#4880E1"
-                            android:text="Video"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            app:cornerRadius="18dp" />
-
-                        <Button
-                            android:id="@+id/button8"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:drawableTop="@drawable/feed_icon"
-                            android:drawableTint="#4880E1"
-                            android:text="Feeds"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            app:cornerRadius="18dp" />
-
-                        <Button
-                            android:id="@+id/hidden_button_4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:drawableTop="@drawable/events_icon"
-                            android:drawableTint="#DF0B0B"
-                            android:tag="hidden_button"
-                            android:text="Events"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:visibility="gone"
-                            app:cornerRadius="18dp" />
-
-                        <Button
-                            android:id="@+id/hidden_button_5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:drawableTop="@drawable/pages_icon"
-                            android:drawableTint="#FF5722"
-                            android:tag="hidden_button"
-                            android:text="Pages"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:visibility="gone"
-                            app:cornerRadius="18dp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/seeMore"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#AFAEAE"
-                    android:text="@string/see_more"
-                    android:textColor="@color/black"
-                    android:visibility="visible"
-                    app:cornerRadius="12dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/menuButtons_layout"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <Button
-                    android:id="@+id/seeLess"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#BFC3C3C3"
-                    android:text="See Less"
-                    android:textColor="@color/black"
-                    android:visibility="gone"
-                    app:cornerRadius="12dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/menuButtons_layout"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:layout_editor_absoluteX="0dp" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/extraTabsLayout">
-
-                <View
-                    android:id="@+id/dividerTopDark"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/darkModeSwitch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="5dp"
-                    android:text="Dark Mode"
+                    android:textSize="50dp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dividerTopDark" />
-
-                <View
-                    android:id="@+id/dividerBottomDark"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider"
-                    app:layout_constraintTop_toBottomOf="@+id/darkModeSwitch" />
-
-                <Button
-                    android:id="@+id/helpSupport"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/transparent"
-                    android:drawableLeft="@drawable/help_black_24dp"
-                    android:drawableRight="@drawable/arrow_down_icon"
-                    android:text="@string/help_support"
-                    android:textColor="@color/text_black"
-                    app:layout_constraintTop_toBottomOf="@id/darkModeSwitch" />
-
-                <View
-                    android:id="@+id/dividerBottomHelp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider"
-                    app:layout_constraintTop_toBottomOf="@+id/helpSupport" />
-
-                <Button
-                    android:id="@+id/settingsPrivacy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/transparent"
-                    android:drawableLeft="@drawable/settings_black_24dp"
-                    android:drawableRight="@drawable/arrow_down_icon"
-                    android:text="@string/settings_privacy"
-                    android:textColor="@color/text_black"
-                    app:layout_constraintTop_toBottomOf="@+id/helpSupport" />
-
-                <View
-                    android:id="@+id/dividerBottomSettings"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider"
-                    app:layout_constraintTop_toBottomOf="@+id/settingsPrivacy" />
-
-                <Button
-                    android:id="@+id/logOut"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#AFAEAE"
-                    android:text="@string/log_out"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/settingsPrivacy" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!--profile layout-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/profileLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/topFeedLayout"
-            tools:visibility="visible">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/profileTopLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/profileBackground"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/profile_back"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/userPhotoProfile"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/profile"
-                    app:layout_constraintBottom_toBottomOf="@id/profileBackground"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:id="@+id/search_menu"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/search"
+                    app:layout_constraintBottom_toBottomOf="@+id/menuText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/userNameProfile"
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="50dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/settings"
+                    app:layout_constraintBottom_toBottomOf="@+id/menuText"
+                    app:layout_constraintEnd_toStartOf="@id/search_menu"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/userMenuLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Hello World"
-                    android:textColor="@color/black"
-                    android:textSize="30dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/userPhotoProfile" />
+                    android:background="@drawable/rounded_view"
+                    android:backgroundTint="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/menuText">
 
-                <TextView
-                    android:id="@+id/numFriends"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0 Friends"
-                    android:textColor="@color/black"
-                    android:textSize="20dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/userNameProfile" />
+                    <ImageView
+                        android:id="@+id/userPhoto"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/profile"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
-                    android:id="@+id/addFriendButton"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/userName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Welcome"
+                        android:textColor="@color/black"
+                        android:textSize="30dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/userPhoto"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/extraTabsLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:backgroundTint="@color/next_stage_button"
-                    android:src="@drawable/people_vector_24"
-                    android:text="Add friend"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/numFriends"
-                    app:tint="@color/icon_color" />
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/userMenuLayout">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <LinearLayout
+                        android:id="@+id/menuButtons_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.23000002">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/profileBottomLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/profileTopLayout">
+                        <!-- First Column -->
+                        <LinearLayout
+                            android:id="@+id/buttonsRow1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="3dp">
 
-                <LinearLayout
-                    android:id="@+id/profilesButtonsLayout"
+                            <Button
+                                android:id="@+id/button1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/white"
+                                android:drawableTop="@drawable/friends_icon"
+                                android:drawableTint="#4880E1"
+                                android:text="Friends"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                app:cornerRadius="18dp" />
+
+                            <Button
+                                android:id="@+id/button2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/white"
+                                android:drawableTop="@drawable/memories_icon"
+                                android:drawableTint="#4880E1"
+                                android:text="Memories"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                app:cornerRadius="18dp" />
+
+                            <Button
+                                android:id="@+id/button3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/white"
+                                android:drawableTop="@drawable/groups_icon"
+                                android:drawableTint="#4880E1"
+                                android:text="Groups"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                app:cornerRadius="18dp" />
+
+                            <Button
+                                android:id="@+id/button4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/white"
+                                android:drawableTop="@drawable/market_icon_small"
+                                android:drawableTint="#4880E1"
+                                android:text="Marketplace"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                app:cornerRadius="18dp" />
+
+                            <Button
+                                android:id="@+id/friends_button_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/white"
+                                android:drawableTop="@drawable/avatar_icon"
+                                android:drawableTint="#4880E1"
+                                android:tag="hidden_button"
+                                android:text="Avatars"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:visibility="gone"
+                                app:cornerRadius="18dp" />
+
+                            <Button
+                                android:id="@+id/gaming_button_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/white"
+                                android:drawableTop="@drawable/gaming_icon"
+                                android:drawableTint="#4880E1"
+                                android:tag="hidden_button"
+                                android:text="Gaming"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:visibility="gone"
+                                app:cornerRadius="18dp" />
+
+                            <Button
+                                android:id="@+id/reels_button_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/white"
+                                android:drawableTop="@drawable/reels_icon"
+                                android:drawableTint="#ED7BA8"
+                                android:tag="hidden_button"
+                                android:text="Reels"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:visibility="gone"
+                                app:cornerRadius="18dp" />
+
+                        </LinearLayout>
+                        <!-- Second Column -->
+                        <LinearLayout
+                            android:id="@+id/buttonsRow2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="3dp">
+
+                            <Button
+                                android:id="@+id/button5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/white"
+                                android:drawableTop="@drawable/ad_icon"
+                                android:drawableTint="@color/background_grey"
+                                android:text="Recent ad activity"
+                                android:textColor="@color/black"
+                                android:textSize="17sp"
+                                app:cornerRadius="18dp" />
+
+                            <Button
+                                android:id="@+id/button6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/white"
+                                android:drawableTop="@drawable/saved_icon"
+                                android:drawableTint="#A148E1"
+                                android:text="Saved"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                app:cornerRadius="18dp" />
+
+                            <Button
+                                android:id="@+id/button7"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/white"
+                                android:drawableTop="@drawable/video_icon_smaill"
+                                android:drawableTint="#4880E1"
+                                android:text="Video"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                app:cornerRadius="18dp" />
+
+                            <Button
+                                android:id="@+id/button8"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/white"
+                                android:drawableTop="@drawable/feed_icon"
+                                android:drawableTint="#4880E1"
+                                android:text="Feeds"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                app:cornerRadius="18dp" />
+
+                            <Button
+                                android:id="@+id/hidden_button_4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/white"
+                                android:drawableTop="@drawable/events_icon"
+                                android:drawableTint="#DF0B0B"
+                                android:tag="hidden_button"
+                                android:text="Events"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:visibility="gone"
+                                app:cornerRadius="18dp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/seeMore"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#AFAEAE"
+                        android:text="@string/see_more"
+                        android:textColor="@color/black"
+                        android:visibility="visible"
+                        app:cornerRadius="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/menuButtons_layout"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <Button
+                        android:id="@+id/seeLess"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#BFC3C3C3"
+                        android:text="See Less"
+                        android:textColor="@color/black"
+                        android:visibility="gone"
+                        app:cornerRadius="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/menuButtons_layout"
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:layout_editor_absoluteX="0dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/extraTabsLayout">
+
+                    <View
+                        android:id="@+id/dividerTopDark"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/darkModeSwitch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="5dp"
+                        android:text="Dark Mode"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/dividerTopDark" />
+
+                    <View
+                        android:id="@+id/dividerBottomDark"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintTop_toBottomOf="@+id/darkModeSwitch" />
+
+                    <Button
+                        android:id="@+id/helpSupport"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        android:drawableLeft="@drawable/help_black_24dp"
+                        android:drawableRight="@drawable/arrow_down_icon"
+                        android:text="@string/help_support"
+                        android:textColor="@color/text_black"
+                        app:layout_constraintTop_toBottomOf="@id/darkModeSwitch" />
+
+                    <View
+                        android:id="@+id/dividerBottomHelp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintTop_toBottomOf="@+id/helpSupport" />
+
+                    <Button
+                        android:id="@+id/settingsPrivacy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        android:drawableLeft="@drawable/settings_black_24dp"
+                        android:drawableRight="@drawable/arrow_down_icon"
+                        android:text="@string/settings_privacy"
+                        android:textColor="@color/text_black"
+                        app:layout_constraintTop_toBottomOf="@+id/helpSupport" />
+
+                    <View
+                        android:id="@+id/dividerBottomSettings"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintTop_toBottomOf="@+id/settingsPrivacy" />
+
+                    <Button
+                        android:id="@+id/logOut"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#AFAEAE"
+                        android:text="@string/log_out"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/settingsPrivacy" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <!--profile layout-->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refreshLayoutProfilePosts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="90dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profileLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/topFeedLayout"
+                tools:visibility="visible">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/profileTopLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <Button
-                        android:id="@+id/profilesPosts"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Posts"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
+                    <ImageView
+                        android:id="@+id/profileBackground"
+                        android:layout_width="match_parent"
+                        android:layout_height="230dp"
+                        android:src="@drawable/profile_back"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/userPhotoProfile"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/profile"
+                        app:layout_constraintBottom_toBottomOf="@id/profileBackground"
                         app:layout_constraintStart_toStartOf="parent" />
 
-                    <Button
-                        android:id="@+id/profilesPhotos"
+                    <TextView
+                        android:id="@+id/userNameProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Photos"
+                        android:text="Hello World"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
-                        app:layout_constraintStart_toEndOf="@+id/profilesPosts" />
+                        android:textSize="30dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/userPhotoProfile" />
 
-                    <Button
-                        android:id="@+id/profilesReels"
+                    <TextView
+                        android:id="@+id/numFriends"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Reels"
+                        android:text="0 Friends"
                         android:textColor="@color/black"
+                        android:textSize="20dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/userNameProfile" />
+
+                    <Button
+                        android:id="@+id/addFriendButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:backgroundTint="@color/next_stage_button"
+                        android:src="@drawable/people_vector_24"
+                        android:text="Add friend"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
-                        app:layout_constraintStart_toEndOf="@+id/profilesPhotos" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/numFriends"
+                        app:tint="@color/icon_color" />
 
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                android:id="@+id/refreshLayoutProfilePosts"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/profileBottomLayout">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/profileBottomLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/profileTopLayout">
+
+                    <LinearLayout
+                        android:id="@+id/profilesButtonsLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <Button
+                            android:id="@+id/profilesPosts"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Posts"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <Button
+                            android:id="@+id/profilesPhotos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Photos"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            app:layout_constraintStart_toEndOf="@+id/profilesPosts" />
+
+                        <Button
+                            android:id="@+id/profilesReels"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Reels"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            app:layout_constraintStart_toEndOf="@+id/profilesPhotos" />
+
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/listProfilePosts"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/profileBottomLayout"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
-            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <!--comments-->
         <LinearLayout
