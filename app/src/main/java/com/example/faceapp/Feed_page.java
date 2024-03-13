@@ -76,7 +76,6 @@ public class Feed_page extends AppCompatActivity {
 
         setContentView(R.layout.activity_feed_page);
         constraints = new Constraints();
-        Button colorMode = findViewById(R.id.colorMode);
         TextView userName = findViewById(R.id.userName);
         ImageView userPhoto = findViewById(R.id.userPhoto);
         Button logOut = findViewById(R.id.logOut);
