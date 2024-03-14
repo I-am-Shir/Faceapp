@@ -3,7 +3,6 @@ package com.example.faceapp;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import java.io.ByteArrayOutputStream;
 
 public class UserLocalStore {
     public static final String SP_NAME = "userDetails";
@@ -16,13 +15,13 @@ public class UserLocalStore {
     }
     public void storeUserData(User user){
         SharedPreferences.Editor spEditor = userLocalDatabase.edit();
-        spEditor.putString("username", user.username);
+        spEditor.putString("username", user.email);
         spEditor.putString("password", user.password);
-        spEditor.putString("firstName", user.first_name);
-        spEditor.putString("lastName", user.last_name);
+        spEditor.putString("firstName", user.firstName);
+        spEditor.putString("lastName", user.lastName);
 
-        if(user.profile_picture != null){
-            spEditor.putString("profile_picture_uri", user.profile_picture.toString());
+        if(user.profilePhoto != null){
+            spEditor.putString("profile_picture_uri", user.profilePhoto.toString());
         }
         spEditor.commit();
     }

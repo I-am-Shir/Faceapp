@@ -1,6 +1,7 @@
-package com.example.faceapp.entities;
+package com.example.faceapp.services;
 
 import com.example.faceapp.User;
+import com.example.faceapp.entities.Post;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
