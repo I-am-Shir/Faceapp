@@ -310,6 +310,7 @@ public class Feed_page extends AppCompatActivity {
             if (checkPost) {
                 // If the post is valid, create a new post object and add it to the list of posts
                 Post post = new Post(publicUser1.getName(), publicUser1.getProfilePicture(), postText.getText().toString(), imageUri, posts.size());
+                //initialization everything
                 imageUri = null;
                 posts.add(0, post);
                 adapter.setPosts(posts);
