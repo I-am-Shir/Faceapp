@@ -12,9 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import android.app.UiModeManager;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,7 +40,6 @@ import java.io.InputStream;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -50,7 +47,7 @@ public class Feed_page extends AppCompatActivity {
     private Constraints constraints;
     private UserLocalStore userLocalStore;
     private PostsListAdapter adapter;
-    private View menuLayout, commentsLayout, searchLayout, shareLayout, shareInnerLayout;
+    private View  menuLayout, commentsLayout, searchLayout, shareLayout, shareInnerLayout;
     private RecyclerView listComments;
 
     //TODO: DELETE currentPostId after connecting to the database
@@ -90,6 +87,9 @@ public class Feed_page extends AppCompatActivity {
         TextView backFromComments = findViewById(R.id.backFromComments);
         TextView backFromSearch = findViewById(R.id.backFromSearch);
         View createPostLayout = findViewById(R.id.createPostLayout);
+        View refreshMenu = findViewById(R.id.refreshMenu);
+        View refreshLayoutPosts = findViewById(R.id.refreshLayoutPosts);
+        View titleFeedLayout = findViewById(R.id.titleFeedLayout);
         EditText fillComment = findViewById(R.id.fillComment);
         shareLayout = findViewById(R.id.shareLayout);
         shareInnerLayout = findViewById(R.id.shareInnerLayout);
@@ -176,13 +176,17 @@ public class Feed_page extends AppCompatActivity {
         // Setting up click listeners for UI elements
         // Click listener for the home button to hide the menu
         homeImage.setOnClickListener(v -> {
-            menuLayout.setVisibility(View.GONE);
+            refreshMenu.setVisibility(View.GONE);
+            titleFeedLayout.setVisibility(View.VISIBLE);
+            refreshLayoutPosts.setVisibility(View.VISIBLE);
             menuImage.setColorFilter(getResources().getColor(R.color.icon_color, null));
             homeImage.setColorFilter(getResources().getColor(R.color.next_stage_button, null));
         });
         // Click listener for the menu button to show the menu
         menuImage.setOnClickListener(v -> {
-            menuLayout.setVisibility(View.VISIBLE);
+            refreshLayoutPosts.setVisibility(View.GONE);
+            titleFeedLayout.setVisibility(View.GONE);
+            refreshMenu.setVisibility(View.VISIBLE);
             homeImage.setColorFilter(getResources().getColor(R.color.icon_color, null));
             menuImage.setColorFilter(getResources().getColor(R.color.next_stage_button, null));
 

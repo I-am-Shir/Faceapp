@@ -4,21 +4,17 @@ package com.example.faceapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.Button;
 
 import com.example.faceapp.entities.ApiClient;
-import com.example.faceapp.entities.ApiService;
+import com.example.faceapp.services.ApiService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
-import android.util.Log;
 
 
 public class Sign_up_page extends AppCompatActivity {
@@ -30,7 +26,7 @@ public class Sign_up_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         userLocalStore = new UserLocalStore(this);
         setContentView(R.layout.activity_sign_up_page);
-        getDataFromApi();
+        postDataToApi();
 
         EmailFrag1 email_fragment1 = new EmailFrag1();
 
@@ -61,29 +57,38 @@ public class Sign_up_page extends AppCompatActivity {
         return new User(signUpInfo[0], signUpInfo[1], signUpInfo[2], signUpInfo[3], Uri.parse(signUpInfo[4]));
     }
 
-    private void getDataFromApi() {
+    public void postDataToApi() {
+        // Get the Retrofit instance
         Retrofit retrofit = ApiClient.getApiClient();
-        ApiService apiService = retrofit.create(ApiService.class);
-        User newUser = new User("VIPUser", "password", "Important", "Importanto", Uri.parse("android.resource://"+getPackageName()+"/drawable/general_profile"));
 
-        Call<User> addUserCall = apiService.addUser(newUser);
-        addUserCall.enqueue(new Callback<User>() {
+        // Create an instance of the ApiService interface
+        ApiService apiService = retrofit.create(ApiService.class);
+
+        // Create your request body
+        User requestBody = new User("Final Test", "It", "Works", "WOOHOOO!!!!", Uri.parse("profile_picture_uri"));
+
+        // Make the network request
+        Call<User> call = apiService.addUser(requestBody);
+
+        // Execute the request asynchronously
+        call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<User> call, retrofit2.Response<User> response) {
                 if (response.isSuccessful()) {
                     // Handle successful response
-                    User addedUser = response.body();
-                    Log.d("getDataFromApi", "User added: " + addedUser.toString());
+                    User responseData = response.body();
+                    // Do something with the response data
                 } else {
                     // Handle unsuccessful response
-                    Log.e("getDataFromApi", "Failed to add user: " + response.message());
+                    // Extract error information from response if needed
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                // Handle failure
-                Log.e("getDataFromApi", "Failed to add user: " + t.getMessage());
+                Throwable thr = t;
+                // Handle network failure
+                // Log the error or show an error message to the user
             }
         });
     }
