@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
 import android.content.Intent;
@@ -70,8 +71,8 @@ public class Feed_page extends AppCompatActivity {
             Intent i = new Intent(Feed_page.this, Log_in_page.class);
             startActivity(i);
         }
-
         setContentView(R.layout.activity_feed_page);
+
         constraints = new Constraints();
         TextView userName = findViewById(R.id.userName);
         ImageView userPhoto = findViewById(R.id.userPhoto);
@@ -88,7 +89,7 @@ public class Feed_page extends AppCompatActivity {
         TextView backFromSearch = findViewById(R.id.backFromSearch);
         View createPostLayout = findViewById(R.id.createPostLayout);
         View refreshMenu = findViewById(R.id.refreshMenu);
-        View refreshLayoutPosts = findViewById(R.id.refreshLayoutPosts);
+        SwipeRefreshLayout refreshLayoutPosts = findViewById(R.id.refreshLayoutPosts);
         View titleFeedLayout = findViewById(R.id.titleFeedLayout);
         EditText fillComment = findViewById(R.id.fillComment);
         shareLayout = findViewById(R.id.shareLayout);
@@ -101,6 +102,15 @@ public class Feed_page extends AppCompatActivity {
         TextView userShareName = findViewById(R.id.userShareName);
         ImageView userPhotoShare = findViewById(R.id.userPhotoShare);
         SwitchCompat darkModeSwitch = findViewById(R.id.darkModeSwitch);
+
+        //TODO: DELETE
+        // Trigger the refresh animation when the layout is created
+//        refreshLayoutPosts.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                refreshLayoutPosts.setRefreshing(true);
+//            }
+//        });
 
         // Registers a photo picker activity launcher in single-select mode.
         pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uriPostPic -> {
