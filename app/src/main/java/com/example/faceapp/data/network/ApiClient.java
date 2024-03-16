@@ -1,4 +1,4 @@
-package com.example.faceapp.entities;
+package com.example.faceapp.data.network;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;

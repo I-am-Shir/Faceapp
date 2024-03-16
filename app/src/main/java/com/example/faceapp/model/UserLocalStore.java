@@ -1,8 +1,12 @@
-package com.example.faceapp;
+package com.example.faceapp.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
+
+import com.example.faceapp.model.PublicUser;
+import com.example.faceapp.model.User;
+import com.example.faceapp.utilities.Constraints;
 
 public class UserLocalStore {
     public static final String SP_NAME = "userDetails";

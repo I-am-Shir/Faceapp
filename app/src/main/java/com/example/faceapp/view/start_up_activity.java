@@ -1,8 +1,10 @@
-package com.example.faceapp;
+package com.example.faceapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.faceapp.R;
 
 public class start_up_activity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.faceapp;
+package com.example.faceapp.view.fragments;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +19,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.faceapp.R;
+import com.example.faceapp.model.User;
+import com.example.faceapp.utilities.Constraints;
+import com.example.faceapp.view.Log_in_page;
+import com.example.faceapp.view.Sign_up_page;
+
 import java.io.File;
 import java.util.UUID;
 

@@ -1,4 +1,4 @@
-package com.example.faceapp;
+package com.example.faceapp.view;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,8 +9,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.example.faceapp.entities.ApiClient;
-import com.example.faceapp.services.ApiService;
+import com.example.faceapp.R;
+import com.example.faceapp.model.User;
+import com.example.faceapp.model.UserLocalStore;
+import com.example.faceapp.data.network.ApiClient;
+import com.example.faceapp.data.network.ApiService;
+import com.example.faceapp.view.fragments.EmailFrag1;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,7 +66,7 @@ public class Sign_up_page extends AppCompatActivity {
         Retrofit retrofit = ApiClient.getApiClient();
 
         // Create an instance of the ApiService interface
-        ApiService apiService = retrofit.create(ApiService.class);
+        ApiService.Users apiService = retrofit.create(ApiService.Users.class);
 
         // Create your request body
         User requestBody = new User("Final Test", "It", "Works", "WOOHOOO!!!!", Uri.parse("profile_picture_uri"));

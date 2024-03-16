@@ -1,4 +1,4 @@
-package com.example.faceapp;
+package com.example.faceapp.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;

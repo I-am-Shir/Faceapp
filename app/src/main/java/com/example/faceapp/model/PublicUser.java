@@ -1,4 +1,4 @@
-package com.example.faceapp;
+package com.example.faceapp.model;
 import android.net.Uri;
 public class PublicUser {
     private String name;

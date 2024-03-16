@@ -1,4 +1,4 @@
-package com.example.faceapp.adapters;
+package com.example.faceapp.view.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.faceapp.entities.Comment;
-import com.example.faceapp.PublicUser;
+import com.example.faceapp.model.Comment;
+import com.example.faceapp.model.PublicUser;
 import com.example.faceapp.R;
 
 import java.util.List;

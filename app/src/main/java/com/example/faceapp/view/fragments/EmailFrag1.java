@@ -1,4 +1,4 @@
-package com.example.faceapp;
+package com.example.faceapp.view.fragments;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -10,6 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.faceapp.R;
+import com.example.faceapp.utilities.Constraints;
+import com.example.faceapp.view.Log_in_page;
+import com.example.faceapp.view.Sign_up_page;
 
 public class EmailFrag1 extends Fragment {
     private Constraints constraints;

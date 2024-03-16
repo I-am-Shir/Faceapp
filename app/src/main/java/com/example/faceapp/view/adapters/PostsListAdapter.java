@@ -1,4 +1,4 @@
-package com.example.faceapp.adapters;
+package com.example.faceapp.view.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,9 +14,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.faceapp.Feed_page;
+import com.example.faceapp.view.Feed_page;
 import com.example.faceapp.R;
-import com.example.faceapp.entities.Post;
+import com.example.faceapp.model.Post;
 
 import java.util.List;
 

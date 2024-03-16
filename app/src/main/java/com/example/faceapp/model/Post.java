@@ -1,11 +1,9 @@
-package com.example.faceapp.entities;
+package com.example.faceapp.model;
 
 import android.net.Uri;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import com.example.faceapp.PublicUser;
 
 @Entity
 public class Post {

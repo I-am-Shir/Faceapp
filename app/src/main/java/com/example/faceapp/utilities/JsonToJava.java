@@ -12,7 +12,7 @@
 //import java.util.ArrayList;
 //import java.util.List;
 //
-//import com.example.faceapp.entities.Post;
+//import com.example.faceapp.model.Post;
 //
 //public class JsonToJava {
 
@@ -48,13 +48,12 @@
 //    }
 //}
 
-package com.example.faceapp.entities;
-
-import static com.fasterxml.jackson.databind.util.ClassUtil.getPackageName;
+package com.example.faceapp.utilities;
 
 import android.net.Uri;
 
 import com.example.faceapp.R;
+import com.example.faceapp.model.Post;
 
 public class JsonToJava {
 

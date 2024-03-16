@@ -1,4 +1,4 @@
-package com.example.faceapp;
+package com.example.faceapp.view;
 
 import android.os.Bundle;
 
@@ -13,6 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.faceapp.R;
+import com.example.faceapp.utilities.Constraints;
+import com.example.faceapp.view.fragments.PasswordFrag2;
+import com.example.faceapp.view.fragments.PictureFrag4;
 
 
 public class NameFrag3 extends Fragment {

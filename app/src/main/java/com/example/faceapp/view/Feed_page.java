@@ -1,4 +1,4 @@
-package com.example.faceapp;
+package com.example.faceapp.view;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -24,12 +24,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.faceapp.adapters.CommentListAdapter;
-import com.example.faceapp.adapters.PostsListAdapter;
+import com.example.faceapp.R;
+import com.example.faceapp.model.UserLocalStore;
+import com.example.faceapp.utilities.Constraints;
+import com.example.faceapp.view.adapters.CommentListAdapter;
+import com.example.faceapp.view.adapters.PostsListAdapter;
 
-import com.example.faceapp.entities.JsonToJava;
-import com.example.faceapp.entities.Comment;
-import com.example.faceapp.entities.Post;
+import com.example.faceapp.utilities.JsonToJava;
+import com.example.faceapp.model.PublicUser;
+import com.example.faceapp.model.Comment;
+import com.example.faceapp.model.Post;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

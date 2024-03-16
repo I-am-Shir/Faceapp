@@ -1,10 +1,4 @@
-package com.example.faceapp.viewmodels;
-
-import androidx.lifecycle.LiveData;
-
-import com.example.faceapp.entities.Post;
-
-import java.util.List;
+package com.example.faceapp.viewmodel;
 
 public class PostsViewModels {
 //    public PostsRepository mRepository;

@@ -1,4 +1,4 @@
-package com.example.faceapp;
+package com.example.faceapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -9,6 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.faceapp.utilities.Constraints;
+import com.example.faceapp.R;
+import com.example.faceapp.model.User;
+import com.example.faceapp.model.UserLocalStore;
+
 public class Log_in_page extends AppCompatActivity {
     private TextView usernameEx, passwordEx, userExEx;
     private EditText user_name, pass_word;
