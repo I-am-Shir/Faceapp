@@ -1,5 +1,50 @@
 package com.example.faceapp.data.repository;
 
-//public class PostsRepository implements ApiService.Posts {
-//
-//}
+import com.example.faceapp.data.network.ApiService;
+import com.example.faceapp.data.network.RetrofitClient;
+import com.example.faceapp.model.Post;
+import com.example.faceapp.model.PostRequestBody;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class PostsRepository {
+    private ApiService.Posts postsService;
+
+    public PostsRepository() {
+        postsService = RetrofitClient.getInstance().create(ApiService.Posts.class);
+    }
+
+    public void addPost(String token, PostRequestBody requestBody, Callback<Post> callback) {
+        Call<Post> call = postsService.addPost(token, requestBody);
+        call.enqueue(callback);
+    }
+
+    public void getPosts(String token, Callback<List<Post>> callback) {
+        Call<List<Post>> call = postsService.getPosts(token);
+        call.enqueue(callback);
+    }
+
+    public void getPostById(String token, String id, Callback<Post> callback) {
+        Call<Post> call = postsService.getPostById(token, id);
+        call.enqueue(callback);
+    }
+
+    public void editPost(String token, String id, PostRequestBody requestBody, Callback<Post> callback) {
+        Call<Post> call = postsService.editPost(token, id, requestBody);
+        call.enqueue(callback);
+    }
+
+    public void deletePost(String token, String id, Callback<Post> callback) {
+        Call<Post> call = postsService.deletePost(token, id);
+        call.enqueue(callback);
+    }
+
+    public void getUserPosts(String token, String id, Callback<List<Post>> callback) {
+        Call<List<Post>> call = postsService.getUserPosts(token, id);
+        call.enqueue(callback);
+    }
+}

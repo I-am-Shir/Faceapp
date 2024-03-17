@@ -1,4 +1,4 @@
-package com.example.faceapp.view;
+package com.example.faceapp.view.fragments;
 
 import android.os.Bundle;
 
@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.faceapp.R;
 import com.example.faceapp.utilities.Constraints;
+import com.example.faceapp.view.Sign_up_page;
 import com.example.faceapp.view.fragments.PasswordFrag2;
 import com.example.faceapp.view.fragments.PictureFrag4;
 

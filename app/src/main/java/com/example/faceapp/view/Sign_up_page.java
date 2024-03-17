@@ -8,13 +8,17 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.faceapp.R;
+import com.example.faceapp.data.repository.UsersRepository;
 import com.example.faceapp.model.User;
 import com.example.faceapp.model.UserLocalStore;
-import com.example.faceapp.data.network.ApiClient;
+import com.example.faceapp.data.network.RetrofitClient;
 import com.example.faceapp.data.network.ApiService;
+import com.example.faceapp.model.UserRequestBody;
 import com.example.faceapp.view.fragments.EmailFrag1;
+import com.example.faceapp.viewmodel.SignUpViewModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,14 +27,12 @@ import retrofit2.Retrofit;
 
 public class Sign_up_page extends AppCompatActivity {
     String[] signUpInfo = new String[5];
-    User user;
-    UserLocalStore userLocalStore;
+    private SignUpViewModel signUpViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        userLocalStore = new UserLocalStore(this);
+        signUpViewModel = new SignUpViewModel();
         setContentView(R.layout.activity_sign_up_page);
-        postDataToApi();
 
         EmailFrag1 email_fragment1 = new EmailFrag1();
 
@@ -50,7 +52,22 @@ public class Sign_up_page extends AppCompatActivity {
     }
 
     public void storeUser(User user){
-        userLocalStore.storeUserData(user);
+        UserRequestBody requestBody = new UserRequestBody(user.getEmail(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
+        signUpViewModel.signUpUser(requestBody, new SignUpViewModel.SignUpCallback() {
+            @Override
+            public void onSignUpSuccess(User user) {
+                // Handle successful sign-up
+                Toast.makeText(Sign_up_page.this, "User signed up successfully", Toast.LENGTH_SHORT).show();
+                // Optionally, navigate to another activity or perform other actions
+            }
+
+            @Override
+            public void onSignUpFailure(String errorMessage) {
+                // Handle sign-up failure
+                Toast.makeText(Sign_up_page.this, errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         Intent i = new Intent(Sign_up_page.this, Log_in_page.class);
         startActivity(i);
     }
@@ -59,41 +76,5 @@ public class Sign_up_page extends AppCompatActivity {
     }
     public User setUser() {
         return new User(signUpInfo[0], signUpInfo[1], signUpInfo[2], signUpInfo[3], Uri.parse(signUpInfo[4]));
-    }
-
-    public void postDataToApi() {
-        // Get the Retrofit instance
-        Retrofit retrofit = ApiClient.getApiClient();
-
-        // Create an instance of the ApiService interface
-        ApiService.Users apiService = retrofit.create(ApiService.Users.class);
-
-        // Create your request body
-        User requestBody = new User("Final Test", "It", "Works", "WOOHOOO!!!!", Uri.parse("profile_picture_uri"));
-
-        // Make the network request
-        Call<User> call = apiService.addUser(requestBody);
-
-        // Execute the request asynchronously
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, retrofit2.Response<User> response) {
-                if (response.isSuccessful()) {
-                    // Handle successful response
-                    User responseData = response.body();
-                    // Do something with the response data
-                } else {
-                    // Handle unsuccessful response
-                    // Extract error information from response if needed
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Throwable thr = t;
-                // Handle network failure
-                // Log the error or show an error message to the user
-            }
-        });
     }
 }

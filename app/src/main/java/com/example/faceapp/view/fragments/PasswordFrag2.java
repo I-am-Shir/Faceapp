@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.example.faceapp.R;
 import com.example.faceapp.utilities.Constraints;
-import com.example.faceapp.view.NameFrag3;
 import com.example.faceapp.view.Sign_up_page;
 
 /**
