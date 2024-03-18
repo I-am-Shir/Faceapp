@@ -13,35 +13,24 @@ import android.widget.Toast;
 import com.example.faceapp.utilities.Constraints;
 import com.example.faceapp.R;
 import com.example.faceapp.model.User;
-import com.example.faceapp.model.UserLocalStore;
+import com.example.faceapp.viewmodel.LoginViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 public class Log_in_page extends AppCompatActivity {
     private TextView usernameEx, passwordEx, userExEx;
     private EditText user_name, pass_word;
     private Constraints constraints;
-
-    private static Boolean checkFirstLogIn = false;
-
-    private UserLocalStore userLocalStore;
-    //TODO: remove this method
-    public void startup(){
-        //checks if there is a user signed up already
-        if (userLocalStore.getLoggedInUser() != null && checkFirstLogIn){
-            return;
-        }
-        //if there isn't a signed up user- creates a default one.
-        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/drawable/general_profile");
-        User user = new User("Admin@gmail.com" , "a1234567", "Hello", "World", uri);
-        userLocalStore.storeUserData(user);
-        checkFirstLogIn = true;
-        userLocalStore.setUserLoggedIn(false);
-    }
+    private LoginViewModel loginViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        userLocalStore = new UserLocalStore(this);
+
+        // Initialize the ViewModel
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        loginViewModel.init(this);
+
         constraints = new Constraints();
         Button butLogin = findViewById(R.id.butLogin);
         usernameEx = findViewById(R.id.usernameException);
@@ -52,14 +41,14 @@ public class Log_in_page extends AppCompatActivity {
         usernameEx.setVisibility(View.GONE);
         passwordEx.setVisibility(View.GONE);
         userExEx.setVisibility(View.GONE);
-        //TODO: remove this line
-        startup();
         butLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 Boolean userCheck = true;
                 String username = user_name.getText().toString();
                 String password = pass_word.getText().toString();
+
+                // Input Validation
                 try {
                     constraints.usernameCheck(username);
                     usernameEx.setVisibility(View.GONE);
@@ -76,23 +65,28 @@ public class Log_in_page extends AppCompatActivity {
                     passwordEx.setVisibility(View.VISIBLE);
                     userCheck = false;
                 }
-                try {
-                    userLocalStore.login(username, password);
-                    userExEx.setVisibility(View.GONE);
-                } catch (Exception e) {
-                    userExEx.setText("Invalid username or password");
-                    userExEx.setVisibility(View.VISIBLE);
-                    userCheck = false;
-                }
+
+                // Login
                 if (userCheck) {
-                    Toast.makeText(Log_in_page.this, "Login successful", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(Log_in_page.this, Feed_page.class);
-                    startActivity(i);
+                    loginViewModel.login(new User(username, password));
+                    userExEx.setVisibility(View.GONE);
                 }
                 else{
-                    Toast.makeText(Log_in_page.this, "Login failed", Toast.LENGTH_SHORT).show();
-
+                    userExEx.setText("Invalid username or password");
+                    userExEx.setVisibility(View.VISIBLE);
                 }
+            }
+        });
+
+        loginViewModel.observeLoginResult().observe(this, loginSuccess -> {
+            if (loginSuccess) {
+                // Login successful, navigate to the next activity
+                Toast.makeText(Log_in_page.this, "Login successful", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(Log_in_page.this, Feed_page.class);
+                startActivity(i);
+            } else {
+                // Login failed, show an error message
+                Toast.makeText(Log_in_page.this, "Login failed", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -2,6 +2,7 @@ package com.example.faceapp.data.network;
 
 import com.example.faceapp.model.FriendRequestRequestBody;
 import com.example.faceapp.model.FriendshipRequestBody;
+import com.example.faceapp.model.LoginResponse;
 import com.example.faceapp.model.PostRequestBody;
 import com.example.faceapp.model.User;
 import com.example.faceapp.model.Post;
@@ -42,7 +43,7 @@ public interface ApiService {
 
     interface Tokens {
         @POST("tokens/")
-        Call<User> login(@Body User user);
+        Call<LoginResponse> login(@Body User user);
     }
 
     interface Users {

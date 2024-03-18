@@ -4,6 +4,7 @@ package com.example.faceapp.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -18,6 +19,7 @@ import com.example.faceapp.data.network.RetrofitClient;
 import com.example.faceapp.data.network.ApiService;
 import com.example.faceapp.model.UserRequestBody;
 import com.example.faceapp.view.fragments.EmailFrag1;
+import com.example.faceapp.viewmodel.LoginViewModel;
 import com.example.faceapp.viewmodel.SignUpViewModel;
 
 import retrofit2.Call;
@@ -31,7 +33,7 @@ public class Sign_up_page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        signUpViewModel = new SignUpViewModel();
+        signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
         setContentView(R.layout.activity_sign_up_page);
 
         EmailFrag1 email_fragment1 = new EmailFrag1();

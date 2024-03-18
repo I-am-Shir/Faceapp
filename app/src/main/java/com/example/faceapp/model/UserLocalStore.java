@@ -17,12 +17,13 @@ public class UserLocalStore {
         userLocalDatabase = context.getSharedPreferences(SP_NAME, 0);
         constraints = new Constraints();
     }
-    public void storeUserData(User user){
+    public void storeUserData(User user, String token){
         SharedPreferences.Editor spEditor = userLocalDatabase.edit();
         spEditor.putString("username", user.email);
         spEditor.putString("password", user.password);
         spEditor.putString("firstName", user.firstName);
         spEditor.putString("lastName", user.lastName);
+        spEditor.putString("jwt_token", token);
 
         if(user.profilePhoto != null){
             spEditor.putString("profile_picture_uri", user.profilePhoto.toString());

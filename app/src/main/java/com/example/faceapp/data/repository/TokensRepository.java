@@ -2,6 +2,7 @@ package com.example.faceapp.data.repository;
 
 import androidx.arch.core.executor.ArchTaskExecutor;
 
+import com.example.faceapp.model.LoginResponse;
 import com.example.faceapp.model.User;
 import com.example.faceapp.data.network.ApiService;
 import com.example.faceapp.data.network.RetrofitClient;
@@ -18,9 +19,9 @@ public class TokensRepository {
         tokensService = RetrofitClient.getInstance().create(ApiService.Tokens.class);
     }
 
-    public void login(User user, Callback<User> callback) {
+    public void login(User user, Callback<LoginResponse> callback) {
         // Call the login API endpoint
-        Call<User> call = tokensService.login(user);
+        Call<LoginResponse> call = tokensService.login(user);
 
         // Asynchronous network request
         call.enqueue(callback);
