@@ -164,7 +164,7 @@ public class Feed_page extends AppCompatActivity {
                 Post post = posts.get(index);
                 // Initializing a CommentListAdapter for each post
                 CommentListAdapter adapterListComment = new CommentListAdapter(this);
-                adapterListComment.setComments(new ArrayList<Comment>());
+                adapterListComment.setComments(post.getComments());
                 // Storing the adapter in a HashMap with post ID as the key
                 comments.put(String.valueOf(post.getId()), adapterListComment);
             }
@@ -310,7 +310,7 @@ public class Feed_page extends AppCompatActivity {
                 // If the post is valid, create a new post object and add it to the list of posts
                 List<Post> posts = postsViewModel.getPostsLiveData().getValue();
                 //Post post = new Post(publicUser.getName(), publicUser.getProfilePicture(), postText.getText().toString(), imageUri, posts.size());
-                //Post post = new Post()
+                //Post post = new Post();
                 //posts.add(0, post);
                 adapter.setPosts(posts);
 
@@ -385,8 +385,6 @@ public class Feed_page extends AppCompatActivity {
     }
 
     private void addPost(Post postToAdd) {
-        String token = "your_token_here"; // Replace with the actual token
-
         postsViewModel.addPost(postToAdd, new Callback<Post>() {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {

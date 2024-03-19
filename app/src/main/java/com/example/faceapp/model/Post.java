@@ -58,6 +58,9 @@ public class Post {
         this.publicationDateFormatted = publicationDateFormatted;
     }
 
+    public Post() {
+    }
+
     public String getId() {
         return id;
     }

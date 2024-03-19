@@ -1,58 +1,65 @@
 package com.example.faceapp.model;
 
-import java.sql.Timestamp;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.JsonGetter;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Comment {
-    private String comment;
-    private PublicUser commenter;
-    private Timestamp time;
-    private int id, numLikes;
-    private boolean liked;
+    private String commentId;
+    private String commenterFirstName;
+    private String commenterLastName;
+    private String commenterPhoto;
+    private String commentBody;
 
-    public Comment(String comment, PublicUser commenter, Timestamp time, int id) {
-        this.comment = comment;
-        this.commenter = commenter;
-        this.time = time;
-        this.id = id;
+    @JsonProperty("comment_id")
+    public String getCommentId() {
+        return commentId;
     }
 
-    public String getComment() {
-        return comment;
+    @JsonSetter("comment_id")
+    public void setCommentId(String commentId) {
+        this.commentId = commentId;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    @JsonProperty("commenter_firstName")
+    public String getCommenterFirstName() {
+        return commenterFirstName;
     }
 
-    public PublicUser getCommenter() {
-        return commenter;
+    @JsonSetter("commenter_firstName")
+    public void setCommenterFirstName(String commenterFirstName) {
+        this.commenterFirstName = commenterFirstName;
     }
 
-    public void setCommenter(PublicUser commenter) {
-        this.commenter = commenter;
+    @JsonProperty("commenter_lastName")
+    public String getCommenterLastName() {
+        return commenterLastName;
     }
 
-    public Timestamp getTime() {
-        return time;
+    @JsonSetter("commenter_lastName")
+    public void setCommenterLastName(String commenterLastName) {
+        this.commenterLastName = commenterLastName;
     }
 
-    public void setTime(Timestamp time) {
-        this.time = time;
+    @JsonProperty("commenter_photo")
+    public String getCommenterPhoto() {
+        return commenterPhoto;
     }
 
-    public int getId() {
-        return id;
+    @JsonSetter("commenter_photo")
+    public void setCommenterPhoto(String commenterPhoto) {
+        this.commenterPhoto = commenterPhoto;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    @JsonProperty("commentBody")
+    public String getCommentBody() {
+        return commentBody;
     }
 
-    public int getNumLikes() {return numLikes;}
-
-    public void setNumLikes(int numLikes) {this.numLikes = numLikes;}
-
-    public boolean getLiked() {return liked;}
-
-    public void setLiked(boolean liked) {this.liked = liked;}
+    @JsonSetter("commentBody")
+    public void setCommentBody(String commentBody) {
+        this.commentBody = commentBody;
+    }
 }

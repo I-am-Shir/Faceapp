@@ -2,6 +2,7 @@ package com.example.faceapp.view.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ import java.util.List;
 public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.CommentViewHolder> {
 
     public class CommentViewHolder extends RecyclerView.ViewHolder {
-        private PublicUser commenter;
+        private String commenter;
         private ImageView commenterProImage, postCommentEdit;
         private final TextView commentText, likeComment, editComment, deleteComment, commenterName;
         private EditText editCommentFill;
@@ -65,19 +66,20 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
     public void onBindViewHolder(CommentViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (comments != null) {
             final Comment current = comments.get(position);
-            holder.commenter = current.getCommenter();
-            holder.commentText.setText(current.getComment());
-            holder.commenterName.setText(current.getCommenter().getName());
-            holder.commenterProImage.setImageURI(current.getCommenter().getProfilePicture());
+            String commenterName = current.getCommenterFirstName() + " " + current.getCommenterLastName();
+            holder.commenter = current.getCommenterFirstName() + " " + current.getCommenterLastName();
+            holder.commentText.setText(current.getCommentBody());
+            holder.commenterName.setText(commenterName);
+            holder.commenterProImage.setImageURI(Uri.parse(current.getCommenterPhoto()));
 
             holder.likeComment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (current.getLiked() == false) {
-                        holder.likeComment.setTextColor(v.getResources().getColor(R.color.button_color, null));
-                    } else {
-                        holder.likeComment.setTextColor(v.getResources().getColor(R.color.black, null));
-                    }
+//                    if (current.getLiked() == false) {
+//                        holder.likeComment.setTextColor(v.getResources().getColor(R.color.button_color, null));
+//                    } else {
+//                        holder.likeComment.setTextColor(v.getResources().getColor(R.color.black, null));
+//                    }
                 }
             });
             holder.deleteComment.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +100,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
                 @Override
                 public void onClick(View v) {
                     if(holder.editCommentFill.getText().toString().length() > 0) {
-                        current.setComment(holder.editCommentFill.getText().toString());
+                        current.setCommentBody(holder.editCommentFill.getText().toString());
                         holder.commentText.setText(holder.editCommentFill.getText().toString());
                     }
                     holder.commentLayout.setVisibility(View.VISIBLE);
