@@ -22,6 +22,7 @@ public class Log_in_page extends AppCompatActivity {
     private Constraints constraints;
     private LoginViewModel loginViewModel;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

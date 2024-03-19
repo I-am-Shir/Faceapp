@@ -49,6 +49,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Feed_page extends AppCompatActivity {
     private PostsViewModel postsViewModel;
     private Constraints constraints;
@@ -71,6 +75,7 @@ public class Feed_page extends AppCompatActivity {
         postsViewModel = new ViewModelProvider(this).get(PostsViewModel.class);
         // Creating a UserLocalStore instance to manage user data locally
         userLocalStore = new UserLocalStore(this);
+        postsViewModel.init(userLocalStore);
         // Checking if a user is logged in
         if (!userLocalStore.getLoggedIn()) {
             Intent i = new Intent(Feed_page.this, Log_in_page.class);
@@ -163,27 +168,6 @@ public class Feed_page extends AppCompatActivity {
             // Setting the posts to the adapter to display in the RecyclerView
             adapter.setPosts(posts);
         });
-
-
-        //TODO: DELETE
-        // Setting up a default user
-        //Uri uri = Uri.parse("android.resource://" + getPackageName() + "/drawable/profile");
-        //PublicUser publicUser = new PublicUser();
-        //publicUser.setName("nelly");
-        //publicUser.setProfilePicture(uri);
-        //TODO: DELETE
-        // Creating sample posts to populate the feed temporarily
-//        List<Post> posts = new ArrayList<>();
-
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        List<JsonToJava> jsonToJava;
-//        try {
-//            InputStream in = getResources().openRawResource(R.raw.db);
-//            jsonToJava = objectMapper.readValue(in, new TypeReference<List<JsonToJava>>() {
-//            });
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
 
         // Setting up click listeners for UI elements
         // Click listener for the home button to hide the menu
@@ -310,19 +294,23 @@ public class Feed_page extends AppCompatActivity {
                 Toast.makeText(this, "Please fill in the post, must include a picture.", Toast.LENGTH_SHORT).show();
             }
             if (checkPost) {
-//                // If the post is valid, create a new post object and add it to the list of posts
-//                Post post = new Post(publicUser.getName(), publicUser.getProfilePicture(), postText.getText().toString(), imageUri, posts.size());
-//                imageUri = null;
-//                posts.add(0, post);
-//                //adapter.setPosts(posts);
-//                createPostLayout.setVisibility(View.GONE);
-//                picturePreview.setImageResource(0);
-//                postText.setText("");
-//
-//                // Initialize a new CommentListAdapter for the current post
-//                CommentListAdapter adapterListComment = new CommentListAdapter(this);
-//                adapterListComment.setComments(new ArrayList<Comment>());
-//                comments.put(String.valueOf(post.getId()), adapterListComment);
+                // If the post is valid, create a new post object and add it to the list of posts
+                List<Post> posts = postsViewModel.getPostsLiveData().getValue();
+                //Post post = new Post(publicUser.getName(), publicUser.getProfilePicture(), postText.getText().toString(), imageUri, posts.size());
+                //Post post = new Post()
+                //posts.add(0, post);
+                adapter.setPosts(posts);
+
+                // Reset Layout
+                imageUri = null;
+                createPostLayout.setVisibility(View.GONE);
+                picturePreview.setImageResource(0);
+                postText.setText("");
+
+                // Initialize a new CommentListAdapter for the current post
+                CommentListAdapter adapterListComment = new CommentListAdapter(this);
+                adapterListComment.setComments(new ArrayList<Comment>());
+                //comments.put(String.valueOf(post.getId()), adapterListComment);
             }
         });
         // Setting up a click listener for the back button from creating post to return to the feed
@@ -369,9 +357,33 @@ public class Feed_page extends AppCompatActivity {
         shareLayout.setVisibility(View.VISIBLE);
     }
 
-    public void deletePost() {
-        //comments.remove(String.valueOf(id));
+    public void deletePost(Post postToDelete) {
+        postsViewModel.deletePost(postToDelete, new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                // Handle successful deletion response if needed
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+                // Handle deletion failure if needed
+            }
+        });
     }
 
+    private void addPost(Post postToAdd) {
+        String token = "your_token_here"; // Replace with the actual token
 
+        postsViewModel.addPost(postToAdd, new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                // Handle successful addition of post if needed
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+                // Handle addition failure if needed
+            }
+        });
+    }
 }

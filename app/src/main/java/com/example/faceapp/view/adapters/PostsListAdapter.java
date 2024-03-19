@@ -163,7 +163,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                 @Override
                 public void onClick(View v) {
                     if(context instanceof Feed_page){
-                        ((Feed_page)context).deletePost();
+                        ((Feed_page)context).deletePost(current);
                     }
                     posts.remove(current);
                     notifyItemRemoved(position);

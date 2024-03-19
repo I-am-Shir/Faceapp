@@ -1,5 +1,7 @@
 package com.example.faceapp.viewmodel;
 
+import android.content.Context;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -7,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.faceapp.data.repository.PostsRepository;
 import com.example.faceapp.model.Post;
 import com.example.faceapp.model.PostRequestBody;
+import com.example.faceapp.model.UserLocalStore;
 
 import java.util.List;
 
@@ -16,13 +19,20 @@ import retrofit2.Response;
 public class PostsViewModel extends ViewModel {
 
     private PostsRepository postsRepository;
+    private UserLocalStore userLocalStore;
+    private MutableLiveData<List<Post>> postsLiveData;
 
     public PostsViewModel() {
         postsRepository = new PostsRepository();
     }
 
-    public void addPost(String token, PostRequestBody requestBody, Callback<Post> callback) {
-        postsRepository.addPost(token, requestBody, callback);
+    public void init(UserLocalStore userLocalStore) {
+        this.userLocalStore = userLocalStore;
+    }
+
+    public void addPost(Post postToAdd, Callback<Post> callback) {
+        String token = userLocalStore.getToken();
+        postsRepository.addPost(token, postToAdd, callback);
     }
 
     public LiveData<List<Post>> getPosts(String token) {
@@ -53,17 +63,18 @@ public class PostsViewModel extends ViewModel {
         postsRepository.editPost(token, id, requestBody, callback);
     }
 
-    public void deletePost(String token, String id, Callback<Post> callback) {
+    public void deletePost(Post postToDelete, Callback<Post> callback) {
+        String token = userLocalStore.getToken();
+        String id = postToDelete.getId();
         postsRepository.deletePost(token, id, callback);
     }
 
     public LiveData<List<Post>> getUserPosts(String token, String id) {
-        MutableLiveData<List<Post>> userPostsLiveData = new MutableLiveData<>();
         postsRepository.getUserPosts(token, id, new Callback<List<Post>>() {
             @Override
             public void onResponse(retrofit2.Call<List<Post>> call, Response<List<Post>> response) {
                 if (response.isSuccessful()) {
-                    userPostsLiveData.setValue(response.body());
+                    postsLiveData.setValue(response.body());
                 } else {
                     // Handle error response if needed
                 }
@@ -74,6 +85,10 @@ public class PostsViewModel extends ViewModel {
                 // Handle network failure if needed
             }
         });
-        return userPostsLiveData;
+        return postsLiveData;
+    }
+
+    public LiveData<List<Post>> getPostsLiveData() {
+        return postsLiveData;
     }
 }

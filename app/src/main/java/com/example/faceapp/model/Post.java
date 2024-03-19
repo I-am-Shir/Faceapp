@@ -1,5 +1,7 @@
 package com.example.faceapp.model;
 
+import android.net.Uri;
+
 import com.example.faceapp.model.Comment;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -42,6 +44,19 @@ public class Post {
 
     @JsonProperty("publication_date_formatted")
     private String publicationDateFormatted;
+
+    public Post(List<Comment> comments, String userFirstName, String userLastName, String userPhoto, String postBody, String postPhoto, int likesNumber, int commentsNumber, Date publicationDate, String publicationDateFormatted) {
+        this.comments = comments;
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+        this.userPhoto = userPhoto;
+        this.postBody = postBody;
+        this.postPhoto = postPhoto;
+        this.likesNumber = likesNumber;
+        this.commentsNumber = commentsNumber;
+        this.publicationDate = publicationDate;
+        this.publicationDateFormatted = publicationDateFormatted;
+    }
 
     public String getId() {
         return id;

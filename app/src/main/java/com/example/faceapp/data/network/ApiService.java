@@ -22,7 +22,7 @@ import retrofit2.http.Body;
 public interface ApiService {
     interface Posts {
         @POST("posts/")
-        Call<Post> addPost(@Header("authorization") String token, @Body PostRequestBody requestBody);
+        Call<Post> addPost(@Header("authorization") String token, @Body Post postToAdd);
 
         @GET("posts/")
         Call<List<Post>> getPosts(@Header("authorization") String token);

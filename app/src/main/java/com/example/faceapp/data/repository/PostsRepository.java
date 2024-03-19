@@ -17,8 +17,8 @@ public class PostsRepository {
         postsService = RetrofitClient.getInstance().create(ApiService.Posts.class);
     }
 
-    public void addPost(String token, PostRequestBody requestBody, Callback<Post> callback) {
-        Call<Post> call = postsService.addPost(token, requestBody);
+    public void addPost(String token, Post postToAdd, Callback<Post> callback) {
+        Call<Post> call = postsService.addPost(token, postToAdd);
         call.enqueue(callback);
     }
 
@@ -38,7 +38,7 @@ public class PostsRepository {
     }
 
     public void deletePost(String token, String id, Callback<Post> callback) {
-        Call<Post> call = postsService.deletePost(token, id);
+        Call<Post> call = postsService.deletePost("bearer " + token, id);
         call.enqueue(callback);
     }
 
