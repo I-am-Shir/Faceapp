@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.faceapp.R;
+import com.example.faceapp.model.User;
 import com.example.faceapp.model.UserLocalStore;
 import com.example.faceapp.utilities.Constraints;
 import com.example.faceapp.view.adapters.CommentListAdapter;
@@ -44,7 +45,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -308,10 +313,11 @@ public class Feed_page extends AppCompatActivity {
             }
             if (checkPost) {
                 // If the post is valid, create a new post object and add it to the list of posts
-                List<Post> posts = postsViewModel.getPostsLiveData().getValue();
-                //Post post = new Post(publicUser.getName(), publicUser.getProfilePicture(), postText.getText().toString(), imageUri, posts.size());
-                //Post post = new Post();
-                //posts.add(0, post);
+                List<Post> posts = adapter.getPosts();
+                User currentUser = userLocalStore.getLoggedInUser();
+                Post post = new Post(null, currentUser.getFirstName(), currentUser.getLastName(), currentUser.getProfilePhoto().toString(), postText.getText().toString(), imageUri.toString(), 0, 0,  new Date(), "");
+                addPost(post);
+                posts.add(0, post);
                 adapter.setPosts(posts);
 
                 // Reset Layout
@@ -389,11 +395,13 @@ public class Feed_page extends AppCompatActivity {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
                 // Handle successful addition of post if needed
+                Response<Post> rresponse = response;
             }
 
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
                 // Handle addition failure if needed
+                Throwable tr = t;
             }
         });
     }
