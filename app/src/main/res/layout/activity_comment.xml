@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".entities.Comment">
+    tools:context=".model.Comment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/commentedLayout"
         android:layout_width="match_parent"
