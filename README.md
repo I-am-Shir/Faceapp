@@ -46,6 +46,8 @@ we built everything be creating a layout file for the activity\fragment, and the
 the xml contains the layout (views, buttons, etc), and the java file contains the logic of the activity\fragment.
 the adapter contains the logic of the recycler view.
 
+use branch main-part3 for the most updated code.
+
 
 
 
