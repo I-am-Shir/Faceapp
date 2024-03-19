@@ -99,6 +99,8 @@ public class Feed_page extends AppCompatActivity {
         TextView backFromSearch = findViewById(R.id.backFromSearch);
         View createPostLayout = findViewById(R.id.createPostLayout);
         View refreshMenu = findViewById(R.id.refreshMenu);
+        View userMenuLayout = findViewById(R.id.userMenuLayout);
+        View refreshLayoutProfilePosts = findViewById(R.id.refreshLayoutProfilePosts);
         View refreshLayoutPosts = findViewById(R.id.refreshLayoutPosts);
         View titleFeedLayout = findViewById(R.id.titleFeedLayout);
         EditText fillComment = findViewById(R.id.fillComment);
@@ -187,6 +189,11 @@ public class Feed_page extends AppCompatActivity {
             menuImage.setColorFilter(getResources().getColor(R.color.next_stage_button, null));
 
         });
+
+        userMenuLayout.setOnClickListener(v -> {
+            refreshLayoutProfilePosts.setVisibility(View.VISIBLE);
+        });
+
         // Click listener for the post comment button to add a comment
         postComment.setOnClickListener(v -> {
             if (fillComment.getText().toString().isEmpty()) {
