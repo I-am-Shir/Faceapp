@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_color"
-    tools:context=".Sign_up_page">
+    tools:context=".view.Sign_up_page">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="com.example.faceapp.EmailFrag1"
+        android:name="com.example.faceapp.view.fragments.EmailFrag1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_email1" />

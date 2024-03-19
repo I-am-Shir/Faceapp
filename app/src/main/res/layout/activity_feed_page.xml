@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_grey"
-    tools:context=".Feed_page">
+    tools:context=".view.Feed_page">
     <!--feed and menu-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/feedLayout"
@@ -143,38 +143,23 @@
                 android:layout_height="match_parent"
                 android:background="#757474" />
 
-            <Button
-                android:id="@+id/hidden_button_5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:drawableTop="@drawable/pages_icon"
-                android:drawableTint="#FF5722"
-                android:tag="hidden_button"
-                android:text="Pages"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:visibility="gone"
-                app:cornerRadius="18dp" />
-
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
         <!--menu layout-->
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refreshmenu"
+        <ScrollView
+            android:id="@+id/refreshMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="90dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/topFeedLayout"
+            tools:visibility="gone">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/menuLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/background_menu"
-                android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@+id/topFeedLayout"
-                tools:visibility="gone">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/menuText"
@@ -197,7 +182,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/menuSettings"
                     android:layout_width="50dp"
                     android:layout_height="48dp"
                     android:src="@drawable/settings"
@@ -426,6 +411,21 @@
                                 android:visibility="gone"
                                 app:cornerRadius="18dp" />
 
+                            <Button
+                                android:id="@+id/hidden_button_5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/white"
+                                android:drawableTop="@drawable/pages_icon"
+                                android:drawableTint="#FF5722"
+                                android:tag="hidden_button"
+                                android:text="Pages"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:visibility="gone"
+                                app:cornerRadius="18dp"
+                                tools:visibility="visible" />
+
                         </LinearLayout>
                     </LinearLayout>
 
@@ -543,7 +543,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </ScrollView>
 
         <!--profile layout-->
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -551,11 +551,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="90dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/profileLayout"
@@ -580,6 +581,16 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/backFromProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/back_arrow"
+                        android:textColor="@color/black"
+                        android:textSize="40sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <ImageView
                         android:id="@+id/userPhotoProfile"
@@ -674,8 +685,8 @@
                     android:id="@+id/listProfilePosts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/profileBottomLayout"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/profileBottomLayout" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

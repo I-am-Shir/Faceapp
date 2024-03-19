@@ -34,5 +34,6 @@
     <string name="share">share</string>
     <string name="comment">comment</string>
     <string name="_0_likes">0 Likes</string>
+    <string name="likes_string">Likes</string>
     <string name="_0_comments">0 Comments</string>
 </resources>
