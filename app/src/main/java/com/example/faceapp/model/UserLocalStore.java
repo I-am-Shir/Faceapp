@@ -88,4 +88,8 @@ public class UserLocalStore {
         }
         throw new Exception("Invalid username or password");
     }
+
+    public String getToken() {
+        return userLocalDatabase.getString("jwt_token", null);
+    }
 }

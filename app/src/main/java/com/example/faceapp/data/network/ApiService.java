@@ -14,7 +14,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
-import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.POST;
 import retrofit2.http.DELETE;
@@ -23,22 +22,22 @@ import retrofit2.http.Body;
 public interface ApiService {
     interface Posts {
         @POST("posts/")
-        Call<Post> addPost(@Header("Authorization") String token, @Body PostRequestBody requestBody);
+        Call<Post> addPost(@Header("authorization") String token, @Body PostRequestBody requestBody);
 
         @GET("posts/")
-        Call<List<Post>> getPosts(@Header("Authorization") String token);
+        Call<List<Post>> getPosts(@Header("authorization") String token);
 
         @GET("posts/{id}")
-        Call<Post> getPostById(@Header("Authorization") String token, @Path("id") String id);
+        Call<Post> getPostById(@Header("authorization") String token, @Path("id") String id);
 
         @PATCH("posts/{id}")
-        Call<Post> editPost(@Header("Authorization") String token, @Path("id") String id, @Body PostRequestBody requestBody);
+        Call<Post> editPost(@Header("authorization") String token, @Path("id") String id, @Body PostRequestBody requestBody);
 
         @DELETE("posts/{id}")
-        Call<Post> deletePost(@Header("Authorization") String token, @Path("id") String id);
+        Call<Post> deletePost(@Header("authorization") String token, @Path("id") String id);
 
         @GET("posts/{id}")
-        Call<List<Post>> getUserPosts(@Header("Authorization") String token, @Path("id") String id);
+        Call<List<Post>> getUserPosts(@Header("authorization") String token, @Path("id") String id);
     }
 
     interface Tokens {
@@ -51,27 +50,27 @@ public interface ApiService {
         Call<User> addUser(@Body UserRequestBody requestBody);
 
         @GET("users/{id}")
-        Call<User> getUserByEmail(@Header("Authorization") String token, @Path("id") String email);
+        Call<User> getUserByEmail(@Header("authorization") String token, @Path("id") String email);
 
         @PATCH("users/{id}")
-        Call<User> updateUser(@Header("Authorization") String token, @Path("id") String email, @Body UserRequestBody requestBody);
+        Call<User> updateUser(@Header("authorization") String token, @Path("id") String email, @Body UserRequestBody requestBody);
 
         @DELETE("users/{id}")
-        Call<User> deleteUser(@Header("Authorization") String token, @Path("id") String email);
+        Call<User> deleteUser(@Header("authorization") String token, @Path("id") String email);
 
         @GET("users/{id}/friends")
-        Call<List<User>> getFriendList(@Header("Authorization") String token, @Path("id") String email);
+        Call<List<User>> getFriendList(@Header("authorization") String token, @Path("id") String email);
 
         @POST("sendFriendRequest/{id}")
-        Call<String> sendFriendRequest(@Header("Authorization") String token, @Path("id") String receiverEmail);
+        Call<String> sendFriendRequest(@Header("authorization") String token, @Path("id") String receiverEmail);
 
         @DELETE("rejectFriendRequest")
-        Call<String> rejectFriendRequest(@Header("Authorization") String token, @Body FriendRequestRequestBody requestBody);
+        Call<String> rejectFriendRequest(@Header("authorization") String token, @Body FriendRequestRequestBody requestBody);
 
         @PATCH("acceptFriendRequest")
-        Call<String> acceptFriendRequest(@Header("Authorization") String token, @Body FriendRequestRequestBody requestBody);
+        Call<String> acceptFriendRequest(@Header("authorization") String token, @Body FriendRequestRequestBody requestBody);
 
         @DELETE("deleteFriend")
-        Call<String> deleteFriend(@Header("Authorization") String token, @Body FriendshipRequestBody requestBody);
+        Call<String> deleteFriend(@Header("authorization") String token, @Body FriendshipRequestBody requestBody);
     }
 }

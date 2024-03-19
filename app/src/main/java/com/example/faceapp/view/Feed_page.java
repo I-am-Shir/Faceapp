@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.FileProvider;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,6 +36,7 @@ import com.example.faceapp.model.PublicUser;
 import com.example.faceapp.model.Comment;
 import com.example.faceapp.model.Post;
 
+import com.example.faceapp.viewmodel.PostsViewModel;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -48,14 +50,12 @@ import java.util.List;
 import java.util.UUID;
 
 public class Feed_page extends AppCompatActivity {
+    private PostsViewModel postsViewModel;
     private Constraints constraints;
     private UserLocalStore userLocalStore;
     private PostsListAdapter adapter;
     private View  menuLayout, commentsLayout, searchLayout, shareLayout, shareInnerLayout;
     private RecyclerView listComments;
-
-    //TODO: DELETE currentPostId after connecting to the database
-    private int currentId;
     HashMap<String, CommentListAdapter> comments;
 
     //picture variables
@@ -67,6 +67,8 @@ public class Feed_page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Initializing Posts View Model
+        postsViewModel = new ViewModelProvider(this).get(PostsViewModel.class);
         // Creating a UserLocalStore instance to manage user data locally
         userLocalStore = new UserLocalStore(this);
         // Checking if a user is logged in
@@ -140,43 +142,49 @@ public class Feed_page extends AppCompatActivity {
         userPhotoShare.setImageURI(userLocalStore.getLoggedInPublicUser().getProfilePicture());
 
         // Retrieving the logged-in user's information
-        PublicUser publicUser1 = userLocalStore.getLoggedInPublicUser();
+        PublicUser publicUser = userLocalStore.getLoggedInPublicUser();
         final PostsListAdapter adapter = new PostsListAdapter(this);
         listPosts.setAdapter(adapter);
         listPosts.setLayoutManager(new LinearLayoutManager(this));
+
+        // Retrieving posts
+        // Observe LiveData for posts
+        postsViewModel.getPosts(userLocalStore.getToken()).observe(this, posts -> {
+            // Update RecyclerView adapter with posts
+            int index = posts.size();
+            while (0 < index--) {
+                Post post = posts.get(index);
+                // Initializing a CommentListAdapter for each post
+                CommentListAdapter adapterListComment = new CommentListAdapter(this);
+                adapterListComment.setComments(new ArrayList<Comment>());
+                // Storing the adapter in a HashMap with post ID as the key
+                comments.put(String.valueOf(post.getId()), adapterListComment);
+            }
+            // Setting the posts to the adapter to display in the RecyclerView
+            adapter.setPosts(posts);
+        });
+
+
         //TODO: DELETE
         // Setting up a default user
-        Uri uri = Uri.parse("android.resource://" + getPackageName() + "/drawable/profile");
-        PublicUser publicUser = new PublicUser();
-        publicUser.setName("nelly");
-        publicUser.setProfilePicture(uri);
+        //Uri uri = Uri.parse("android.resource://" + getPackageName() + "/drawable/profile");
+        //PublicUser publicUser = new PublicUser();
+        //publicUser.setName("nelly");
+        //publicUser.setProfilePicture(uri);
         //TODO: DELETE
         // Creating sample posts to populate the feed temporarily
-        List<Post> posts = new ArrayList<>();
+//        List<Post> posts = new ArrayList<>();
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<JsonToJava> jsonToJava;
-        try {
-            InputStream in = getResources().openRawResource(R.raw.db);
-            jsonToJava = objectMapper.readValue(in, new TypeReference<List<JsonToJava>>() {
-            });
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        int index = jsonToJava.size();
-        //for (currentPostId = 0; currentPostId < 10; currentPostId++) {
-        while (0 < index--) {
-            //Post post = new Post(publicUser.getName(), publicUser.getProfilePicture(), "I love gaming" + currentPostId, R.drawable.gamingsetup, currentPostId);
-            Post post = jsonToJava.get(index).toPost();
-            posts.add(0, post);
-            // Initializing a CommentListAdapter for each post
-            CommentListAdapter adapterListComment = new CommentListAdapter(this);
-            adapterListComment.setComments(new ArrayList<Comment>());
-            // Storing the adapter in a HashMap with post ID as the key
-            comments.put(String.valueOf(post.getId()), adapterListComment);
-        }
-        // Setting the posts to the adapter to display in the RecyclerView
-        adapter.setPosts(posts);
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        List<JsonToJava> jsonToJava;
+//        try {
+//            InputStream in = getResources().openRawResource(R.raw.db);
+//            jsonToJava = objectMapper.readValue(in, new TypeReference<List<JsonToJava>>() {
+//            });
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+
         // Setting up click listeners for UI elements
         // Click listener for the home button to hide the menu
         homeImage.setOnClickListener(v -> {
@@ -204,7 +212,7 @@ public class Feed_page extends AppCompatActivity {
                 // Adding the comment to the corresponding post's comment list
                 String fillComm = fillComment.getText().toString();
                 fillComment.setText("");
-                comments.get(String.valueOf(currentId)).addComment(new Comment(fillComm, userLocalStore.getLoggedInPublicUser(), new Timestamp(System.currentTimeMillis()), currentId));
+                //comments.get(String.valueOf(currentId)).addComment(new Comment(fillComm, userLocalStore.getLoggedInPublicUser(), new Timestamp(System.currentTimeMillis()), currentId));
             }
         });
 
@@ -302,19 +310,19 @@ public class Feed_page extends AppCompatActivity {
                 Toast.makeText(this, "Please fill in the post, must include a picture.", Toast.LENGTH_SHORT).show();
             }
             if (checkPost) {
-                // If the post is valid, create a new post object and add it to the list of posts
-                Post post = new Post(publicUser1.getName(), publicUser1.getProfilePicture(), postText.getText().toString(), imageUri, posts.size());
-                imageUri = null;
-                posts.add(0, post);
-                adapter.setPosts(posts);
-                createPostLayout.setVisibility(View.GONE);
-                picturePreview.setImageResource(0);
-                postText.setText("");
-
-                // Initialize a new CommentListAdapter for the current post
-                CommentListAdapter adapterListComment = new CommentListAdapter(this);
-                adapterListComment.setComments(new ArrayList<Comment>());
-                comments.put(String.valueOf(post.getId()), adapterListComment);
+//                // If the post is valid, create a new post object and add it to the list of posts
+//                Post post = new Post(publicUser.getName(), publicUser.getProfilePicture(), postText.getText().toString(), imageUri, posts.size());
+//                imageUri = null;
+//                posts.add(0, post);
+//                //adapter.setPosts(posts);
+//                createPostLayout.setVisibility(View.GONE);
+//                picturePreview.setImageResource(0);
+//                postText.setText("");
+//
+//                // Initialize a new CommentListAdapter for the current post
+//                CommentListAdapter adapterListComment = new CommentListAdapter(this);
+//                adapterListComment.setComments(new ArrayList<Comment>());
+//                comments.put(String.valueOf(post.getId()), adapterListComment);
             }
         });
         // Setting up a click listener for the back button from creating post to return to the feed
@@ -348,24 +356,21 @@ public class Feed_page extends AppCompatActivity {
     }
 
     //does what the comment button should do so the comment adapter can do it from it's listener there.
-    public void commentButton(int id) {
-        currentId = id;
+    public void commentButton() {
         listComments = findViewById(R.id.listComments);
-        CommentListAdapter adapter = comments.get(String.valueOf(id));
+        //CommentListAdapter adapter = comments.get(String.valueOf(id));
         listComments.setAdapter(adapter);
         listComments.setLayoutManager(new LinearLayoutManager(this));
         commentsLayout = findViewById(R.id.commentsLayout);
         commentsLayout.setVisibility(View.VISIBLE);
     }
 
-    public void shareButton(int id) {
-        currentId = id;
-
+    public void shareButton(String id) {
         shareLayout.setVisibility(View.VISIBLE);
     }
 
-    public void deletePost(int id) {
-        comments.remove(String.valueOf(id));
+    public void deletePost() {
+        //comments.remove(String.valueOf(id));
     }
 
 

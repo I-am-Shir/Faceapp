@@ -88,22 +88,22 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
     public void onBindViewHolder(PostsViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (posts != null) {
             final Post current = posts.get(position);
-            holder.posterProImage.setImageURI(current.getProPicture());
-            if (current.getProPicture() == null)
+            Uri profilePic = Uri.parse(current.getUserPhoto());
+            String postAuthor = current.getUserFirstName() + " " + current.getUserLastName();
+
+            holder.posterProImage.setImageURI(profilePic);
+            if (profilePic == null)
                 //holder.postPicture.setImageResource(R.drawable.ic_launcher_background);
                 Glide.with(context).load(Uri.parse("https://home.adelphi.edu/~br21822/Ted.jpg")).into(holder.posterProImage);
             else
-                Glide.with(context).load(current.getProPicture()).into(holder.posterProImage);
-            holder.postContent.setText(current.getContent());
-            holder.postAuthor.setText(current.getAuthor());
-            if (current.getPicture() == 0)
-                //holder.postPicture.setImageResource(R.drawable.ic_launcher_background);
-                Glide.with(context).load(current.getUriPicture()).into(holder.postPicture);
+                Glide.with(context).load(profilePic).into(holder.posterProImage);
+            holder.postContent.setText(current.getPostBody());
+            holder.postAuthor.setText(postAuthor);
+            if (current.getPostPhoto() != null && !current.getPostPhoto().isEmpty())
+                Glide.with(context).load(Uri.parse(current.getPostPhoto())).into(holder.postPicture);
             else
-                holder.postPicture.setImageResource(current.getPicture());
-            holder.numLikes.setText(String.valueOf(current.getLikes()));
-            //TODO: delete
-            //holder.numComments.setText(String.valueOf(current.getComments()));
+                holder.postPicture.setImageResource(0);
+            holder.numLikes.setText(String.valueOf(current.getLikesNumber()));
             holder.like.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -125,7 +125,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                 @Override
                 public void onClick(View v) {
                     if(context instanceof Feed_page){
-                        ((Feed_page)context).commentButton(current.getId());
+                        ((Feed_page)context).commentButton();
                     }
                 }
             });
@@ -151,7 +151,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                 @Override
                 public void onClick(View v) {
                     if(holder.editPostContent.getText().toString().length() > 0) {
-                        current.setContent(holder.editPostContent.getText().toString());
+                        current.setPostBody(holder.editPostContent.getText().toString());
                         holder.postContent.setText(holder.editPostContent.getText().toString());
                     }
                     holder.postContent.setVisibility(View.VISIBLE);
@@ -163,7 +163,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                 @Override
                 public void onClick(View v) {
                     if(context instanceof Feed_page){
-                        ((Feed_page)context).deletePost(current.getId());
+                        ((Feed_page)context).deletePost();
                     }
                     posts.remove(current);
                     notifyItemRemoved(position);

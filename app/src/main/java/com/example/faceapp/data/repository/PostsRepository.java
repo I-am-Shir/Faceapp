@@ -9,7 +9,6 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 
 public class PostsRepository {
     private ApiService.Posts postsService;
@@ -24,7 +23,7 @@ public class PostsRepository {
     }
 
     public void getPosts(String token, Callback<List<Post>> callback) {
-        Call<List<Post>> call = postsService.getPosts(token);
+        Call<List<Post>> call = postsService.getPosts("bearer " + token);
         call.enqueue(callback);
     }
 

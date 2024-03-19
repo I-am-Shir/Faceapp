@@ -175,11 +175,11 @@ public class JsonToJava {
         return publication_date;
     }
 
-    public Post toPost() {
-        if (postPhoto == null) {
-            return new Post(authorName,(user_photo==null ? null:Uri.parse(user_photo)), postBody, R.drawable.better__with, id);
-        }
-        else
-            return new Post(authorName,((user_photo == null) ? null : Uri.parse(user_photo)), postBody, Uri.parse(postPhoto), id);
-    }
+//    public Post toPost() {
+//        if (postPhoto == null) {
+//            return new Post(authorName,(user_photo==null ? null:Uri.parse(user_photo)), postBody, R.drawable.better__with, id);
+//        }
+//        else
+//            return new Post(authorName,((user_photo == null) ? null : Uri.parse(user_photo)), postBody, Uri.parse(postPhoto), id);
+//    }
 }

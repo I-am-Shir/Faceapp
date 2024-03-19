@@ -1,107 +1,143 @@
 package com.example.faceapp.model;
 
-import android.net.Uri;
+import com.example.faceapp.model.Comment;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import java.util.Date;
+import java.util.List;
 
-@Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Post {
-    @PrimaryKey(autoGenerate = true)
-    private String author, content;
-    private PublicUser publicUser;
-    private Uri proPicture;
-    private int id;
-    private int likes, picture;
-    private Uri uriPicture;
-    private Comment comment;
 
-    public Post(String author, Uri proPicture, String content, Uri picture, int id) {
-        this.author = author;
-        this.proPicture= proPicture;
-        this.content = content;
-        this.picture = 0;
-        this.uriPicture = picture;
-        this.id = id;
-        this.likes = 0;
-    }
-    public Post(String author, Uri proPicture, String content, int picture, int id) {
-        this.author = author;
-        this.proPicture= proPicture;
-        this.content = content;
-        this.picture = picture;
-        this.uriPicture = null;
-        this.id = id;
-    }
+    @JsonProperty("id")
+    private String id;
 
-    public String getAuthor() {
-        return author;
-    }
+    @JsonProperty("comments")
+    private List<Comment> comments;
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+    @JsonProperty("user_firstName")
+    private String userFirstName;
 
-    public String getContent() {
-        return content;
-    }
+    @JsonProperty("user_lastName")
+    private String userLastName;
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+    @JsonProperty("user_photo")
+    private String userPhoto;
 
-    public int getId() {
+    @JsonProperty("postBody")
+    private String postBody;
+
+    @JsonProperty("postPhoto")
+    private String postPhoto;
+
+    @JsonProperty("likesNumber")
+    private int likesNumber;
+
+    @JsonProperty("commentsNumber")
+    private int commentsNumber;
+
+    @JsonProperty("publication_date")
+    private Date publicationDate;
+
+    @JsonProperty("publication_date_formatted")
+    private String publicationDateFormatted;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
-    public int getLikes() {
-        return likes;
+
+    public List<Comment> getComments() {
+        return comments;
     }
 
-    public void setLikes(int likes) {
-        this.likes = likes;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public String getUserFirstName() {
+        return userFirstName;
+    }
+
+    public void setUserFirstName(String userFirstName) {
+        this.userFirstName = userFirstName;
+    }
+
+    public String getUserLastName() {
+        return userLastName;
+    }
+
+    public void setUserLastName(String userLastName) {
+        this.userLastName = userLastName;
+    }
+
+    public String getUserPhoto() {
+        return userPhoto;
+    }
+
+    public void setUserPhoto(String userPhoto) {
+        this.userPhoto = userPhoto;
+    }
+
+    public String getPostBody() {
+        return postBody;
+    }
+
+    public void setPostBody(String postBody) {
+        this.postBody = postBody;
+    }
+
+    public String getPostPhoto() {
+        return postPhoto;
+    }
+
+    public void setPostPhoto(String postPhoto) {
+        this.postPhoto = postPhoto;
+    }
+
+    public int getLikesNumber() {
+        return likesNumber;
+    }
+
+    public void setLikesNumber(int likesNumber) {
+        this.likesNumber = likesNumber;
+    }
+
+    public int getCommentsNumber() {
+        return commentsNumber;
+    }
+
+    public void setCommentsNumber(int commentsNumber) {
+        this.commentsNumber = commentsNumber;
+    }
+
+    public Date getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(Date publicationDate) {
+        this.publicationDate = publicationDate;
+    }
+
+    public String getPublicationDateFormatted() {
+        return publicationDateFormatted;
+    }
+
+    public void setPublicationDateFormatted(String publicationDateFormatted) {
+        this.publicationDateFormatted = publicationDateFormatted;
     }
 
     public void addLike() {
-        this.likes++;
+        ++this.likesNumber;
     }
 
     public void removeLike() {
-        this.likes--;
+        --this.likesNumber;
     }
 
-    public int getPicture() {
-        return picture;
-    }
-
-    public void setPicture(int picture) {
-        this.picture = picture;
-    }
-
-    public Uri getUriPicture() {
-        return uriPicture;
-    }
-
-    public void setUriPicture(Uri uriPicture) {
-        this.uriPicture = uriPicture;
-    }
-
-    public PublicUser getPublicUser() {
-        return publicUser;
-    }
-
-    public void setPublicUser(PublicUser publicUser) {
-        this.publicUser = publicUser;
-    }
-
-    public Uri getProPicture() {
-        return proPicture;
-    }
-
-    public void setProPicture(Uri proPicture) {
-        this.proPicture = proPicture;
-    }
+    // Getters and setters
 }
