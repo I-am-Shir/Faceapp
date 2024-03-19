@@ -15,7 +15,7 @@ Wait for Android Studio to build the project.
 
 ## Usage
 1. Once the project is opened in Android Studio, connect your Android device or start an emulator.
-2. Run the server by opening the servers repository [server repository](https://github.com/Shiranle07/Fakebook_Server.git) and entering "node app.js" in its terminal.
+2. Run the server by opening the [servers repository](https://github.com/Shiranle07/Fakebook_Server.git) and entering "node app.js" in its terminal.
 3. Get back to the apps repository and run the application by clicking the green "Run" button in Android Studio. The application will launch on your device or emulator.
    Register for a new account by completing all fields within the sign-up (fragmented). Once you have registered, log in using the email address and password you provided during registration. Upon logging in, you can access the feed page to view existing posts, like and comment on the posts.
    in the top left there's a plus button, which allows you to add a post, and in the top right theres a search button but it's not active yet.
