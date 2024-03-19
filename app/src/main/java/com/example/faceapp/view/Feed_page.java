@@ -97,6 +97,7 @@ public class Feed_page extends AppCompatActivity {
         ImageView postComment = findViewById(R.id.postComment);
         TextView backFromComments = findViewById(R.id.backFromComments);
         TextView backFromSearch = findViewById(R.id.backFromSearch);
+        TextView backFromProfile = findViewById(R.id.backFromProfile);
         View createPostLayout = findViewById(R.id.createPostLayout);
         View refreshMenu = findViewById(R.id.refreshMenu);
         View userMenuLayout = findViewById(R.id.userMenuLayout);
@@ -193,6 +194,11 @@ public class Feed_page extends AppCompatActivity {
         userMenuLayout.setOnClickListener(v -> {
             refreshLayoutProfilePosts.setVisibility(View.VISIBLE);
         });
+
+        backFromProfile.setOnClickListener(v -> {
+            refreshLayoutProfilePosts.setVisibility(View.GONE);
+        });
+
 
         // Click listener for the post comment button to add a comment
         postComment.setOnClickListener(v -> {
