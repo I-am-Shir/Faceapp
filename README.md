@@ -1,7 +1,7 @@
 ## [link to faceapp git repository](https://github.com/I-am-Shir/Faceapp)
 # Fakebook - Social Networking Android Application
 Fakebook is a social networking Android application that allows users to create profiles, log in, post content, and interact with existing posts through likes and comments.
-In its present iteration, the app allows for the registration of a single user and loads predefined posts from a JSON file. Rerunning the application deletes the registered user's information and any content created during the previous session.
+In its present iteration, the app allows for the registration of users and loads posts from a JSON file received from the server. Rerunning the application does not affect the user created, seeing as it's been added to the servers database.
 
 ## How to use?
 #### 1. Prerequisites
@@ -15,10 +15,11 @@ Wait for Android Studio to build the project.
 
 ## Usage
 1. Once the project is opened in Android Studio, connect your Android device or start an emulator.
-2. Run the application by clicking the green "Run" button in Android Studio. The application will launch on your device or emulator.
-   Register for a new account by completing all fields within the sign-up (fragmented). Once you have registered, log in using the email address and password provided during registration. Upon logging in, you can access the feed page to view existing posts, like and comment on the posts.
-   in the top left theres a plus button, which allows you to add a post, and in the top right theres a search button but it's not active yet.
-   To access additional options, click the menu button located at the bottom of the screen, you will move to a page where you can switch to dark mode by clicking on a dedicated button, or logout and return to the login page
+2. Run the server by opening the servers repository and entering "node app.js" in its terminal.
+3. Get back to the apps repository and run the application by clicking the green "Run" button in Android Studio. The application will launch on your device or emulator.
+   Register for a new account by completing all fields within the sign-up (fragmented). Once you have registered, log in using the email address and password you provided during registration. Upon logging in, you can access the feed page to view existing posts, like and comment on the posts.
+   in the top left there's a plus button, which allows you to add a post, and in the top right theres a search button but it's not active yet.
+   To access additional options, click the menu button located at the bottom of the screen, you will move to a page where you can switch to dark mode by clicking on a dedicated switch, or logout and return to the login page
 
 ## Workflow
 First we read the task together in its entirety to ensure we correctly understood what was assigned to us. We brainstormed ideas for implementation and divided the general tasks among ourselves, which we then added to JIRA. 
@@ -27,9 +28,9 @@ The code is structured into layout files and Java classes for each page in the a
 Additionally, we created separate layout files and Java classes for each component: log-in, sign-up, feed. for each of them there are also some supporting classes.
 
 ### what the app contains:
-we created a log in, people can sign in from there (for now there is a default user in case no one signed in- username- Admin@gmail.com, password- a1234567). if they want to sign in they can do it in sign up, which is split into fragments (like in Facebook).
+we created a log in, people can sign in from there. if they want to sign up they can do it in sign up, which is split into fragments (like in Facebook).
 we created a class containing constraints for the sign up and used it to check its validity.
-for each stage there is a verification that the input is valid- for signup it checks that it meets the requirements, for login it checks that the user exists and the password is correct.
+for each stage there is a verification that the input is valid, it returns an error after trying to create a new user with an existing users email. the validation mentioned- for signup it checks that it meets the requirements, for login it checks that the user exists and the password is correct.
 restrictions: username must be an email- be of pattern letters@letters.letters. password must contain between 8-20 characters, at least one digit, one letter.
 must put in a name- first and last which are letters only.
 and must put a profile photo- from gallery or camera.
@@ -41,7 +42,7 @@ he can comment on a post by pressing the comment button, then he can see previou
 he can like the post or "share" (doesn't share yet).
 he can edit or delete the posts.
 he can press on the  search icon which will open a place to input search (the search isn't implemented yet).
-we built everything be creating a layout file fot the activity\fragment, and then a java file for the activity\fragment, plus a java file for the adapter of the recycler view.
+we built everything be creating a layout file for the activity\fragment, and then a java file for the activity\fragment, plus a java file for the adapter of the recycler view.
 the xml contains the layout (views, buttons, etc), and the java file contains the logic of the activity\fragment.
 the adapter contains the logic of the recycler view.
 
