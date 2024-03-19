@@ -53,4 +53,12 @@ public class Constraints {
             throw new Exception("Must input an image");
         return true;
     }
+
+    boolean postContentCheck(String postContent) throws Exception {
+        if (postContent == null)
+            throw new Exception("Must input a post");
+        if (postContent.length() > 1000)
+            throw new Exception("Post must contain less than 1000 characters");
+        return true;
+    }
 }

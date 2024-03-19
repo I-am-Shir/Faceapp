@@ -1,5 +1,7 @@
 package com.example.faceapp.adapters;
 
+import static android.provider.Settings.System.getString;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
@@ -24,17 +26,21 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
     private Context context;
     private final LayoutInflater mInflater;
     private List<Post> posts; // Cached copy of posts
+    private String post_likes_count;
     public class PostsViewHolder extends RecyclerView.ViewHolder {
+        public ImageView deletePost, editPost, postEditedPost, posterProImage;
 
-    //TODO: DELETE?
-    //public TextView postTitle;
-    private final TextView postContent, postAuthor;
-    private TextView numLikes;
-    private final EditText editPostContent;
-    private final ImageView postPicture;
-    private Button like, liked, comment, share;
-    public ImageView deletePost, editPost, postEditedPost, posterProImage;
-    private View editPostLayout;
+        //TODO: DELETE?
+        //public TextView postTitle;
+        private final TextView postContent, postAuthor;
+        private TextView numLikes;
+        private final EditText editPostContent;
+        private final ImageView postPicture;
+        private Button like, liked, comment, share;
+
+        private View editPostLayout;
+
+
 
 
 
@@ -101,7 +107,8 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                 Glide.with(context).load(current.getUriPicture()).into(holder.postPicture);
             else
                 holder.postPicture.setImageResource(current.getPicture());
-            holder.numLikes.setText(String.valueOf(current.getLikes()));
+            post_likes_count = current.getLikes() + " likes";
+            holder.numLikes.setText(post_likes_count);
             //TODO: delete
             //holder.numComments.setText(String.valueOf(current.getComments()));
             holder.like.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +117,8 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                     holder.like.setVisibility(View.GONE);
                     holder.liked.setVisibility(View.VISIBLE);
                     current.addLike();
+                    post_likes_count = current.getLikes() + " likes";
+                    holder.numLikes.setText(post_likes_count);
                 }
             });
             holder.liked.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +127,8 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                     holder.liked.setVisibility(View.GONE);
                     holder.like.setVisibility(View.VISIBLE);
                     current.removeLike();
+                    post_likes_count = current.getLikes() + " likes";
+                    holder.numLikes.setText(post_likes_count);
                 }
             });
 
