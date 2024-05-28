@@ -32,7 +32,7 @@ public class PostsViewModel extends ViewModel {
 
     public void addPost(Post postToAdd, Callback<Post> callback) {
         String token = userLocalStore.getToken();
-        postsRepository.addPost(token, postToAdd, callback);
+        postsRepository.addPost("Auth " + token, postToAdd, callback);
     }
 
     public LiveData<List<Post>> getPosts(String token) {

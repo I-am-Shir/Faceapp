@@ -381,11 +381,17 @@ public class Feed_page extends AppCompatActivity {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
                 // Handle successful deletion response if needed
+                if (response.isSuccessful()) {
+                    Toast.makeText(Feed_page.this, "Post saved", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Feed_page.this, "Server rejected the post", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
                 // Handle deletion failure if needed
+                Toast.makeText(Feed_page.this, "Error in post saving", Toast.LENGTH_SHORT).show();
             }
         });
     }
