@@ -160,22 +160,8 @@ public class Feed_page extends AppCompatActivity {
         listPosts.setAdapter(adapter);
         listPosts.setLayoutManager(new LinearLayoutManager(this));
 
-        // Retrieving posts
-        // Observe LiveData for posts
-        postsViewModel.getPosts(userLocalStore.getToken()).observe(this, posts -> {
-            // Update RecyclerView adapter with posts
-            int index = posts.size();
-            while (0 < index--) {
-                Post post = posts.get(index);
-                // Initializing a CommentListAdapter for each post
-                CommentListAdapter adapterListComment = new CommentListAdapter(this);
-                adapterListComment.setComments(post.getComments());
-                // Storing the adapter in a HashMap with post ID as the key
-                comments.put(String.valueOf(post.getId()), adapterListComment);
-            }
-            // Setting the posts to the adapter to display in the RecyclerView
-            adapter.setPosts(posts);
-        });
+//        //refresh posts
+//        refreshPostsPage();
 
         // Setting up click listeners for UI elements
         // Click listener for the home button to hide the menu
@@ -362,6 +348,24 @@ public class Feed_page extends AppCompatActivity {
 
     }
 
+    public void refreshPostsPage(){
+        // Retrieving posts
+        // Observe LiveData for posts
+        postsViewModel.getPosts(userLocalStore.getToken()).observe(this, posts -> {
+            // Update RecyclerView adapter with posts
+            int index = posts.size();
+            while (0 < index--) {
+                Post post = posts.get(index);
+                // Initializing a CommentListAdapter for each post
+                CommentListAdapter adapterListComment = new CommentListAdapter(this);
+                adapterListComment.setComments(post.getComments());
+                // Storing the adapter in a HashMap with post ID as the key
+                comments.put(String.valueOf(post.getId()), adapterListComment);
+            }
+            // Setting the posts to the adapter to display in the RecyclerView
+            adapter.setPosts(posts);
+        });
+    }
     //does what the comment button should do so the comment adapter can do it from it's listener there.
     public void commentButton() {
         listComments = findViewById(R.id.listComments);
@@ -381,17 +385,11 @@ public class Feed_page extends AppCompatActivity {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
                 // Handle successful deletion response if needed
-                if (response.isSuccessful()) {
-                    Toast.makeText(Feed_page.this, "Post saved", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(Feed_page.this, "Server rejected the post", Toast.LENGTH_SHORT).show();
-                }
             }
 
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
                 // Handle deletion failure if needed
-                Toast.makeText(Feed_page.this, "Error in post saving", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -401,13 +399,17 @@ public class Feed_page extends AppCompatActivity {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
                 // Handle successful addition of post if needed
-                Response<Post> rresponse = response;
+                if (response.isSuccessful()) {
+                    Toast.makeText(Feed_page.this, "Post saved", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Feed_page.this, "Server rejected the post", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
                 // Handle addition failure if needed
-                Throwable tr = t;
+                Toast.makeText(Feed_page.this, "Error in post saving", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.faceapp.view.Feed_page;
@@ -21,7 +22,7 @@ import com.example.faceapp.model.Post;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.PostsViewHolder> {
+public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.PostsViewHolder> implements SwipeRefreshLayout.OnRefreshListener {
     private Context context;
     private final LayoutInflater mInflater;
     private List<Post> posts = new ArrayList<>(); // Cached copy of posts
@@ -37,8 +38,6 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
     public ImageView deletePost, editPost, postEditedPost, posterProImage;
     private View editPostLayout;
 
-
-
 //        public class ViewHolder extends RecyclerView.ViewHolder {
 //
 //             Handles the row being being clicked
@@ -52,6 +51,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
 //                }
 //            }
 //        }
+
 
         private PostsViewHolder(View itemView) {
             super(itemView);
@@ -71,6 +71,15 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
             numLikes = itemView.findViewById(R.id.numLikes);
             //TODO: DELETE?
             //numComments = itemView.findViewById(R.id.numComments);
+        }
+    }
+    /**
+     * This method is called when swipe refresh is pulled down
+     */
+    @Override
+    public void onRefresh() {
+        if(context instanceof Feed_page){
+            ((Feed_page)context).refreshPostsPage();
         }
     }
 
