@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
@@ -70,6 +73,12 @@ public class User {
     String email;
     @JsonProperty("password")
     String password;
+    @JsonProperty("friends")
+    List<String> friends;
+    @JsonProperty("friend_reqs_sent")
+    List<String> friend_reqs_sent;
+    @JsonProperty("friend_reqs_received")
+    List<String> friend_reqs_received;
     @JsonProperty("profilePhoto") // Use this annotation to specify the JSON field name
     private String profilePictureUriString; // Serialized form of the profile picture URI
     @JsonIgnore

@@ -1,8 +1,5 @@
 package com.example.faceapp.model;
 
-import android.net.Uri;
-
-import com.example.faceapp.model.Comment;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,62 +9,55 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Post {
 
-    @JsonProperty("id")
-    private String id;
-
-    @JsonProperty("comments")
-    private List<Comment> comments;
-
+//    @JsonProperty("_id")
+//    private String id;
+    @JsonProperty("user_email")
+    private String userEmail;
     @JsonProperty("user_firstName")
     private String userFirstName;
-
     @JsonProperty("user_lastName")
     private String userLastName;
-
     @JsonProperty("user_photo")
     private String userPhoto;
-
-    @JsonProperty("postBody")
+    @JsonProperty("pos*tBody")
     private String postBody;
-
     @JsonProperty("postPhoto")
     private String postPhoto;
-
     @JsonProperty("likesNumber")
     private int likesNumber;
-
-    @JsonProperty("commentsNumber")
-    private int commentsNumber;
-
     @JsonProperty("publication_date")
     private Date publicationDate;
-
+    @JsonProperty("comments")
+    private List<Comment> comments;
+    @JsonProperty("commentsNumber")
+    private int commentsNumber;
     @JsonProperty("publication_date_formatted")
     private String publicationDateFormatted;
 
-    public Post(List<Comment> comments, String userFirstName, String userLastName, String userPhoto, String postBody, String postPhoto, int likesNumber, int commentsNumber, Date publicationDate, String publicationDateFormatted) {
-        this.comments = comments;
+//    public Post(String email, String firstName, String lastName, String string, String s, String imageUriString, int i, Date date, String s1) {
+//    }
+    public Post(String userEmail,
+                String userFirstName,
+                String userLastName,
+                String userPhoto,
+                String postBody,
+                String postPhoto,
+                int likesNumber,
+                Date publicationDate,
+                List<Comment> comments) {
+        this.userEmail = userEmail;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.userPhoto = userPhoto;
         this.postBody = postBody;
         this.postPhoto = postPhoto;
         this.likesNumber = likesNumber;
-        this.commentsNumber = commentsNumber;
         this.publicationDate = publicationDate;
-        this.publicationDateFormatted = publicationDateFormatted;
+        this.comments = comments;
     }
 
-    public Post() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+//    public Post(String email, String firstName, String lastName, String ProfilePhoto, String postText, String postPhoto, int likesNumber, Date date, String comments) {
+//    }
 
     public List<Comment> getComments() {
         return comments;
@@ -125,14 +115,6 @@ public class Post {
         this.likesNumber = likesNumber;
     }
 
-    public int getCommentsNumber() {
-        return commentsNumber;
-    }
-
-    public void setCommentsNumber(int commentsNumber) {
-        this.commentsNumber = commentsNumber;
-    }
-
     public Date getPublicationDate() {
         return publicationDate;
     }
@@ -141,13 +123,13 @@ public class Post {
         this.publicationDate = publicationDate;
     }
 
-    public String getPublicationDateFormatted() {
-        return publicationDateFormatted;
-    }
-
-    public void setPublicationDateFormatted(String publicationDateFormatted) {
-        this.publicationDateFormatted = publicationDateFormatted;
-    }
+//    public String getPublicationDateFormatted() {
+//        return publicationDateFormatted;
+//    }
+//
+//    public void setPublicationDateFormatted(String publicationDateFormatted) {
+//        this.publicationDateFormatted = publicationDateFormatted;
+//    }
 
     public void addLike() {
         ++this.likesNumber;
@@ -155,6 +137,23 @@ public class Post {
 
     public void removeLike() {
         --this.likesNumber;
+    }
+// TODO return delete
+
+//    public String getId() {
+//        return id;
+//    }
+
+//    public void setId(String id) {
+//        this.id = id;
+//    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     // Getters and setters

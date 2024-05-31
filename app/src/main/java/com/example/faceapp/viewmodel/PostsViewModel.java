@@ -62,12 +62,13 @@ public class PostsViewModel extends ViewModel {
     public void editPost(String token, String id, PostRequestBody requestBody, Callback<Post> callback) {
         postsRepository.editPost(token, id, requestBody, callback);
     }
+// TODO return delete
 
-    public void deletePost(Post postToDelete, Callback<Post> callback) {
-        String token = userLocalStore.getToken();
-        String id = postToDelete.getId();
-        postsRepository.deletePost(token, id, callback);
-    }
+//    public void deletePost(Post postToDelete, Callback<Post> callback) {
+//        String token = userLocalStore.getToken();
+//        String id = postToDelete.getId();
+//        postsRepository.deletePost(token, id, callback);
+//    }
 
     public LiveData<List<Post>> getUserPosts(String token, String id) {
         postsRepository.getUserPosts(token, id, new Callback<List<Post>>() {

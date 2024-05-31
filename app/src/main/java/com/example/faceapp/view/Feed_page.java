@@ -171,7 +171,7 @@ public class Feed_page extends AppCompatActivity {
                 CommentListAdapter adapterListComment = new CommentListAdapter(this);
                 adapterListComment.setComments(post.getComments());
                 // Storing the adapter in a HashMap with post ID as the key
-                comments.put(String.valueOf(post.getId()), adapterListComment);
+                comments.put(String.valueOf(post.getPublicationDate()), adapterListComment);
             }
             // Setting the posts to the adapter to display in the RecyclerView
             adapter.setPosts(posts);
@@ -315,7 +315,15 @@ public class Feed_page extends AppCompatActivity {
                 // If the post is valid, create a new post object and add it to the list of posts
                 List<Post> posts = adapter.getPosts();
                 User currentUser = userLocalStore.getLoggedInUser();
-                Post post = new Post(null, currentUser.getFirstName(), currentUser.getLastName(), currentUser.getProfilePhoto().toString(), postText.getText().toString(), imageUri.toString(), 0, 0,  new Date(), "");
+                Post post = new Post(currentUser.getEmail(),
+                        currentUser.getFirstName(),
+                        currentUser.getLastName(),
+                        currentUser.getProfilePhoto().toString(),
+                        postText.getText().toString(),
+                        imageUri.toString(),
+                        0,
+                        new Date(),
+                        new ArrayList<>());
                 addPost(post);
                 posts.add(0, post);
                 adapter.setPosts(posts);
@@ -375,26 +383,27 @@ public class Feed_page extends AppCompatActivity {
     public void shareButton(String id) {
         shareLayout.setVisibility(View.VISIBLE);
     }
+//TODO RETURN DELETE
 
-    public void deletePost(Post postToDelete) {
-        postsViewModel.deletePost(postToDelete, new Callback<Post>() {
-            @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
-                // Handle successful deletion response if needed
-                if (response.isSuccessful()) {
-                    Toast.makeText(Feed_page.this, "Post saved", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(Feed_page.this, "Server rejected the post", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Post> call, Throwable t) {
-                // Handle deletion failure if needed
-                Toast.makeText(Feed_page.this, "Error in post saving", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    public void deletePost(Post postToDelete) {
+//        postsViewModel.deletePost(postToDelete, new Callback<Post>() {
+//            @Override
+//            public void onResponse(Call<Post> call, Response<Post> response) {
+//                // Handle successful deletion response if needed
+//                if (response.isSuccessful()) {
+//                    Toast.makeText(Feed_page.this, "Post saved", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(Feed_page.this, "Server rejected the post", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Post> call, Throwable t) {
+//                // Handle deletion failure if needed
+//                Toast.makeText(Feed_page.this, "Error in post saving", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
     private void addPost(Post postToAdd) {
         postsViewModel.addPost(postToAdd, new Callback<Post>() {

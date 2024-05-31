@@ -89,7 +89,8 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
     public void onBindViewHolder(PostsViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (!posts.isEmpty()) {
             final Post current = posts.get(position);
-            Uri profilePic = Uri.parse(current.getUserPhoto());
+            //TODO: add user profile
+            Uri profilePic = null;//Uri.parse(current.getUserPhoto());
             String postAuthor = current.getUserFirstName() + " " + current.getUserLastName();
 
             holder.posterProImage.setImageURI(profilePic);
@@ -131,14 +132,14 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                 }
             });
 
-            holder.share.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(context instanceof Feed_page){
-                        ((Feed_page)context).shareButton(current.getId());
-                    }
-                }
-            });
+//            holder.share.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if(context instanceof Feed_page){
+//                        ((Feed_page)context).shareButton(current.getId());
+//                    }
+//                }
+//            });
 
             holder.editPost.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -159,17 +160,18 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
                     holder.editPostLayout.setVisibility(View.GONE);
                 }
             });
+// TODO return delete
 
-            holder.deletePost.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(context instanceof Feed_page){
-                        ((Feed_page)context).deletePost(current);
-                    }
-                    posts.remove(current);
-                    notifyItemRemoved(position);
-                }
-            });
+//            holder.deletePost.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if(context instanceof Feed_page){
+//                        ((Feed_page)context).deletePost(current);
+//                    }
+//                    posts.remove(current);
+//                    notifyItemRemoved(position);
+//                }
+//            });
 
         } else {
             // Covers the case of data not being ready yet.
