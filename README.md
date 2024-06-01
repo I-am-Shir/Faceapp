@@ -1,3 +1,7 @@
+for targil 4- please look in the servers repositorys WIKI.
+### link to the servers repository
+https://github.com/Shiranle07/Fakebook_Server
+
 ## [link to faceapp git repository](https://github.com/I-am-Shir/Faceapp)
 ### our workflow:
 we created a log in, people can sign in from there (for now there is a default user in case no one signed in- username- Admin@gmail.com, password- a1234567). if they want to sign in they can do it in sign up, which is split into fragments (like in Facebook).
