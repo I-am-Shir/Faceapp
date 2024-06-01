@@ -415,7 +415,6 @@ public class Feed_page extends AppCompatActivity {
                     } else {
                     Toast.makeText(Feed_page.this, "Server rejected the post", Toast.LENGTH_SHORT).show();
                     }
-
             }
 
             @Override
