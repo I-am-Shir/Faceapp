@@ -18,12 +18,13 @@ import com.example.faceapp.view.Feed_page;
 import com.example.faceapp.R;
 import com.example.faceapp.model.Post;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.PostsViewHolder> {
     private Context context;
     private final LayoutInflater mInflater;
-    private List<Post> posts; // Cached copy of posts
+    private List<Post> posts = new ArrayList<>(); // Cached copy of posts
     public class PostsViewHolder extends RecyclerView.ViewHolder {
 
     //TODO: DELETE?
@@ -86,7 +87,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
 
     @Override
     public void onBindViewHolder(PostsViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        if (posts != null) {
+        if (!posts.isEmpty()) {
             final Post current = posts.get(position);
             Uri profilePic = Uri.parse(current.getUserPhoto());
             String postAuthor = current.getUserFirstName() + " " + current.getUserLastName();
@@ -185,9 +186,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
     // posts has not been updated (means initially, it's null, and we can't return null).
     @Override
     public int getItemCount() {
-        if (posts != null)
-            return posts.size();
-        else return 0;
+        return posts.size();
     }
 
     public List<Post> getPosts() {
